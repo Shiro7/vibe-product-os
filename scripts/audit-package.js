@@ -66,6 +66,7 @@ const required = [
   'governance/authority/AUTH-DEC-001_Public_License_and_Channels.md',
   'governance/authority/AUTH-DEC-002_Public_Pilot_Use_Test_Feedback_and_NPM.md',
   'governance/authority/AUTH-DEC-003_Multi_Agent_Installer_and_NPM_Pilot_1.md',
+  'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json',
   'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json',
   'governance/authority/product-os-authority.pub',
   'LICENSE',
@@ -116,11 +117,34 @@ if (fs.existsSync(path.join(packageRoot, 'runtime/framework-runtime-lock.json'))
   }
 }
 
+const verificationManifest = path.join(packageRoot, 'dist', 'release-verification-manifest.json');
+let releaseReport = null;
+let exactReleaseExternallyVerified = false;
+if (fs.existsSync(verificationManifest)) {
+  const manifest = JSON.parse(fs.readFileSync(verificationManifest, 'utf8'));
+  const signatureFiles = [
+    manifest.manifest_signature_path,
+    manifest.manifest_public_key_path,
+    ...manifest.subjects.flatMap((subject) => [subject.signature_path, subject.public_key_path]),
+  ].filter(Boolean);
+  const signaturesAvailable = signatureFiles.length > 0
+    && signatureFiles.every((file) => fs.existsSync(path.join(path.dirname(verificationManifest), file)));
+  releaseReport = verifyRelease({ manifest: verificationManifest, requireSignatures: signaturesAvailable });
+  exactReleaseExternallyVerified = releaseReport.result === 'PASS'
+    && releaseReport.publisher_identity === 'VERIFIED'
+    && releaseReport.external_distribution_authorized === true;
+}
+
 if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-snapshot.json'))) {
   const authority = JSON.parse(fs.readFileSync(path.join(packageRoot, 'governance/authority/authority-state-snapshot.json'), 'utf8'));
-  const expectedNpmReleaseStatus = releasePolicy.exactChannelDecisionStatus === 'APPROVED'
-    ? 'APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION'
-    : 'PENDING_EXPLICIT_AUTHORITY_CONFIRMATION_AND_EXACT_SIGNATURE_VERIFICATION';
+  const expectedReleaseDecisionStatus = exactReleaseExternallyVerified
+    ? 'APPROVED_EXECUTED_EXACT_EXTERNAL_ATTESTATION_VERIFIED'
+    : releasePolicy.releaseAuthorityStatus;
+  const expectedNpmReleaseStatus = exactReleaseExternallyVerified
+    ? 'PUBLISHED_SIGNED_AND_CLEAN_INSTALL_VERIFIED'
+    : releasePolicy.exactChannelDecisionStatus === 'APPROVED'
+      ? 'APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION'
+      : 'PENDING_EXPLICIT_AUTHORITY_CONFIRMATION_AND_EXACT_SIGNATURE_VERIFICATION';
   if (authority.conditions['AUTH-COND-001'] !== 'CLOSED_SIGNATURE_AND_PRIMARY_CUSTODY_VERIFIED'
     || authority.conditions['AUTH-COND-004'] !== 'CLOSED_CONTINUITY_CONTROLS_VERIFIED'
     || authority.conditions['AUTH-COND-002'] !== 'OPEN_POST_BASELINE_PILOT_DEFERRED_AFTER_UPLOAD') {
@@ -133,7 +157,7 @@ if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-s
     || authority.package_publication_policy?.support_status !== 'ACTIVE_VERIFIED_PUBLIC'
     || authority.package_publication_policy?.security_status !== 'ACTIVE_VERIFIED_PRIVATE_REPORTING'
     || authority.package_publication_policy?.release_decision_id !== releasePolicy.releaseDecision
-    || authority.package_publication_policy?.release_decision_status !== releasePolicy.releaseAuthorityStatus
+    || authority.package_publication_policy?.release_decision_status !== expectedReleaseDecisionStatus
     || authority.package_publication_policy?.public_source_pilot_status !== 'APPROVED_ACTIVE'
     || authority.package_publication_policy?.npm_package !== `${packageJson.name}@${packageJson.version}`
     || authority.package_publication_policy?.npm_access !== 'public'
@@ -158,13 +182,17 @@ if (fs.existsSync(path.join(packageRoot, 'governance/authority/PUBLIC_CHANNEL_AC
   }
 }
 
-const verificationManifest = path.join(packageRoot, 'dist', 'release-verification-manifest.json');
-if (fs.existsSync(verificationManifest)) {
-  const releaseReport = verifyRelease({ manifest: verificationManifest });
+if (releaseReport) {
   if (releaseReport.result !== 'PASS' || releaseReport.byte_identity !== 'VERIFIED' || releaseReport.subjects.length !== 6) {
     fail('PKG-RELEASE-IDENTITY', 'Generated release subjects failed byte-identity verification.');
   }
-  if (releaseReport.publisher_identity !== 'NOT_VERIFIED' || releaseReport.external_distribution_authorized !== false) {
+  if (exactReleaseExternallyVerified) {
+    if (releaseReport.manifest_signature_identity !== 'VERIFIED'
+      || releaseReport.publisher_key_identity !== 'PINNED_AUTHORITY_KEY_VERIFIED'
+      || releaseReport.exact_channel_authority_decision !== releasePolicy.releaseDecision) {
+      fail('PKG-RELEASE-AUTHORITY', 'Published pilot evidence does not prove the pinned Authority signature and exact channel decision.');
+    }
+  } else if (releaseReport.publisher_identity !== 'NOT_VERIFIED' || releaseReport.external_distribution_authorized !== false) {
     fail('PKG-RELEASE-AUTHORITY', 'Unsigned pilot candidate must not claim publisher identity or distribution authority.');
   }
 }
@@ -183,11 +211,11 @@ for (const file of walk(packageRoot)) {
 }
 
 const report = {
-  audit: 'vibe-product-os-publication-preparation-pilot-package',
+  audit: 'vibe-product-os-pilot-package',
   package_version: packageJson.version,
   result: findings.length ? 'FAIL' : 'PASS',
   findings,
-  external_distribution_authorized: false,
+  external_distribution_authorized: exactReleaseExternallyVerified,
 };
 
 process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);

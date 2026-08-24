@@ -70,7 +70,7 @@ test('W1, W2, and W3 package governance assets are complete', () => {
   ]);
 });
 
-test('public repository and support/security channel activation evidence is pinned', () => {
+test('public channels and pilot.1 publication evidence are pinned', () => {
   const authority = JSON.parse(fs.readFileSync(
     path.join(root, 'governance/authority/authority-state-snapshot.json'),
     'utf8',
@@ -79,17 +79,32 @@ test('public repository and support/security channel activation evidence is pinn
     path.join(root, 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json'),
     'utf8',
   ));
+  const publication = JSON.parse(fs.readFileSync(
+    path.join(root, 'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json'),
+    'utf8',
+  ));
   assert.equal(authority.package_publication_policy.repository_visibility, 'PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE');
   assert.equal(authority.package_publication_policy.support_status, 'ACTIVE_VERIFIED_PUBLIC');
   assert.equal(authority.package_publication_policy.security_status, 'ACTIVE_VERIFIED_PRIVATE_REPORTING');
   assert.equal(authority.package_publication_policy.release_decision_id, 'AUTH-DEC-003');
-  assert.equal(authority.package_publication_policy.release_decision_status, 'APPROVED_CONDITIONAL_ON_EXACT_EXTERNAL_ATTESTATION');
+  assert.equal(authority.package_publication_policy.release_decision_status, 'APPROVED_EXECUTED_EXACT_EXTERNAL_ATTESTATION_VERIFIED');
   assert.equal(authority.package_publication_policy.npm_package, 'vibe-product-os@0.1.0-pilot.1');
   assert.equal(authority.package_publication_policy.npm_access, 'public');
   assert.equal(authority.package_publication_policy.npm_tag, 'pilot');
+  assert.equal(authority.package_publication_policy.npm_release_status, 'PUBLISHED_SIGNED_AND_CLEAN_INSTALL_VERIFIED');
   assert.equal(activation.authority_decision, 'AUTH-DEC-001');
   assert.deepEqual(activation.remaining_publication_controls, [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
     'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ]);
+  assert.equal(publication.authority_decision, 'AUTH-DEC-003');
+  assert.equal(publication.npm_publication.version, '0.1.0-pilot.1');
+  assert.equal(publication.npm_publication.registry_metadata_verification, 'PASS');
+  assert.equal(publication.dist_tag_observation.pilot, '0.1.0-pilot.1');
+  assert.equal(publication.dist_tag_observation.latest, '0.1.0-pilot.0');
+  assert.equal(publication.signature_verification.publisher_identity, 'VERIFIED');
+  assert.equal(publication.signature_verification.signed_subject_count, 6);
+  assert.equal(publication.clean_public_install_verification.requested_agent_count, 9);
+  assert.equal(publication.clean_public_install_verification.unique_destination_count, 3);
+  assert.equal(publication.overall_result, 'PUBLIC_PILOT_1_PUBLISHED_SIGNED_AND_CLEAN_INSTALL_VERIFIED');
 });

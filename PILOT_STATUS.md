@@ -4,12 +4,12 @@
 |---|---|
 | Public identity | `Vibe Product OS` |
 | npm / CLI / Skill / Plugin name | `vibe-product-os` |
-| Package version | `0.1.0-pilot.1` approved release candidate |
+| Package version | `0.1.0-pilot.1` published and verified |
 | Embedded framework | Product OS `1.0.0` from immutable `rc.2` |
 | Supported hosts | Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf, OpenCode, Cline, and Zed |
-| Package publication | `AUTH-DEC-003 APPROVED — EXACT SIGNATURES REQUIRED` |
+| Package publication | `0.1.0-pilot.1 PUBLISHED — SIGNATURES AND CLEAN INSTALL VERIFIED` |
 | GitHub source repository | `PUBLIC ACTIVE — HISTORY REVIEW COMPLETE` |
-| Public pilot use and testing | `pilot.0 ACTIVE; pilot.1 APPROVED AFTER PUBLICATION` |
+| Public pilot use and testing | `pilot.1 ACTIVE; feedback open` |
 | Public feedback | `GitHub Issues — OPEN` |
 | Framework signature | `AUTH-COND-001 CLOSED` |
 | Key continuity | `AUTH-COND-004 CLOSED` |
@@ -24,16 +24,19 @@
 
 ## Current pilot boundary
 
-The current public source pilot and `0.1.0-pilot.0` npm package may be used,
-tested, and reviewed now. `0.1.0-pilot.0` was published under the `pilot` tag
-after its exact candidate subjects were signed and clean-recipient verified.
-Its additive publication evidence is recorded in
-`governance/authority/NPM_PUBLICATION_EVIDENCE_2026-08-25.json`.
+The current public source pilot and `0.1.0-pilot.1` npm package may be used,
+tested, and reviewed now. `0.1.0-pilot.1` was published under the `pilot` tag
+after its six exact release subjects and release manifest were signed and
+verified against the pinned Product OS Authority key. A clean install from the
+public registry passed package identity, setup-doctor, zero-vulnerability npm
+audit, and nine-agent managed-link installation checks. Its additive evidence
+is recorded in
+`governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json`.
 
-`0.1.0-pilot.1` is the approved candidate containing the multi-agent installer
-and expanded operating guide. `AUTH-DEC-003` authorizes only that exact version
-on npm access `public` and dist-tag `pilot`, without moving `latest`.
-Publication still requires detached signatures and clean-registry verification.
+The historical `0.1.0-pilot.0` publication remains immutable and is recorded in
+`governance/authority/NPM_PUBLICATION_EVIDENCE_2026-08-25.json`. The `pilot`
+dist-tag now resolves to `0.1.0-pilot.1`; `latest` remains at
+`0.1.0-pilot.0` and was not moved by `AUTH-DEC-003`.
 
 Repository visibility and both approved channels are active and recorded in
 `governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json`.
