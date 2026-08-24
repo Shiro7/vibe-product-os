@@ -16,5 +16,5 @@ Decision: **PASS — VERIFIED WORKING BASELINE**
 
 - This is a Skill-engineering baseline, not Product OS Authority approval of external distribution.
 - Framework signature and continuity conditions `AUTH-COND-001` and `AUTH-COND-004` are closed by later additive Authority evidence.
-- `AUTH-COND-002` remains open. `AUTH-DEC-001` and `AUTH-DEC-002` close the license, channel, and exact published `0.1.0-pilot.0` release decisions. `AUTH-DEC-003` is proposed for `0.1.0-pilot.1`; explicit approval and package-specific signatures remain mandatory.
+- `AUTH-COND-002` remains open. `AUTH-DEC-001` and `AUTH-DEC-002` close the license, channel, and exact published `0.1.0-pilot.0` release decisions. `AUTH-DEC-003` approves `0.1.0-pilot.1`; package-specific signatures remain mandatory.
 - W2 must not claim composition capability until its 281-row map, P1/P2/P3 fixtures, dry-run/apply safety, and tests pass.

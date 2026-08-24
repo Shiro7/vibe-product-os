@@ -109,8 +109,8 @@ if (fs.existsSync(path.join(packageRoot, 'runtime/framework-runtime-lock.json'))
     fail('PKG-AUTHORITY-STATE', 'Runtime lock does not reflect the additive Authority closure state.');
   }
   if (lock.package_version !== packageJson.version
-    || lock.release_authority_decision !== `${releasePolicy.releaseDecision}_PROPOSED`
-    || lock.external_distribution_blocker !== 'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING'
+    || lock.release_authority_decision !== `${releasePolicy.releaseDecision}_APPROVED`
+    || lock.external_distribution_blocker !== null
     || lock.package_signature_status !== 'VERIFY_WITH_EXTERNAL_SIGNED_RELEASE_MANIFEST') {
     fail('PKG-RUNTIME-RELEASE-POLICY', 'Runtime lock does not match the current package and external-attestation policy.');
   }

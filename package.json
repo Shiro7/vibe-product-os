@@ -70,7 +70,7 @@
     "frameworkVersion": "1.0.0",
     "sourceRelease": "Product-OS-v1.0-rc.2",
     "releaseDecision": "AUTH-DEC-003",
-    "releaseAuthorityStatus": "PROPOSED_PENDING_AUTHORITY_CONFIRMATION",
+    "releaseAuthorityStatus": "APPROVED_CONDITIONAL_ON_EXACT_EXTERNAL_ATTESTATION",
     "authorityKeyId": "EAB95C319319813D",
     "authorityPublicKeySha256": "92d7d336663522b1ac55544749fa632cfa63467af5391a01f8788ffefc3412da",
     "claimBoundary": "PRODUCT_OS_V1_WITH_REAL_PROJECT_VALIDATION_IN_PROGRESS"

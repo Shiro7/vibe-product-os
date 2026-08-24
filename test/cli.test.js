@@ -19,12 +19,10 @@ test('version reports package and framework identities separately', () => {
   assert.equal(identity.framework_signature_condition, 'AUTH-COND-001_CLOSED');
   assert.equal(identity.key_continuity_condition, 'AUTH-COND-004_CLOSED');
   assert.equal(identity.public_channel_status, 'ACTIVE_VERIFIED');
-  assert.equal(identity.release_authority_decision, 'AUTH-DEC-003_PROPOSED');
-  assert.equal(identity.release_authority_status, 'PROPOSED_PENDING_AUTHORITY_CONFIRMATION');
-  assert.equal(identity.external_distribution_blocker, 'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING');
-  assert.deepEqual(identity.external_distribution_blockers, [
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
-  ]);
+  assert.equal(identity.release_authority_decision, 'AUTH-DEC-003_APPROVED');
+  assert.equal(identity.release_authority_status, 'APPROVED_CONDITIONAL_ON_EXACT_EXTERNAL_ATTESTATION');
+  assert.equal(identity.external_distribution_blocker, null);
+  assert.deepEqual(identity.external_distribution_blockers, []);
 });
 
 test('non-interactive install requires explicit consent and scope', () => {

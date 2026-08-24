@@ -19,6 +19,10 @@ const sbomPath = path.join(distRoot, sbomName);
 const checksumsPath = path.join(distRoot, 'SHA256SUMS');
 const verificationManifestPath = path.join(distRoot, 'release-verification-manifest.json');
 const authorityPublicKeyPath = path.join(distRoot, 'product-os-authority.pub');
+const externalDistributionBlockers = ['PACKAGE_RELEASE_SIGNATURES_PENDING'];
+if (releasePolicy.exactChannelDecisionStatus !== 'APPROVED') {
+  externalDistributionBlockers.push('EXACT_CHANNEL_AUTHORITY_DECISION_PENDING');
+}
 
 function sha256(file) {
   return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
@@ -222,10 +226,7 @@ const packReport = {
   version: packageJson.version,
   status: 'PILOT_CANDIDATE_LOCAL_TARBALL',
   external_distribution_authorized: false,
-  external_distribution_blockers: [
-    'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
-  ],
+  external_distribution_blockers: externalDistributionBlockers,
   filename: pack.filename,
   size_bytes: fs.statSync(expectedTarball).size,
   unpacked_size_bytes: pack.unpackedSize,

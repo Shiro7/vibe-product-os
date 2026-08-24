@@ -45,11 +45,9 @@ test('runtime lock preserves the approved Product OS identity', () => {
   assert.equal(lock.framework_signature_condition, 'AUTH-COND-001_CLOSED');
   assert.equal(lock.key_continuity_condition, 'AUTH-COND-004_CLOSED');
   assert.equal(lock.package_version, '0.1.0-pilot.1');
-  assert.equal(lock.release_authority_decision, 'AUTH-DEC-003_PROPOSED');
-  assert.equal(lock.external_distribution_blocker, 'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING');
-  assert.deepEqual(lock.external_distribution_blockers, [
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
-  ]);
+  assert.equal(lock.release_authority_decision, 'AUTH-DEC-003_APPROVED');
+  assert.equal(lock.external_distribution_blocker, null);
+  assert.deepEqual(lock.external_distribution_blockers, []);
   assert.equal(lock.source_release_file_count, 503);
   assert.equal(lock.file_count, 504);
   assert.equal(lock.extraction_safety.digest_verified, true);
@@ -69,7 +67,6 @@ test('W1, W2, and W3 package governance assets are complete', () => {
   assert.equal(commands.focused_test_count, 21);
   assert.deepEqual(commands.open_release_controls, [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ]);
 });
 
@@ -86,7 +83,7 @@ test('public repository and support/security channel activation evidence is pinn
   assert.equal(authority.package_publication_policy.support_status, 'ACTIVE_VERIFIED_PUBLIC');
   assert.equal(authority.package_publication_policy.security_status, 'ACTIVE_VERIFIED_PRIVATE_REPORTING');
   assert.equal(authority.package_publication_policy.release_decision_id, 'AUTH-DEC-003');
-  assert.equal(authority.package_publication_policy.release_decision_status, 'PROPOSED_PENDING_AUTHORITY_CONFIRMATION');
+  assert.equal(authority.package_publication_policy.release_decision_status, 'APPROVED_CONDITIONAL_ON_EXACT_EXTERNAL_ATTESTATION');
   assert.equal(authority.package_publication_policy.npm_package, 'vibe-product-os@0.1.0-pilot.1');
   assert.equal(authority.package_publication_policy.npm_access, 'public');
   assert.equal(authority.package_publication_policy.npm_tag, 'pilot');

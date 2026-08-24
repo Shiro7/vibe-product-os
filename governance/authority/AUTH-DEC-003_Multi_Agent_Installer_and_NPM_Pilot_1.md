@@ -1,20 +1,21 @@
 ---
-record_type: AUTHORITY_DECISION_PROPOSAL
+record_type: AUTHORITY_DECISION
 decision_id: AUTH-DEC-003
-decision_status: PROPOSED_PENDING_AUTHORITY_CONFIRMATION
+decision_status: APPROVED
 decision_scope: vibe-product-os-0.1.0-pilot.1-multi-agent-installer-and-npm-pilot
 authority_actor: M.M.Eyada
-authority_ref: PENDING_EXPLICIT_VERSION_SPECIFIC_CONFIRMATION
+authority_ref: USER-DIRECTIVE-2026-08-25-APPROVE-AND-PROCEED
 proposed_at: 2026-08-25T04:50:43+08:00
+decided_at: 2026-08-25T04:59:31+08:00
 depends_on: AUTH-DEC-001, AUTH-DEC-002
-supersedes_for_current_release_if_approved: AUTH-DEC-002
+supersedes_for_current_release: AUTH-DEC-002
 ---
 
-# Proposed Multi-Agent Installer and npm `pilot.1` Decision
+# Multi-Agent Installer and npm `pilot.1` Decision
 
-## Proposed decision
+## Decision
 
-Approve `vibe-product-os@0.1.0-pilot.1` as the next bounded public pilot
+The Product OS Authority approves `vibe-product-os@0.1.0-pilot.1` as the next bounded public pilot
 release with this exact scope:
 
 - the expanded operating guide centered on project use, collaboration,
@@ -30,10 +31,10 @@ release with this exact scope:
   the exact release candidate satisfies the evidence below;
 - public installation, testing, and feedback as a bounded pilot.
 
-The npm `latest` tag would not be moved. `AUTH-DEC-002` remains the immutable
-decision for `0.1.0-pilot.0`; this proposal applies only to
-`0.1.0-pilot.1` and has no publication authority until explicitly approved by
-the Product OS Authority.
+The npm `latest` tag must not be moved. `AUTH-DEC-002` remains the immutable
+decision for `0.1.0-pilot.0`; this decision applies only to
+`0.1.0-pilot.1`, on npm access `public` and dist-tag `pilot`, after exact
+signature verification.
 
 ## Required release evidence
 
@@ -65,7 +66,7 @@ signed manifest verify against the pinned Authority public key.
 
 ## Claim boundary
 
-If approved, this release permits public pilot use, testing, integration
+This release permits public pilot use, testing, integration
 trials, and feedback. It does not claim production readiness, certification,
 compliance, universal host compatibility, a paid SLA, or scaled adoption.
 Directory compatibility follows each host's public guidance; runtime behavior
@@ -82,7 +83,7 @@ evidence.
 
 ## Reopen triggers
 
-Reopen after approval if version, package name, license, repository, access,
+Reopen this decision if version, package name, license, repository, access,
 dist-tag, signing key, release subjects, target directory model, support or
 security channel, ownership, or claim boundary changes; if an official host
 path materially changes; or if signing, verification, publication, or public

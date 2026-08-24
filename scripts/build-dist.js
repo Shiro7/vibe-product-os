@@ -16,6 +16,10 @@ const skillZip = path.join(distRoot, `vibe-product-os-skill-${packageJson.versio
 const pluginZip = path.join(distRoot, `vibe-product-os-codex-plugin-${packageJson.version}.zip`);
 const authoritySnapshot = path.join(packageRoot, 'governance', 'authority', 'authority-state-snapshot.json');
 const authorityPublicKey = path.join(packageRoot, 'governance', 'authority', 'product-os-authority.pub');
+const externalDistributionBlockers = ['PACKAGE_RELEASE_SIGNATURES_PENDING'];
+if (releasePolicy.exactChannelDecisionStatus !== 'APPROVED') {
+  externalDistributionBlockers.push('EXACT_CHANNEL_AUTHORITY_DECISION_PENDING');
+}
 
 function sha256(file) {
   return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
@@ -79,10 +83,7 @@ const report = {
   framework_version: releasePolicy.frameworkVersion,
   build_status: 'PILOT_CANDIDATE_PUBLICATION_PREPARATION',
   external_distribution_authorized: false,
-  external_distribution_blockers: [
-    'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING'
-  ],
+  external_distribution_blockers: externalDistributionBlockers,
   framework_authority_conditions: {
     'AUTH-COND-001': 'CLOSED',
     'AUTH-COND-002': 'OPEN_POST_BASELINE',
