@@ -1,0 +1,11 @@
+{
+  "profile": "P3",
+  "selected_logical_artifact_count": 16,
+  "applicable_artifact_count": 13,
+  "pending_artifact_count": 3,
+  "materialized_artifact_count": 13,
+  "authorable_file_count": 12,
+  "new_package_count": 8,
+  "representative_path": "lifecycle/phase-00-initialization/init-001--product-project-brief.md",
+  "representative_members": ["INIT-001"]
+}

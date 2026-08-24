@@ -1,0 +1,65 @@
+{
+  "name": "vibe-product-os",
+  "version": "0.1.0-alpha.0",
+  "description": "Codex-first Skill, plugin, installer, and governed runtime adapter for Product OS 1.0.0.",
+  "type": "commonjs",
+  "private": true,
+  "main": "lib/index.js",
+  "bin": {
+    "vibe-product-os": "bin/vibe-product-os.js",
+    "vpo": "bin/vibe-product-os.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "runtime/",
+    "plugins/",
+    "governance/",
+    "dist/",
+    "README.md",
+    "ALPHA_STATUS.md",
+    "SECURITY.md",
+    "SUPPORT.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "sync:runtime": "node scripts/sync-runtime.js",
+    "build:composer-assets": "node scripts/build-composer-assets.js",
+    "test:unit": "node --test test/*.test.js",
+    "test": "npm run sync:runtime && npm run build:composer-assets && npm run test:unit",
+    "test:runtime": "node runtime/framework/Product-OS-v1.0/outputs/Automation_Commands/test/run-tests.js",
+    "dist": "node scripts/build-dist.js",
+    "pack:alpha": "node scripts/pack-alpha.js",
+    "audit": "node scripts/audit-package.js",
+    "verify": "npm run sync:runtime && npm run build:composer-assets && npm run test:unit && npm run test:runtime && npm run dist && npm run audit",
+    "prepack": "npm run verify"
+  },
+  "keywords": [
+    "agent-skill",
+    "codex",
+    "product-os",
+    "product-management",
+    "requirements",
+    "solution-architecture",
+    "spec-driven-development",
+    "traceability",
+    "vibe-coding"
+  ],
+  "license": "UNLICENSED",
+  "author": "M.M.Eyada",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shiro7/vibe-product-os.git"
+  },
+  "homepage": "https://shiro7.github.io/vibe-product-os/",
+  "bugs": {
+    "url": "https://github.com/Shiro7/vibe-product-os/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "pilot"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "profile": "P1",
+  "selected_logical_artifact_count": 16,
+  "applicable_artifact_count": 13,
+  "pending_artifact_count": 3,
+  "materialized_artifact_count": 13,
+  "authorable_file_count": 7,
+  "new_package_count": 3,
+  "representative_path": "lifecycle/phase-00-initialization/phase-00--initialization-pack.md",
+  "representative_members": ["INIT-001", "INIT-002", "INIT-003", "INIT-004", "INIT-005", "INIT-007"]
+}

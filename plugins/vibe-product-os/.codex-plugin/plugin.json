@@ -1,0 +1,25 @@
+{
+  "name": "vibe-product-os",
+  "version": "0.1.0-alpha.0",
+  "description": "Governed Product OS lifecycle and project operations for Codex.",
+  "author": {
+    "name": "M.M.Eyada"
+  },
+  "license": "UNLICENSED",
+  "keywords": ["product-os", "governance", "requirements", "traceability", "codex"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Vibe Product OS",
+    "shortDescription": "Operate governed Product OS projects safely.",
+    "longDescription": "Initialize, compose, continue, review, validate, trace, and hand off Product OS projects while preserving P1/P2/P3 profiles, evidence, and human authority.",
+    "developerName": "M.M.Eyada",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Initialize this product with Product OS and recommend P1, P2, or P3.",
+      "Review the current Product OS phase and show what blocks the next gate.",
+      "Trace this change across requirements, design, architecture, tests, and evidence.",
+      "Compose the active phase into the governed P1, P2, or P3 repository structure after showing a dry-run."
+    ]
+  }
+}

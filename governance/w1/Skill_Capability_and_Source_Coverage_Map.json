@@ -1,0 +1,206 @@
+{
+  "map_id": "VPO-W1-CAPABILITY-SOURCE-COVERAGE-001",
+  "version": "1.0.0",
+  "status": "VERIFIED_WORKING_BASELINE",
+  "framework": {
+    "product": "Product OS",
+    "version": "1.0.0",
+    "source_release": "Product-OS-v1.0-rc.2",
+    "archive_sha256": "ba12b607ae90b7a77b9eb2b35a54761847e716f0a5031e416784ae9c20c30f49"
+  },
+  "coverage_rule": "A component is COVERED only when its exact source entry point is bundled, at least one Skill route exists, every declared runtime command exists, and its authority boundary is explicit.",
+  "operational_modes": [
+    "INIT", "RESUME", "PROFILE", "GOV009", "ARTIFACT", "COMPOSE", "TRACE",
+    "IMPACT", "GATE", "HANDOFF", "VALIDATE", "DISTRIBUTE", "TOOL_MAPPING"
+  ],
+  "component_count": 17,
+  "components": [
+    {
+      "component_id": "POS-COMP-001",
+      "name": "Methodology Specification Phases 00-11",
+      "source_entry_point": "outputs/Phase_00_Initialization_and_Intake_v1.1.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["INIT", "RESUME", "ARTIFACT", "HANDOFF"],
+      "skill_routes": ["references/operating-model.md"],
+      "runtime_commands": ["init", "handoff"],
+      "authority_limit": "The Skill may route and prepare lifecycle work; only the Product OS Authority approves phase or baseline transitions.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-002",
+      "name": "Master Lifecycle Index",
+      "source_entry_point": "outputs/Master_Lifecycle_Index.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["INIT", "RESUME", "HANDOFF"],
+      "skill_routes": ["references/operating-model.md"],
+      "runtime_commands": ["doctor"],
+      "authority_limit": "The Skill reports lifecycle position and routing without declaring a phase complete.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-003",
+      "name": "Master Artifact Catalog",
+      "source_entry_point": "outputs/Product_OS_Master_Artifact_Catalog.md",
+      "treatment": "SOURCE_ROUTED_AND_COMPOSER_INPUT",
+      "operational_modes": ["PROFILE", "ARTIFACT", "COMPOSE"],
+      "skill_routes": ["references/artifacts-traceability-and-evidence.md"],
+      "runtime_commands": ["validate", "lint"],
+      "authority_limit": "The Skill may select and scaffold cataloged artifacts; it may not invent or retire canonical artifact identities.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-004",
+      "name": "Standards and Compliance Applicability",
+      "source_entry_point": "outputs/GOV_009_Standards_and_Compliance_Applicability_Matrix.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["GOV009", "PROFILE", "IMPACT"],
+      "skill_routes": ["references/profiles-gates-and-authority.md"],
+      "runtime_commands": ["impact", "reconcile"],
+      "authority_limit": "The Skill may surface applicability candidates and propagation; a human authority approves applicability and NOT_APPLICABLE dispositions.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-005",
+      "name": "Gate Map",
+      "source_entry_point": "outputs/Gate_Map.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["GATE", "RESUME", "HANDOFF"],
+      "skill_routes": ["references/profiles-gates-and-authority.md"],
+      "runtime_commands": ["gate", "handoff"],
+      "authority_limit": "The Skill may prepare gate inputs and report evidence gaps; it never records an approval as its own decision.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-006",
+      "name": "Cross-Phase Traceability",
+      "source_entry_point": "outputs/Cross_Phase_Traceability.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["TRACE", "IMPACT", "HANDOFF"],
+      "skill_routes": ["references/artifacts-traceability-and-evidence.md"],
+      "runtime_commands": ["graph", "impact"],
+      "authority_limit": "The Skill may calculate and report lineage; it may not waive a missing required link.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-007",
+      "name": "Core Artifact Contracts",
+      "source_entry_point": "outputs/Core_Artifact_Contracts/Core_Artifact_Contracts_Index.md",
+      "treatment": "SOURCE_ROUTED_AND_COMPOSER_INPUT",
+      "operational_modes": ["ARTIFACT", "COMPOSE", "VALIDATE"],
+      "skill_routes": ["references/artifacts-traceability-and-evidence.md"],
+      "runtime_commands": ["validate", "lint"],
+      "authority_limit": "The Skill must preserve shared and specialized contracts; exceptions require governed change authority.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-008",
+      "name": "Classification Rules",
+      "source_entry_point": "outputs/Classification_Rules.md",
+      "treatment": "SOURCE_ROUTED_AND_COMPOSER_INPUT",
+      "operational_modes": ["PROFILE", "ARTIFACT", "COMPOSE", "VALIDATE"],
+      "skill_routes": ["references/artifacts-traceability-and-evidence.md"],
+      "runtime_commands": ["lint", "reconcile"],
+      "authority_limit": "The Skill applies canonical classifications and reports conflicts; it does not redefine the taxonomy.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-009",
+      "name": "Gate Specifications",
+      "source_entry_point": "outputs/Gate_Specifications/Gate_Specifications_Index.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["GATE", "VALIDATE"],
+      "skill_routes": ["references/profiles-gates-and-authority.md"],
+      "runtime_commands": ["gate", "baseline"],
+      "authority_limit": "Automation can determine mechanical readiness only; gate disposition remains a named human authority decision.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-010",
+      "name": "Traceability Graph",
+      "source_entry_point": "outputs/Traceability_Graph/Traceability_Graph_Index.md",
+      "treatment": "SOURCE_ROUTED_AND_EXECUTABLE",
+      "operational_modes": ["TRACE", "VALIDATE"],
+      "skill_routes": ["references/artifacts-traceability-and-evidence.md"],
+      "runtime_commands": ["graph", "validate"],
+      "authority_limit": "The Skill may derive graph views but may not treat derived views as canonical source records.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-011",
+      "name": "Change Impact Rules",
+      "source_entry_point": "outputs/Change_Impact_Rules/Change_Impact_Rules_Index.md",
+      "treatment": "SOURCE_ROUTED_AND_EXECUTABLE",
+      "operational_modes": ["IMPACT", "TRACE", "GATE"],
+      "skill_routes": ["references/artifacts-traceability-and-evidence.md"],
+      "runtime_commands": ["impact", "reconcile"],
+      "authority_limit": "The Skill may propose impact dispositions; NO_IMPACT and accepted residual risk require human approval.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-012",
+      "name": "Source and Evidence Model",
+      "source_entry_point": "outputs/Source_Evidence_Model/Source_Evidence_Model_Index.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["ARTIFACT", "VALIDATE", "GATE"],
+      "skill_routes": ["references/artifacts-traceability-and-evidence.md"],
+      "runtime_commands": ["validate", "baseline"],
+      "authority_limit": "The Skill may register and assess evidence fitness; it must not fabricate evidence or attest compliance.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-013",
+      "name": "AI Operating Specification",
+      "source_entry_point": "outputs/AI_Operating_Specification/AI_Operating_Specification_Index.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["INIT", "RESUME", "VALIDATE", "HANDOFF"],
+      "skill_routes": ["references/operating-model.md", "references/profiles-gates-and-authority.md"],
+      "runtime_commands": ["doctor"],
+      "authority_limit": "The Skill operates only in delegated modes and must preserve attribution, uncertainty, evidence, and human control.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-014",
+      "name": "Spec Kit Figma GitHub Mapping",
+      "source_entry_point": "outputs/Spec_Kit_Figma_GitHub_Mapping/Spec_Kit_Figma_GitHub_Mapping_Index.md",
+      "treatment": "SOURCE_ROUTED",
+      "operational_modes": ["TOOL_MAPPING", "TRACE", "HANDOFF"],
+      "skill_routes": ["references/tool-mapping.md"],
+      "runtime_commands": ["reconcile", "handoff"],
+      "authority_limit": "The Skill records exact native-object identities and synchronization state; it does not replace native sources with summaries.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-015",
+      "name": "Schemas and Repository Standard",
+      "source_entry_point": "outputs/Schemas_Repository_Standard/Schemas_Repository_Standard_Index.md",
+      "treatment": "BUNDLED_AND_EXECUTABLE",
+      "operational_modes": ["INIT", "ARTIFACT", "COMPOSE", "VALIDATE", "DISTRIBUTE"],
+      "skill_routes": ["references/runtime-commands.md"],
+      "runtime_commands": ["init", "validate", "lint", "migrate", "archive", "doctor"],
+      "authority_limit": "The Skill may apply published schemas and migrations with explicit mutation consent; destructive or authority actions remain blocked.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-016",
+      "name": "Automation and Commands",
+      "source_entry_point": "outputs/Automation_Commands/Automation_Commands_Index.md",
+      "treatment": "BUNDLED_AND_EXECUTABLE",
+      "operational_modes": ["INIT", "RESUME", "COMPOSE", "TRACE", "IMPACT", "GATE", "HANDOFF", "VALIDATE", "DISTRIBUTE"],
+      "skill_routes": ["references/runtime-commands.md"],
+      "runtime_commands": ["init", "validate", "lint", "reconcile", "graph", "impact", "gate", "baseline", "handoff", "migrate", "archive", "doctor"],
+      "authority_limit": "Commands produce mechanical results and evidence; they do not create human approval or expand delegated authority.",
+      "status": "COVERED"
+    },
+    {
+      "component_id": "POS-COMP-017",
+      "name": "Synthetic Reference Pilot",
+      "source_entry_point": "outputs/Pilot/Pilot_Index.md",
+      "treatment": "SOURCE_ROUTED_TEST_REFERENCE",
+      "operational_modes": ["VALIDATE", "DISTRIBUTE"],
+      "skill_routes": ["references/distribution-status.md"],
+      "runtime_commands": ["validate", "doctor"],
+      "authority_limit": "Synthetic pilot evidence proves framework mechanics only; it cannot be represented as production validation.",
+      "status": "COVERED"
+    }
+  ]
+}

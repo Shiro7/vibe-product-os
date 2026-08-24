@@ -1,0 +1,33 @@
+{
+  "catalog_id": "VPO-W2-MODULE-APPLICABILITY-COMPOSITION-001",
+  "version": "1.0.0",
+  "status": "VERIFIED_WORKING_BASELINE",
+  "activation_rules": {
+    "CORE": {
+      "initial_applicability": "APPLICABLE",
+      "materialize_when_phase_selected": true
+    },
+    "RECUR": {
+      "initial_applicability": "APPLICABLE",
+      "materialize_when_phase_selected": true
+    },
+    "COND": {
+      "initial_applicability": "PENDING",
+      "materialize_when_phase_selected": false,
+      "activation_source": "Approved GOV-009/module or explicit governed activation."
+    },
+    "EVENT": {
+      "initial_applicability": "PENDING",
+      "materialize_when_phase_selected": false,
+      "activation_source": "Observed governed event or explicit governed activation."
+    },
+    "DRVD": {
+      "initial_applicability": "PENDING",
+      "materialize_when_phase_selected": false,
+      "activation_source": "A deterministic generator with canonical inputs."
+    }
+  },
+  "not_applicable_rule": "The composer never infers NOT_APPLICABLE. It requires a complete authority-approved N/A record and creates no empty artifact file.",
+  "domain_override_rule": "A domain override may raise packaging/assurance only for its governed scope and cannot weaken universal controls.",
+  "module_rule": "Only module records already approved in profile-composition.yaml can activate their artifact_refs automatically; CLI --activate remains a proposal unless project authority is already recorded."
+}

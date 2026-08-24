@@ -1,0 +1,139 @@
+{
+  "report_id": "VIBE-PRODUCT-OS-INTERNAL-ALPHA-SETUP-003",
+  "report_date": "2026-08-24",
+  "result": "PASS_WITH_OPEN_RELEASE_CONDITIONS",
+  "product": "Vibe Product OS",
+  "package": "vibe-product-os",
+  "package_version": "0.1.0-alpha.0",
+  "framework": "Product OS",
+  "framework_version": "1.0.0",
+  "framework_status": "ACTIVE_WITH_CONDITIONS",
+  "github_repository": {
+    "url": "https://github.com/Shiro7/vibe-product-os",
+    "visibility": "PRIVATE",
+    "purpose": "internal source control",
+    "public_distribution_authorized": false
+  },
+  "source_release": "Product-OS-v1.0-rc.2",
+  "source_release_archive_sha256": "ba12b607ae90b7a77b9eb2b35a54761847e716f0a5031e416784ae9c20c30f49",
+  "setup_scope": [
+    "npm-compatible package source",
+    "Codex-first installer and plugin",
+    "Product OS Skill with progressive references and operational assets",
+    "complete 17-component Product OS runtime from the verified rc.2 archive",
+    "W1 formal Skill capability and source coverage map",
+    "W2 281-row Physical Composer with P1, P2, and P3 composition",
+    "W3 status, governed update and rollback, and release verification commands",
+    "Skill ZIP, Plugin ZIP, local npm tarball, and release verification manifest",
+    "local and clean-recipient verification"
+  ],
+  "w1": {
+    "result": "PASS",
+    "release_components_covered": 17,
+    "release_components_total": 17,
+    "operational_modes_covered": 13,
+    "runtime_source_files": 503,
+    "runtime_extracted_files": 504,
+    "authority_claim": "NONE"
+  },
+  "w2": {
+    "result": "PASS",
+    "logical_artifacts_mapped": 281,
+    "profiles": ["P1", "P2", "P3"],
+    "golden_fixture_profiles_passed": 3,
+    "dry_run_default": true,
+    "overwrite_refusal": "PASS",
+    "conditional_authority_guard": "PASS",
+    "path_escape_guard": "PASS",
+    "domain_override_scope_guard": "PASS",
+    "schema_validation": "PASS",
+    "authority_claim": "NONE"
+  },
+  "w3": {
+    "result": "PASS",
+    "commands": ["status", "update", "verify-release"],
+    "focused_tests_passed": 18,
+    "status_read_only": "PASS",
+    "source_and_catalog_identity_reconciliation": "PASS",
+    "update_dry_run_and_idempotence": "PASS",
+    "update_authority_and_change_reference_guard": "PASS",
+    "backup_and_concurrent_change_safe_rollback": "PASS",
+    "release_byte_identity": "VERIFIED",
+    "release_publisher_identity": "NOT_VERIFIED",
+    "required_signature_check": "EXPECTED_FAIL_WHILE_AUTH_COND_001_OPEN",
+    "authority_claim": "NONE"
+  },
+  "verification": {
+    "package_unit_tests": { "result": "PASS", "passed": 41, "failed": 0 },
+    "product_os_runtime_tests": { "result": "PASS", "passed": 14, "failed": 0 },
+    "skill_validator": {
+      "result": "PASS",
+      "validator": "skill-creator quick_validate.py",
+      "temporary_dependency": "PyYAML 6.0.3 outside package"
+    },
+    "plugin_validator": {
+      "result": "NOT_RERUN",
+      "reason": "Plugin manifest was unchanged during W3; package and clean-recipient checks covered the rebuilt plugin archive."
+    },
+    "package_audit": { "result": "PASS", "findings": 0 },
+    "npm_pack": {
+      "result": "PASS",
+      "entry_count": 553,
+      "unpacked_size_bytes": 7199908,
+      "prohibited_path_count": 0
+    },
+    "clean_recipient_install": {
+      "result": "PASS",
+      "npm_install_from_final_local_tarball": "PASS",
+      "setup_doctor": "HEALTHY",
+      "initial_status_source_identity": "UPDATE_REQUIRED",
+      "update_preview": "UPDATE_AVAILABLE",
+      "update_apply": "APPLIED",
+      "post_update_source_identity": "MATCH",
+      "compose_apply": "PASS",
+      "registered_artifacts": 16,
+      "materialized_artifacts": 13,
+      "release_byte_identity": "VERIFIED",
+      "release_publisher_identity": "NOT_VERIFIED",
+      "signature_required_result": "FAIL_CLOSED"
+    }
+  },
+  "artifacts": {
+    "npm_tarball": {
+      "file": "dist/vibe-product-os-0.1.0-alpha.0.tgz",
+      "size_bytes": 1639969,
+      "entry_count": 553,
+      "sha256": "2350947ca0a90f7e2e203964bced1fce07571c9784c47cee8dd29b883ea59ab6"
+    },
+    "skill_zip": {
+      "file": "dist/vibe-product-os-skill-0.1.0-alpha.0.zip",
+      "size_bytes": 13399,
+      "sha256": "09b144734b481e1fa71e639f1a644621e28716e0af4adf70ba856ec3f77ecb38"
+    },
+    "plugin_zip": {
+      "file": "dist/vibe-product-os-codex-plugin-0.1.0-alpha.0.zip",
+      "size_bytes": 15504,
+      "sha256": "732ea9bf80518d0737d4d71286c591f5cf3a76f18ba8ef569e739cfc7db8bfaf"
+    },
+    "release_verification_manifest": {
+      "file": "dist/release-verification-manifest.json",
+      "subject_count": 3,
+      "byte_identity": "VERIFIED",
+      "publisher_identity": "NOT_VERIFIED"
+    }
+  },
+  "open_conditions": [
+    "AUTH-COND-001 digital signature and key-custody closure before external distribution",
+    "AUTH-COND-002 real-project P2-or-higher Pilot before production-proven claims",
+    "Final public license decision",
+    "GitHub Pages/site publication",
+    "Explicit Authority decision before any repository visibility change to public",
+    "Authority approval of the public package candidate"
+  ],
+  "authority_claim": "NONE",
+  "external_distribution_authorized": false,
+  "environment_notes": [
+    "The default npm cache contains root-owned entries, so clean-recipient installation used an isolated temporary cache without changing user cache ownership.",
+    "PyYAML was loaded from a temporary validation-only directory and is not a package dependency or release artifact."
+  ]
+}

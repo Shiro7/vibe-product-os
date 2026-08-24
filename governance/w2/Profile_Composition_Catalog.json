@@ -1,0 +1,57 @@
+{
+  "catalog_id": "VPO-W2-PROFILE-COMPOSITION-CATALOG-001",
+  "version": "1.0.0",
+  "status": "VERIFIED_WORKING_BASELINE",
+  "logical_artifact_count": 281,
+  "invariants": [
+    "Profiles change physical packaging, not logical artifact identity, obligation, gate meaning, or authority.",
+    "Every selected logical artifact has one canonical locator, even when pending or derived and not materialized.",
+    "Conditional artifacts are absent until activated; absence never means NOT_APPLICABLE.",
+    "Derived artifacts are generated views and never the canonical semantic owner."
+  ],
+  "profiles": [
+    {
+      "profile_id": "P1",
+      "name": "Lean",
+      "default_representation": "COMPOSITE",
+      "packaging_counts": {
+        "R": 8,
+        "D": 18,
+        "C": 192,
+        "C*": 63
+      }
+    },
+    {
+      "profile_id": "P2",
+      "name": "Standard",
+      "default_representation": "MODULAR",
+      "packaging_counts": {
+        "R": 8,
+        "D": 18,
+        "M": 192,
+        "M*": 63
+      }
+    },
+    {
+      "profile_id": "P3",
+      "name": "Comprehensive",
+      "default_representation": "INDEPENDENT",
+      "packaging_counts": {
+        "R+": 8,
+        "D+": 18,
+        "I": 118,
+        "I*": 63,
+        "I+": 74
+      }
+    }
+  ],
+  "code_semantics": {
+    "C": "Composite phase-family file with an independently addressable member section.",
+    "M": "Modular phase-family file grouped by data class with an independently addressable member section.",
+    "I": "Independent artifact file.",
+    "R": "Governed register representation; GOV-002 remains the canonical artifact register control.",
+    "D": "Derived view registered by locator and materialized only from canonical inputs.",
+    "*": "Conditional: do not create content until an applicability or event activation exists.",
+    "+": "Enhanced assurance: preserve stronger review, evidence, and segregation expectations."
+  }
+}

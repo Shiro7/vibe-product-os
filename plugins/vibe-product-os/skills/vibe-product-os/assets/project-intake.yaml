@@ -1,0 +1,42 @@
+template_id: VPO-ASSET-PROJECT-INTAKE-001
+template_version: 0.1.0
+status: WORKING_INPUT
+project:
+  project_id: null
+  project_name: null
+  project_root: null
+  lifecycle_mode: null
+  repository_topology: null
+  proposed_default_profile: P2
+  profile_decision_status: PENDING_AUTHORITY
+authority:
+  product_owner: null
+  product_os_authority: null
+  decision_authorities: []
+context:
+  problem_or_opportunity: null
+  intended_outcomes: []
+  users_and_stakeholders: []
+  platforms: []
+  countries_and_markets: []
+  languages_and_directions: []
+  data_classes: []
+  integrations: []
+  existing_assets: []
+applicability_triggers:
+  accessibility: PENDING
+  security: PENDING
+  privacy: PENDING
+  regulated_data: PENDING
+  payments: PENDING
+  generated_documents: PENDING
+  enterprise_or_contractual_controls: PENDING
+  third_party_components: PENDING
+unknowns: []
+sources: []
+decisions: []
+risks: []
+assumptions: []
+open_questions: []
+reopen_conditions:
+  - Project identity, ownership, market, platform, data, integration, risk, or standards context changes.

@@ -1,0 +1,16 @@
+node_modules/
+npm-debug.log*
+*.tgz
+.DS_Store
+coverage/
+
+# Generated from governed Product OS sources.
+runtime/
+dist/
+
+# Signing secrets are never repository content.
+*.key
+*.sec
+*.pem
+*.p12
+*.pfx
