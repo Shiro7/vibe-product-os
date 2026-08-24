@@ -1,7 +1,8 @@
 #!/bin/zsh
 set -euo pipefail
 
-package_root="/Users/mashiro/Documents/Codex/2026-08-09/referenced-chatgpt-conversation-this-is-an/work/vibe-product-os"
+script_root="${0:A:h}"
+package_root="${script_root:h}"
 dist_root="${package_root}/dist"
 private_key="/Users/mashiro/.product-os-signing/product-os-authority.key"
 manifest="${dist_root}/release-verification-manifest.json"
