@@ -15,6 +15,8 @@ test('publication-preparation pilot metadata and identity are pinned', () => {
   assert.equal(packageJson.license, 'Apache-2.0');
   assert.equal(packageJson.publishConfig.access, 'public');
   assert.equal(packageJson.publishConfig.tag, 'pilot');
+  assert.equal(packageJson.homepage, 'https://github.com/Shiro7/vibe-product-os#readme');
+  assert.equal(packageJson.bugs.url, 'https://github.com/Shiro7/vibe-product-os/issues');
   assert.equal(packageJson.files.includes('dist/'), false);
   assert.equal(packageJson.files.includes('NOTICE'), true);
 });
@@ -44,7 +46,6 @@ test('runtime lock preserves the approved Product OS identity', () => {
   assert.equal(lock.external_distribution_blocker, 'PACKAGE_RELEASE_SIGNATURES_PENDING');
   assert.deepEqual(lock.external_distribution_blockers, [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ]);
   assert.equal(lock.source_release_file_count, 503);
   assert.equal(lock.file_count, 504);
@@ -64,7 +65,6 @@ test('W1, W2, and W3 package governance assets are complete', () => {
   assert.equal(commands.focused_test_count, 20);
   assert.deepEqual(commands.open_release_controls, [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ]);
 });
 
@@ -80,6 +80,10 @@ test('public repository and support/security channel activation evidence is pinn
   assert.equal(authority.package_publication_policy.repository_visibility, 'PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE');
   assert.equal(authority.package_publication_policy.support_status, 'ACTIVE_VERIFIED_PUBLIC');
   assert.equal(authority.package_publication_policy.security_status, 'ACTIVE_VERIFIED_PRIVATE_REPORTING');
+  assert.equal(authority.package_publication_policy.release_decision_id, 'AUTH-DEC-002');
+  assert.equal(authority.package_publication_policy.npm_package, 'vibe-product-os@0.1.0-pilot.0');
+  assert.equal(authority.package_publication_policy.npm_access, 'public');
+  assert.equal(authority.package_publication_policy.npm_tag, 'pilot');
   assert.equal(activation.authority_decision, 'AUTH-DEC-001');
   assert.deepEqual(activation.remaining_publication_controls, [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',

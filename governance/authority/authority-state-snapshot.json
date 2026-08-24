@@ -1,6 +1,6 @@
 {
   "snapshot_id": "VIBE-PRODUCT-OS-AUTHORITY-SNAPSHOT-001",
-  "snapshot_at": "2026-08-24T18:06:14Z",
+  "snapshot_at": "2026-08-24T18:42:45Z",
   "authority": "M.M.Eyada",
   "framework": "Product OS",
   "framework_version": "1.0.0",
@@ -8,6 +8,7 @@
   "authority_reconciliation_record": "Authority_State_Reconciliation_2026-08-25.json",
   "authority_reconciliation_source": "Product OS Authority package outside this repository",
   "public_channel_activation_evidence": "PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json",
+  "public_pilot_and_npm_decision": "AUTH-DEC-002_Public_Pilot_Use_Test_Feedback_and_NPM.md",
   "conditions": {
     "AUTH-COND-001": "CLOSED_SIGNATURE_AND_PRIMARY_CUSTODY_VERIFIED",
     "AUTH-COND-002": "OPEN_POST_BASELINE_PILOT_DEFERRED_AFTER_UPLOAD",
@@ -29,9 +30,16 @@
     "support_locator": "https://github.com/Shiro7/vibe-product-os/issues",
     "support_status": "ACTIVE_VERIFIED_PUBLIC",
     "security_locator": "https://github.com/Shiro7/vibe-product-os/security/advisories/new",
-    "security_status": "ACTIVE_VERIFIED_PRIVATE_REPORTING"
+    "security_status": "ACTIVE_VERIFIED_PRIVATE_REPORTING",
+    "release_decision_id": "AUTH-DEC-002",
+    "public_source_pilot_status": "APPROVED_ACTIVE",
+    "feedback_status": "OPEN_VIA_GITHUB_ISSUES",
+    "npm_package": "vibe-product-os@0.1.0-pilot.0",
+    "npm_access": "public",
+    "npm_tag": "pilot",
+    "npm_release_status": "APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION"
   },
-  "package_release_status": "PREPUBLICATION_CANDIDATE_REQUIRES_OWN_EXACT_SIGNATURES_AND_RELEASE_DECISION",
+  "package_release_status": "PUBLIC_SOURCE_PILOT_ACTIVE_NPM_PILOT_APPROVED_REQUIRES_OWN_EXACT_SIGNATURES",
   "claim_boundary": "PRODUCT_OS_V1_WITH_REAL_PROJECT_VALIDATION_IN_PROGRESS",
-  "automatic_publication_authority": "NONE"
+  "automatic_publication_authority": "AUTH-DEC-002_ONLY_FOR_vibe-product-os@0.1.0-pilot.0_ON_npm_pilot_AFTER_SIGNATURE_VERIFICATION"
 }

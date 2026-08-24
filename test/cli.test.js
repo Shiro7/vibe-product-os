@@ -17,10 +17,10 @@ test('version reports package and framework identities separately', () => {
   assert.equal(identity.framework_signature_condition, 'AUTH-COND-001_CLOSED');
   assert.equal(identity.key_continuity_condition, 'AUTH-COND-004_CLOSED');
   assert.equal(identity.public_channel_status, 'ACTIVE_VERIFIED');
+  assert.equal(identity.release_authority_decision, 'AUTH-DEC-002_APPROVED');
   assert.equal(identity.external_distribution_blocker, 'PACKAGE_RELEASE_SIGNATURES_PENDING');
   assert.deepEqual(identity.external_distribution_blockers, [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ]);
 });
 

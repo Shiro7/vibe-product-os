@@ -210,7 +210,7 @@ writeJson(verificationManifestPath, {
     { control_id: 'PACKAGE_RELEASE_SIGNATURES', status: 'PENDING' },
     { control_id: 'PUBLIC_USE_LICENSE_DECISION', status: 'APPROVED', authority_ref: 'AUTH-DEC-001', value: 'Apache-2.0' },
     { control_id: 'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS', status: 'ACTIVE_VERIFIED', authority_ref: 'AUTH-DEC-001', evidence_ref: 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json' },
-    { control_id: 'EXACT_CHANNEL_AUTHORITY_DECISION', status: 'PENDING' },
+    { control_id: 'EXACT_CHANNEL_AUTHORITY_DECISION', status: 'APPROVED', authority_ref: 'AUTH-DEC-002', value: 'npm public / pilot / vibe-product-os@0.1.0-pilot.0' },
   ],
   authority_claim: 'NONE',
   external_distribution_authorized: false,
@@ -226,7 +226,6 @@ const packReport = {
   external_distribution_authorized: false,
   external_distribution_blockers: [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ],
   filename: pack.filename,
   size_bytes: fs.statSync(expectedTarball).size,

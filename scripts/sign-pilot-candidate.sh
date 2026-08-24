@@ -43,7 +43,7 @@ fi
 
 print "Signing six immutable pilot subjects with Authority key EAB95C319319813D."
 minisign -S -s "${private_key}" \
-  -t "Vibe Product OS 0.1.0-pilot.0; Authority M.M.Eyada; PREPUBLICATION_CANDIDATE" \
+  -t "Vibe Product OS 0.1.0-pilot.0; Authority M.M.Eyada; AUTH-DEC-002; npm pilot" \
   -m "${subjects[@]}"
 
 node "${package_root}/scripts/configure-release-signatures.js"
