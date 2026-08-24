@@ -66,6 +66,7 @@ const required = [
   'governance/authority/AUTH-DEC-001_Public_License_and_Channels.md',
   'governance/authority/AUTH-DEC-002_Public_Pilot_Use_Test_Feedback_and_NPM.md',
   'governance/authority/AUTH-DEC-003_Multi_Agent_Installer_and_NPM_Pilot_1.md',
+  'governance/authority/AUTH-DEC-004_VPOS_Official_Short_Name_and_Website.md',
   'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json',
   'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json',
   'governance/authority/product-os-authority.pub',

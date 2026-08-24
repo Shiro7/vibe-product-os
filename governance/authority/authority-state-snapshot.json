@@ -1,6 +1,6 @@
 {
-  "snapshot_id": "VIBE-PRODUCT-OS-AUTHORITY-SNAPSHOT-003",
-  "snapshot_at": "2026-08-25T05:11:02+08:00",
+  "snapshot_id": "VIBE-PRODUCT-OS-AUTHORITY-SNAPSHOT-004",
+  "snapshot_at": "2026-08-25T05:34:01+08:00",
   "authority": "M.M.Eyada",
   "framework": "Product OS",
   "framework_version": "1.0.0",
@@ -10,7 +10,17 @@
   "public_channel_activation_evidence": "PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json",
   "current_npm_publication_evidence": "NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json",
   "public_pilot_and_npm_decision": "AUTH-DEC-003_Multi_Agent_Installer_and_NPM_Pilot_1.md",
+  "brand_and_website_decision": "AUTH-DEC-004_VPOS_Official_Short_Name_and_Website.md",
   "previous_public_pilot_and_npm_decision": "AUTH-DEC-002_Public_Pilot_Use_Test_Feedback_and_NPM.md",
+  "brand_identity": {
+    "product_name": "Vibe Product OS",
+    "official_short_name": "VPOS",
+    "package_name": "vibe-product-os",
+    "current_cli_names": [
+      "vpo",
+      "vibe-product-os"
+    ]
+  },
   "conditions": {
     "AUTH-COND-001": "CLOSED_SIGNATURE_AND_PRIMARY_CUSTODY_VERIFIED",
     "AUTH-COND-002": "OPEN_POST_BASELINE_PILOT_DEFERRED_AFTER_UPLOAD",

@@ -1,0 +1,9 @@
+{
+  "name": "VPOS | Vibe Product OS",
+  "short_name": "VPOS",
+  "description": "Governed product delivery for humans and AI agents.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101310",
+  "theme_color": "#b6f36a"
+}

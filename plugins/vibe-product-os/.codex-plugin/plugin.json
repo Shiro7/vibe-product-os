@@ -9,7 +9,7 @@
   "keywords": ["product-os", "governance", "requirements", "traceability", "codex"],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Vibe Product OS",
+    "displayName": "VPOS | Vibe Product OS",
     "shortDescription": "Operate governed Product OS projects safely.",
     "longDescription": "Initialize, compose, continue, review, validate, trace, and hand off Product OS projects while preserving P1/P2/P3 profiles, evidence, and human authority.",
     "developerName": "M.M.Eyada",
