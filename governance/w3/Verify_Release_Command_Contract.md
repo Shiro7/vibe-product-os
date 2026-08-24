@@ -17,7 +17,7 @@ Passing one layer never implies the next.
 
 The JSON manifest must use version `1.0.0`, `release_root: "."`, unique subject IDs and paths, lowercase SHA-256 digests, and safe integer sizes. Subjects, signatures, and public keys must be regular non-symlink files represented by single filenames in the manifest directory. Absolute paths, traversal, subdirectories, duplicates, missing files, and malformed records fail closed.
 
-The internal alpha manifest covers exactly the Skill ZIP, Codex Plugin ZIP, and npm tarball produced from the same build.
+The pilot-candidate manifest covers exactly the Skill ZIP, Codex Plugin ZIP, npm tarball, SBOM, build report, and checksums produced from the same build.
 
 ## Signature verification
 
@@ -27,7 +27,7 @@ The command never accepts or handles a private key, never creates signatures, an
 
 ## Authority boundary
 
-For the current internal alpha, every report returns `external_distribution_authorized: false`, `external_distribution_ready: false`, and blockers `AUTH-COND-001` plus `AUTH-COND-002`. The command is read-only and returns `authority_claim: NONE`. It supplies evidence to an Authority decision; it does not issue that decision.
+For the current pilot candidate, every report returns `external_distribution_authorized: false` and `authority_claim: NONE`. `AUTH-DEC-001` closes the Apache-2.0 license decision. Before signing, the report keeps package signatures, public support/security channel activation, and the exact-channel Authority decision as blockers; `AUTH-COND-002` remains a production-claim boundary. The command is read-only and supplies evidence to an Authority decision; it does not issue that decision.
 
 ## CLI
 

@@ -1,5 +1,6 @@
 {
   "report_id": "VIBE-PRODUCT-OS-INTERNAL-ALPHA-SETUP-003",
+  "record_status": "HISTORICAL_SUPERSEDED_BY_0.1.0-pilot.0_CANDIDATE_WORK",
   "report_date": "2026-08-24",
   "result": "PASS_WITH_OPEN_RELEASE_CONDITIONS",
   "product": "Vibe Product OS",

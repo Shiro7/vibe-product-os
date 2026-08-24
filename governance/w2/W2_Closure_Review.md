@@ -20,4 +20,4 @@ W2 composes initialized Product OS 1.0.0 projects. It does not approve profile c
 
 ## Residual release conditions
 
-`AUTH-COND-001` still blocks external publication and `AUTH-COND-002` still blocks production-proven claims. W2 technical PASS does not close either authority condition.
+Later additive Authority evidence closes framework conditions `AUTH-COND-001` and `AUTH-COND-004`. `AUTH-COND-002` still blocks production-proven claims, and new package bytes require package-specific signatures plus license, channel, and exact release decisions. W2 technical PASS does not provide any of those approvals.

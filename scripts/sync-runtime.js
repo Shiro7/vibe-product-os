@@ -113,8 +113,15 @@ const lock = {
   source_release_archive_entry_count: buildReport.archive_entry_count,
   runtime_release_root: 'framework/Product-OS-v1.0',
   baseline_effective_at: '2026-08-16T10:47:02+08:00',
-  distribution_status: 'INTERNAL_ALPHA_NOT_AUTHORIZED_FOR_EXTERNAL_DISTRIBUTION',
-  external_distribution_blocker: 'AUTH-COND-001',
+  distribution_status: 'PILOT_CANDIDATE_PUBLICATION_PREPARATION',
+  framework_signature_condition: 'AUTH-COND-001_CLOSED',
+  key_continuity_condition: 'AUTH-COND-004_CLOSED',
+  external_distribution_blocker: 'PACKAGE_RELEASE_SIGNATURES_PENDING',
+  external_distribution_blockers: [
+    'PACKAGE_RELEASE_SIGNATURES_PENDING',
+    'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS_ACTIVATION_PENDING',
+    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING'
+  ],
   production_claim_blocker: 'AUTH-COND-002',
   extraction_safety: {
     digest_verified: true,
