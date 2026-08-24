@@ -12,9 +12,11 @@ test('version reports package and framework identities separately', () => {
   assert.equal(result.status, 0, result.stderr);
   const identity = JSON.parse(result.stdout);
   assert.equal(identity.package, 'vibe-product-os');
-  assert.equal(identity.package_version, '0.1.0-alpha.0');
+  assert.equal(identity.package_version, '0.1.0-pilot.0');
   assert.equal(identity.framework_version, '1.0.0');
-  assert.equal(identity.external_distribution_blocker, 'AUTH-COND-001');
+  assert.equal(identity.framework_signature_condition, 'AUTH-COND-001_CLOSED');
+  assert.equal(identity.key_continuity_condition, 'AUTH-COND-004_CLOSED');
+  assert.equal(identity.external_distribution_blocker, 'PACKAGE_RELEASE_SIGNATURES_PENDING');
 });
 
 test('non-interactive install requires explicit consent and scope', () => {

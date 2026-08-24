@@ -15,5 +15,6 @@ Decision: **PASS — VERIFIED WORKING BASELINE**
 ## Residual conditions
 
 - This is a Skill-engineering baseline, not Product OS Authority approval of external distribution.
-- `AUTH-COND-001` and `AUTH-COND-002` remain open.
+- Framework signature and continuity conditions `AUTH-COND-001` and `AUTH-COND-004` are closed by later additive Authority evidence.
+- `AUTH-COND-002` remains open and package-specific signature, license, channel, and exact release decisions remain pending.
 - W2 must not claim composition capability until its 281-row map, P1/P2/P3 fixtures, dry-run/apply safety, and tests pass.

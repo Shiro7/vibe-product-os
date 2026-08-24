@@ -36,7 +36,7 @@ Use the approved Product OS framework as the methodology source of truth. Treat 
 - For packaging, npm, signing, public claims, release status, or updates, read [distribution-status.md](references/distribution-status.md).
 - For Spec Kit, Figma, GitHub, CI, or other native-object mappings, read [tool-mapping.md](references/tool-mapping.md).
 
-## Current alpha behavior
+## Current pilot-candidate behavior
 
 The bundled runtime exposes the twelve approved Product OS commands and the complete governed Product OS rc.2 source set. `init` creates the governed control plane; `compose` may create profile-specific physical artifacts only after its dry-run plan passes and `--apply` is explicit. The adapter also provides read-only `status`, governed dry-run-first `update`, and read-only `verify-release`; none can approve its own output or authorize distribution.
 

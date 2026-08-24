@@ -26,9 +26,12 @@ function walk(root) {
 }
 
 if (packageJson.name !== 'vibe-product-os') fail('PKG-IDENTITY', 'Unexpected package name.');
-if (packageJson.version !== '0.1.0-alpha.0') fail('PKG-VERSION', 'Unexpected alpha package version.');
-if (packageJson.private !== true) fail('PKG-PUBLISH-GUARD', 'Internal alpha must keep private=true.');
-if (packageJson.license !== 'UNLICENSED') fail('PKG-LICENSE', 'Internal alpha must remain UNLICENSED.');
+if (packageJson.version !== '0.1.0-pilot.0') fail('PKG-VERSION', 'Unexpected pilot-candidate package version.');
+if (packageJson.private === true) fail('PKG-PUBLISH-GUARD', 'AUTH-DEC-001 approved publication metadata; private=true must be absent.');
+if (packageJson.license !== 'Apache-2.0') fail('PKG-LICENSE', 'AUTH-DEC-001 requires Apache-2.0.');
+if (packageJson.publishConfig?.access !== 'public' || packageJson.publishConfig?.tag !== 'pilot') {
+  fail('PKG-PUBLISH-CONFIG', 'Pilot publication metadata must remain public access with the pilot tag.');
+}
 
 const required = [
   'bin/vibe-product-os.js',
@@ -45,12 +48,19 @@ const required = [
   'governance/w2/W2_Closure_Review.md',
   'governance/w3/W3_Command_Capability_Map.json',
   'governance/w3/W3_Closure_Review.md',
+  'governance/authority/authority-state-snapshot.json',
+  'governance/authority/AUTH-DEC-001_Public_License_and_Channels.md',
+  'governance/authority/product-os-authority.pub',
+  'LICENSE',
+  'NOTICE',
+  'SUPPORT.md',
+  'SECURITY.md',
   'plugins/vibe-product-os/.codex-plugin/plugin.json',
   'plugins/vibe-product-os/skills/vibe-product-os/SKILL.md',
   'plugins/vibe-product-os/skills/vibe-product-os/agents/openai.yaml',
   'dist/release-build-report.json',
-  'dist/vibe-product-os-skill-0.1.0-alpha.0.zip',
-  'dist/vibe-product-os-codex-plugin-0.1.0-alpha.0.zip',
+  'dist/vibe-product-os-skill-0.1.0-pilot.0.zip',
+  'dist/vibe-product-os-codex-plugin-0.1.0-pilot.0.zip',
 ];
 for (const relative of required) {
   if (!fs.existsSync(path.join(packageRoot, relative))) fail('PKG-REQUIRED-FILE', `Missing ${relative}.`);
@@ -78,16 +88,33 @@ if (fs.existsSync(path.join(packageRoot, 'runtime/framework-runtime-lock.json'))
   if (lock.source_release_file_count !== 503 || lock.file_count !== 504) {
     fail('PKG-RUNTIME-COVERAGE', 'Bundled Product OS runtime is not the complete approved release.');
   }
+  if (lock.framework_signature_condition !== 'AUTH-COND-001_CLOSED' || lock.key_continuity_condition !== 'AUTH-COND-004_CLOSED') {
+    fail('PKG-AUTHORITY-STATE', 'Runtime lock does not reflect the additive Authority closure state.');
+  }
+}
+
+if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-snapshot.json'))) {
+  const authority = JSON.parse(fs.readFileSync(path.join(packageRoot, 'governance/authority/authority-state-snapshot.json'), 'utf8'));
+  if (authority.conditions['AUTH-COND-001'] !== 'CLOSED_SIGNATURE_AND_PRIMARY_CUSTODY_VERIFIED'
+    || authority.conditions['AUTH-COND-004'] !== 'CLOSED_CONTINUITY_CONTROLS_VERIFIED'
+    || authority.conditions['AUTH-COND-002'] !== 'OPEN_POST_BASELINE_PILOT_DEFERRED_AFTER_UPLOAD') {
+    fail('PKG-AUTHORITY-SNAPSHOT', 'Authority state snapshot is incomplete or inconsistent.');
+  }
+  if (authority.package_publication_policy?.decision_id !== 'AUTH-DEC-001'
+    || authority.package_publication_policy?.license !== 'Apache-2.0'
+    || authority.package_publication_policy?.license_status !== 'APPROVED') {
+    fail('PKG-PUBLICATION-POLICY', 'Authority license and channel decision is missing or inconsistent.');
+  }
 }
 
 const verificationManifest = path.join(packageRoot, 'dist', 'release-verification-manifest.json');
 if (fs.existsSync(verificationManifest)) {
   const releaseReport = verifyRelease({ manifest: verificationManifest });
-  if (releaseReport.result !== 'PASS' || releaseReport.byte_identity !== 'VERIFIED' || releaseReport.subjects.length !== 3) {
+  if (releaseReport.result !== 'PASS' || releaseReport.byte_identity !== 'VERIFIED' || releaseReport.subjects.length !== 6) {
     fail('PKG-RELEASE-IDENTITY', 'Generated release subjects failed byte-identity verification.');
   }
   if (releaseReport.publisher_identity !== 'NOT_VERIFIED' || releaseReport.external_distribution_authorized !== false) {
-    fail('PKG-RELEASE-AUTHORITY', 'Unsigned internal alpha must not claim publisher identity or distribution authority.');
+    fail('PKG-RELEASE-AUTHORITY', 'Unsigned pilot candidate must not claim publisher identity or distribution authority.');
   }
 }
 
@@ -105,7 +132,7 @@ for (const file of walk(packageRoot)) {
 }
 
 const report = {
-  audit: 'vibe-product-os-internal-alpha-package',
+  audit: 'vibe-product-os-publication-preparation-pilot-package',
   package_version: packageJson.version,
   result: findings.length ? 'FAIL' : 'PASS',
   findings,

@@ -4,12 +4,12 @@ Vibe Product OS is the Codex-first Skill, plugin, installer, and runtime adapter
 
 ## Current status
 
-This repository is an **internal alpha setup**. It is not published to npm and is not authorized for external distribution. Product OS remains `ACTIVE_WITH_CONDITIONS`; digital-signature condition `AUTH-COND-001` blocks public distribution, and real-project Pilot condition `AUTH-COND-002` blocks production-proven or scaled-adoption claims.
+This repository is a **prepublication pilot candidate**. Product OS framework signing and continuity conditions `AUTH-COND-001` and `AUTH-COND-004` are closed. `AUTH-DEC-001` approved Apache-2.0 plus public GitHub support and confidential vulnerability-reporting channels. The exact package candidate is not yet authorized for npm distribution: its own release subjects still require signatures and clean verification, the approved channels must be activated, and the Authority must approve the exact release and channel. `AUTH-COND-002` continues to block production-proven and scaled-adoption claims until the Ahd P2 Pilot closes.
 
-The alpha deliberately separates:
+The candidate deliberately separates:
 
 - **Product OS 1.0.0:** canonical methodology, governance, contracts, schemas, and authority.
-- **Vibe Product OS 0.1.0-alpha.0:** installable Skill and runtime distribution layer.
+- **Vibe Product OS 0.1.0-pilot.0:** Apache-2.0-licensed installable Skill and runtime distribution layer.
 - **Project instance:** project-specific facts, decisions, artifacts, evidence, and tool identities.
 
 ## Local setup
@@ -19,6 +19,7 @@ npm test
 npm run test:runtime
 npm run dist
 npm run audit
+npm run candidate
 ```
 
 Preview a repository-local Codex Skill installation:
@@ -77,9 +78,10 @@ An update apply requires `--authority-ref`, `--change-ref`, and `--apply`; it cr
 
 `npm run dist` produces:
 
-- `dist/vibe-product-os-skill-0.1.0-alpha.0.zip`
-- `dist/vibe-product-os-codex-plugin-0.1.0-alpha.0.zip`
+- `dist/vibe-product-os-skill-0.1.0-pilot.0.zip`
+- `dist/vibe-product-os-codex-plugin-0.1.0-pilot.0.zip`
 - `dist/release-build-report.json`
-- after `npm run pack:alpha`: `dist/vibe-product-os-0.1.0-alpha.0.tgz`, `dist/npm-pack-report.json`, and `dist/release-verification-manifest.json`
+- after `npm run pack:pilot`: `dist/vibe-product-os-0.1.0-pilot.0.tgz`, `dist/npm-pack-report.json`, `dist/vibe-product-os-0.1.0-pilot.0.spdx.json`, `dist/SHA256SUMS`, and `dist/release-verification-manifest.json`
+- after `npm run verify:candidate`: `dist/clean-recipient-verification.json`
 
-No public `npm publish` action is part of the alpha setup. The manifest can pass byte verification while signatures and both Authority conditions remain open; that is expected and does not authorize distribution.
+No `npm publish` or GitHub Release action is part of candidate construction. Byte verification is expected to pass before signing; publisher identity remains pending until the Authority signs every exact subject and the manifest. `AUTH-DEC-001` closes the license decision. Publication still requires active support/security locators and an exact-release Authority decision.

@@ -17,7 +17,7 @@ function fixture() {
   fs.writeFileSync(path.join(root, 'package.tgz'), subject);
   const manifest = {
     manifest_id: 'TEST-RELEASE-MANIFEST', manifest_version: '1.0.0', release_root: '.',
-    package: 'vibe-product-os', package_version: '0.1.0-alpha.0', framework_release: '1.0.0',
+    package: 'vibe-product-os', package_version: '0.1.0-pilot.0', framework_release: '1.0.0',
     source_release: 'Product-OS-v1.0-rc.2',
     subjects: [{
       subject_id: 'NPM-TARBALL', path: 'package.tgz', size_bytes: subject.length,
@@ -74,6 +74,36 @@ test('verify-release fails closed when signature configuration is incomplete', (
     const report = verifyRelease({ manifest: item.manifestPath });
     assert.equal(report.result, 'FAIL');
     assert.equal(report.subjects[0].signature_identity, 'INCOMPLETE_CONFIGURATION');
+  } finally { fs.rmSync(item.root, { recursive: true, force: true }); }
+});
+
+test('verify-release rejects incomplete manifest signature configuration', () => {
+  const item = fixture();
+  try {
+    item.manifest.manifest_signature_path = 'release-verification-manifest.json.minisig';
+    fs.writeFileSync(item.manifestPath, `${JSON.stringify(item.manifest, null, 2)}\n`, 'utf8');
+    assert.throws(() => verifyRelease({ manifest: item.manifestPath }), /Manifest signature configuration is incomplete/u);
+  } finally { fs.rmSync(item.root, { recursive: true, force: true }); }
+});
+
+test('verify-release requires and verifies the manifest plus every subject signature', () => {
+  const item = fixture();
+  try {
+    const fakeMinisign = path.join(item.root, 'fake-minisign');
+    fs.writeFileSync(fakeMinisign, '#!/bin/sh\nexit 0\n', { mode: 0o700 });
+    fs.writeFileSync(path.join(item.root, 'product-os-authority.pub'), 'test public key\n');
+    fs.writeFileSync(path.join(item.root, 'package.tgz.minisig'), 'test subject signature\n');
+    item.manifest.subjects[0].signature_path = 'package.tgz.minisig';
+    item.manifest.subjects[0].public_key_path = 'product-os-authority.pub';
+    item.manifest.manifest_signature_path = 'release-verification-manifest.json.minisig';
+    item.manifest.manifest_public_key_path = 'product-os-authority.pub';
+    fs.writeFileSync(item.manifestPath, `${JSON.stringify(item.manifest, null, 2)}\n`, 'utf8');
+    fs.writeFileSync(path.join(item.root, 'release-verification-manifest.json.minisig'), 'test manifest signature\n');
+    const report = verifyRelease({ manifest: item.manifestPath, requireSignatures: true, minisignCommand: fakeMinisign });
+    assert.equal(report.result, 'PASS');
+    assert.equal(report.publisher_identity, 'VERIFIED');
+    assert.equal(report.manifest_signature_identity, 'VERIFIED');
+    assert.equal(report.subjects[0].signature_identity, 'VERIFIED');
   } finally { fs.rmSync(item.root, { recursive: true, force: true }); }
 });
 

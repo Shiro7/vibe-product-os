@@ -13,6 +13,8 @@ const pluginRoot = path.join(packageRoot, 'plugins', 'vibe-product-os');
 const distRoot = path.join(packageRoot, 'dist');
 const skillZip = path.join(distRoot, `vibe-product-os-skill-${packageJson.version}.zip`);
 const pluginZip = path.join(distRoot, `vibe-product-os-codex-plugin-${packageJson.version}.zip`);
+const authoritySnapshot = path.join(packageRoot, 'governance', 'authority', 'authority-state-snapshot.json');
+const authorityPublicKey = path.join(packageRoot, 'governance', 'authority', 'product-os-authority.pub');
 
 function sha256(file) {
   return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
@@ -37,17 +39,26 @@ function buildZip(cwd, output, entries) {
   if (result.status !== 0) throw new Error(`zip failed: ${result.stderr || result.stdout}`);
 }
 
+function git(args) {
+  const result = spawnSync('git', args, { cwd: packageRoot, encoding: 'utf8' });
+  if (result.error || result.status !== 0) return null;
+  return result.stdout.trim();
+}
+
 for (const required of [
   path.join(skillRoot, 'SKILL.md'),
   path.join(skillRoot, 'agents', 'openai.yaml'),
   path.join(pluginRoot, '.codex-plugin', 'plugin.json'),
   path.join(packageRoot, 'runtime', 'framework-runtime-lock.json'),
+  authoritySnapshot,
+  authorityPublicKey,
 ]) {
   if (!fs.existsSync(required)) throw new Error(`Distribution input is missing: ${required}`);
 }
 
 fs.rmSync(distRoot, { recursive: true, force: true });
 fs.mkdirSync(distRoot, { recursive: true });
+fs.copyFileSync(authorityPublicKey, path.join(distRoot, 'product-os-authority.pub'));
 
 const skillEntries = ['SKILL.md', 'agents', 'references', 'assets']
   .filter((entry) => fs.existsSync(path.join(skillRoot, entry)));
@@ -61,13 +72,28 @@ const outputs = [skillZip, pluginZip].map((file) => ({
 }));
 
 const report = {
-  report_id: 'VIBE-PRODUCT-OS-ALPHA-BUILD-001',
+  report_id: 'VIBE-PRODUCT-OS-PILOT-BUILD-001',
   package: packageJson.name,
   package_version: packageJson.version,
   framework_version: '1.0.0',
-  build_status: 'INTERNAL_ALPHA',
+  build_status: 'PILOT_CANDIDATE_PUBLICATION_PREPARATION',
   external_distribution_authorized: false,
-  external_distribution_blocker: 'AUTH-COND-001',
+  external_distribution_blockers: [
+    'PACKAGE_RELEASE_SIGNATURES_PENDING',
+    'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS_ACTIVATION_PENDING',
+    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING'
+  ],
+  framework_authority_conditions: {
+    'AUTH-COND-001': 'CLOSED',
+    'AUTH-COND-002': 'OPEN_POST_BASELINE',
+    'AUTH-COND-004': 'CLOSED'
+  },
+  source_identity: {
+    git_commit: git(['rev-parse', 'HEAD']),
+    git_worktree: git(['status', '--porcelain']) ? 'DIRTY' : 'CLEAN'
+  },
+  signing_key_id: 'EAB95C319319813D',
+  package_signature_status: 'PENDING_EXACT_SUBJECT_SIGNATURES',
   skill_capability_source_coverage: '17_OF_17_PASS',
   physical_composer_status: 'W2_VERIFIED_WORKING_BASELINE',
   physical_composer_artifact_map_count: 281,
@@ -84,4 +110,4 @@ fs.writeFileSync(
   'utf8',
 );
 
-process.stdout.write(`Built ${outputs.length} internal alpha archives.\n`);
+process.stdout.write(`Built ${outputs.length} publication-preparation pilot archives.\n`);

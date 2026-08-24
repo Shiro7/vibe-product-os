@@ -19,4 +19,4 @@ When authority, scope, identity, source precedence, applicability, or mutation t
 
 ## Distribution conditions
 
-`AUTH-COND-001` blocks public npm and other external distribution until satisfied by the named authority. `AUTH-COND-002` blocks claims that the framework or Skill is production-proven until a real-project pilot supplies accepted evidence. W1 and W2 technical completion do not remove either condition.
+Framework conditions `AUTH-COND-001` and `AUTH-COND-004` are closed by additive Authority evidence. New Skill, Plugin, npm, and GitHub release bytes still require their own signatures and exact-channel Authority decision. `AUTH-COND-002` blocks claims that the framework or Skill is production-proven until a real-project pilot supplies accepted evidence. W1 and W2 technical completion do not authorize distribution or close that claim boundary.

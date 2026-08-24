@@ -1,9 +1,8 @@
 {
   "name": "vibe-product-os",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-pilot.0",
   "description": "Codex-first Skill, plugin, installer, and governed runtime adapter for Product OS 1.0.0.",
   "type": "commonjs",
-  "private": true,
   "main": "lib/index.js",
   "bin": {
     "vibe-product-os": "bin/vibe-product-os.js",
@@ -15,12 +14,12 @@
     "runtime/",
     "plugins/",
     "governance/",
-    "dist/",
     "README.md",
-    "ALPHA_STATUS.md",
+    "PILOT_STATUS.md",
     "SECURITY.md",
     "SUPPORT.md",
-    "LICENSE"
+    "LICENSE",
+    "NOTICE"
   ],
   "scripts": {
     "sync:runtime": "node scripts/sync-runtime.js",
@@ -29,9 +28,11 @@
     "test": "npm run sync:runtime && npm run build:composer-assets && npm run test:unit",
     "test:runtime": "node runtime/framework/Product-OS-v1.0/outputs/Automation_Commands/test/run-tests.js",
     "dist": "node scripts/build-dist.js",
-    "pack:alpha": "node scripts/pack-alpha.js",
+    "pack:pilot": "node scripts/pack-pilot.js",
+    "verify:candidate": "node scripts/verify-pilot-candidate.js",
     "audit": "node scripts/audit-package.js",
     "verify": "npm run sync:runtime && npm run build:composer-assets && npm run test:unit && npm run test:runtime && npm run dist && npm run audit",
+    "candidate": "npm run verify && npm run pack:pilot && npm run verify:candidate",
     "prepack": "npm run verify"
   },
   "keywords": [
@@ -45,7 +46,7 @@
     "traceability",
     "vibe-coding"
   ],
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "author": "M.M.Eyada",
   "repository": {
     "type": "git",
