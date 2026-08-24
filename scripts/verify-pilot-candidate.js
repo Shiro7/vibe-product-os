@@ -10,6 +10,7 @@ const { verifyRelease } = require('../lib/release-verifier');
 
 const packageRoot = path.resolve(__dirname, '..');
 const packageJson = require('../package.json');
+const releasePolicy = require('../lib/release-policy');
 const distRoot = path.join(packageRoot, 'dist');
 const tarball = path.join(distRoot, `${packageJson.name}-${packageJson.version}.tgz`);
 const manifest = path.join(distRoot, 'release-verification-manifest.json');
@@ -42,7 +43,7 @@ const packReport = JSON.parse(fs.readFileSync(packReportPath, 'utf8'));
 if (packReport.prohibited_path_count !== 0 || packReport.version !== packageJson.version) {
   throw new Error('npm pack report failed the package-content boundary.');
 }
-if (sha256(publicKey) !== '92d7d336663522b1ac55544749fa632cfa63467af5391a01f8788ffefc3412da') {
+if (sha256(publicKey) !== releasePolicy.authorityPublicKeySha256) {
   throw new Error('Packaged Authority public key mismatch.');
 }
 
@@ -61,6 +62,27 @@ try {
     throw new Error('Clean-recipient package/framework identity mismatch.');
   }
   if (!doctor.healthy) throw new Error('Clean-recipient setup doctor did not pass.');
+
+  const multiAgentProject = path.join(recipientRoot, 'multi-agent-project');
+  const multiAgentInstall = JSON.parse(run(process.execPath, [
+    cli,
+    'install',
+    multiAgentProject,
+    '--scope', 'project',
+    '--agents', 'all',
+    '--strategy', 'shared',
+    '--method', 'link',
+    '--yes',
+    '--json',
+  ], { cwd: recipientRoot }));
+  if (multiAgentInstall.status !== 'COMPLETED'
+    || multiAgentInstall.requested_agents?.length !== 9
+    || multiAgentInstall.targets?.length !== 3
+    || multiAgentInstall.targets.some((target) => target.status !== 'LINKED')
+    || multiAgentInstall.targets.some((target) => !fs.lstatSync(target.destination).isSymbolicLink())
+    || !fs.existsSync(path.join(multiAgentInstall.managed_store.destination, 'SKILL.md'))) {
+    throw new Error('Clean-recipient multi-agent managed-link installation did not pass.');
+  }
 
   const prohibitedInstalledPaths = [];
   const walk = (root) => {
@@ -81,7 +103,7 @@ try {
   }
 
   const report = {
-    report_id: 'VIBE-PRODUCT-OS-PILOT-CLEAN-RECIPIENT-001',
+    report_id: `VIBE-PRODUCT-OS-${packageJson.version}-CLEAN-RECIPIENT`,
     verified_at: new Date().toISOString(),
     package: packageJson.name,
     package_version: packageJson.version,
@@ -90,12 +112,17 @@ try {
     release_subject_count: byteReport.subjects.length,
     byte_identity: byteReport.byte_identity,
     publisher_identity: byteReport.publisher_identity,
+    release_authority_decision: releasePolicy.releaseDecision,
     ready_for_authority_signing: byteReport.ready_for_authority_signing,
     npm_install_from_local_tarball: 'PASS',
     setup_doctor: 'PASS',
+    multi_agent_install: 'PASS',
+    multi_agent_count: multiAgentInstall.requested_agents.length,
+    unique_install_target_count: multiAgentInstall.targets.length,
+    managed_link_store: 'PASS',
     prohibited_installed_path_count: 0,
     external_distribution_authorized: false,
-    remaining_controls: identity.external_distribution_blockers,
+    remaining_controls: byteReport.blockers,
     claim_boundary: identity.claim_boundary,
     result: 'PASS_UNSIGNED_PREPUBLICATION',
   };

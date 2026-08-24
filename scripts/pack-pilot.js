@@ -9,6 +9,7 @@ const { spawnSync } = require('node:child_process');
 
 const packageRoot = path.resolve(__dirname, '..');
 const packageJson = require('../package.json');
+const releasePolicy = require('../lib/release-policy');
 const distRoot = path.join(packageRoot, 'dist');
 const expectedTarball = path.join(distRoot, `${packageJson.name}-${packageJson.version}.tgz`);
 const packReportPath = path.join(distRoot, 'npm-pack-report.json');
@@ -27,9 +28,6 @@ function writeJson(file, value) {
   fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-if (packageJson.version !== '0.1.0-pilot.0') {
-  throw new Error('pack:pilot requires package version 0.1.0-pilot.0.');
-}
 if (packageJson.private === true || packageJson.license !== 'Apache-2.0') {
   throw new Error('AUTH-DEC-001 requires publishable metadata and Apache-2.0 for the pilot candidate.');
 }
@@ -120,7 +118,7 @@ const sbom = {
     {
       name: 'Product OS',
       SPDXID: 'SPDXRef-Package-ProductOS',
-      versionInfo: '1.0.0',
+      versionInfo: releasePolicy.frameworkVersion,
       downloadLocation: 'NOASSERTION',
       filesAnalyzed: false,
       licenseConcluded: 'Apache-2.0',
@@ -189,13 +187,13 @@ const releaseSubjects = releaseSubjectDefinitions.map(([subjectId, file]) => {
 });
 
 writeJson(verificationManifestPath, {
-  manifest_id: 'VIBE-PRODUCT-OS-PILOT-RELEASE-VERIFICATION-001',
+  manifest_id: `VIBE-PRODUCT-OS-${packageJson.version}-RELEASE-VERIFICATION`,
   manifest_version: '1.0.0',
   release_root: '.',
   package: packageJson.name,
   package_version: packageJson.version,
-  framework_release: '1.0.0',
-  source_release: 'Product-OS-v1.0-rc.2',
+  framework_release: releasePolicy.frameworkVersion,
+  source_release: releasePolicy.sourceRelease,
   release_status: 'PILOT_CANDIDATE_PUBLICATION_PREPARATION_UNSIGNED',
   generated_at: generatedAt,
   signature_policy: 'MINISIGN_REQUIRED_FOR_MANIFEST_AND_EVERY_EXTERNAL_DISTRIBUTION_SUBJECT',
@@ -210,22 +208,23 @@ writeJson(verificationManifestPath, {
     { control_id: 'PACKAGE_RELEASE_SIGNATURES', status: 'PENDING' },
     { control_id: 'PUBLIC_USE_LICENSE_DECISION', status: 'APPROVED', authority_ref: 'AUTH-DEC-001', value: 'Apache-2.0' },
     { control_id: 'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS', status: 'ACTIVE_VERIFIED', authority_ref: 'AUTH-DEC-001', evidence_ref: 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json' },
-    { control_id: 'EXACT_CHANNEL_AUTHORITY_DECISION', status: 'APPROVED', authority_ref: 'AUTH-DEC-002', value: 'npm public / pilot / vibe-product-os@0.1.0-pilot.0' },
+    { control_id: 'EXACT_CHANNEL_AUTHORITY_DECISION', status: releasePolicy.exactChannelDecisionStatus, authority_ref: releasePolicy.releaseDecision, value: releasePolicy.exactChannelValue },
   ],
   authority_claim: 'NONE',
   external_distribution_authorized: false,
-  claim_boundary: 'PRODUCT_OS_V1_WITH_REAL_PROJECT_VALIDATION_IN_PROGRESS',
+  claim_boundary: releasePolicy.claimBoundary,
   subjects: releaseSubjects,
 });
 
 const packReport = {
-  report_id: 'VIBE-PRODUCT-OS-PILOT-NPM-PACK-001',
+  report_id: `VIBE-PRODUCT-OS-${packageJson.version}-NPM-PACK`,
   package: packageJson.name,
   version: packageJson.version,
   status: 'PILOT_CANDIDATE_LOCAL_TARBALL',
   external_distribution_authorized: false,
   external_distribution_blockers: [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
+    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ],
   filename: pack.filename,
   size_bytes: fs.statSync(expectedTarball).size,

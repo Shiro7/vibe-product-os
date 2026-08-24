@@ -1,7 +1,7 @@
 {
   "name": "vibe-product-os",
-  "version": "0.1.0-pilot.0",
-  "description": "Codex-first Skill, plugin, installer, and governed runtime adapter for Product OS 1.0.0.",
+  "version": "0.1.0-pilot.1",
+  "description": "Multi-agent Skill installer and governed runtime adapter for Product OS 1.0.0.",
   "type": "commonjs",
   "main": "lib/index.js",
   "bin": {
@@ -37,7 +37,10 @@
   },
   "keywords": [
     "agent-skill",
+    "multi-agent",
     "codex",
+    "claude-code",
+    "gemini-cli",
     "product-os",
     "product-management",
     "requirements",
@@ -62,5 +65,14 @@
   "publishConfig": {
     "access": "public",
     "tag": "pilot"
+  },
+  "vibeProductOS": {
+    "frameworkVersion": "1.0.0",
+    "sourceRelease": "Product-OS-v1.0-rc.2",
+    "releaseDecision": "AUTH-DEC-003",
+    "releaseAuthorityStatus": "PROPOSED_PENDING_AUTHORITY_CONFIRMATION",
+    "authorityKeyId": "EAB95C319319813D",
+    "authorityPublicKeySha256": "92d7d336663522b1ac55544749fa632cfa63467af5391a01f8788ffefc3412da",
+    "claimBoundary": "PRODUCT_OS_V1_WITH_REAL_PROJECT_VALIDATION_IN_PROGRESS"
   }
 }

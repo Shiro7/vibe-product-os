@@ -20,4 +20,4 @@ W2 composes initialized Product OS 1.0.0 projects. It does not approve profile c
 
 ## Residual release conditions
 
-Later additive Authority evidence closes framework conditions `AUTH-COND-001` and `AUTH-COND-004`. `AUTH-COND-002` still blocks production-proven claims. `AUTH-DEC-001` and `AUTH-DEC-002` provide the license, channel, and exact `0.1.0-pilot.0` release decisions; new package bytes still require package-specific signatures. W2 technical PASS does not provide those approvals.
+Later additive Authority evidence closes framework conditions `AUTH-COND-001` and `AUTH-COND-004`. `AUTH-COND-002` still blocks production-proven claims. `AUTH-DEC-001` and `AUTH-DEC-002` provide the license, channel, and exact published `0.1.0-pilot.0` release decisions. `AUTH-DEC-003` is proposed for `0.1.0-pilot.1`; new package bytes still require explicit approval and package-specific signatures. W2 technical PASS does not provide those approvals.

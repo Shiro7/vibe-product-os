@@ -27,7 +27,7 @@ The command never accepts or handles a private key, never creates signatures, an
 
 ## Authority boundary
 
-For the current pilot candidate, every pre-signing report returns `external_distribution_authorized: false` and `authority_claim: NONE`. `AUTH-DEC-001` closes the Apache-2.0 license decision, and the public support/security channels are active and verified. `AUTH-DEC-002` approves public pilot use and npm publication of `0.1.0-pilot.0` under the `pilot` tag after exact signature verification. Before signing, the report therefore keeps only package signatures as a publication blocker; `AUTH-COND-002` remains a production-claim boundary. The command is read-only and supplies evidence to the release workflow; it does not issue Authority decisions.
+Every unsigned candidate report returns `external_distribution_authorized: false` and `authority_claim: NONE`. `AUTH-DEC-001` closes the Apache-2.0 license decision and the public support/security channels are active. `AUTH-DEC-002` remains the exact decision for published `0.1.0-pilot.0`; `AUTH-DEC-003` is proposed for `0.1.0-pilot.1`. Before explicit approval, the current candidate reports both the exact-channel decision and package signatures as blockers. After approval, only exact signature verification can clear the release controls. `AUTH-COND-002` remains a production-claim boundary. The command is read-only and supplies evidence to the release workflow; it does not issue Authority decisions.
 
 ## CLI
 

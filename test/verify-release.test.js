@@ -97,13 +97,48 @@ test('verify-release requires and verifies the manifest plus every subject signa
     item.manifest.subjects[0].public_key_path = 'product-os-authority.pub';
     item.manifest.manifest_signature_path = 'release-verification-manifest.json.minisig';
     item.manifest.manifest_public_key_path = 'product-os-authority.pub';
+    item.manifest.package_release_controls = [{
+      control_id: 'EXACT_CHANNEL_AUTHORITY_DECISION',
+      status: 'APPROVED',
+      authority_ref: 'AUTH-DEC-999',
+      value: 'npm public / pilot / vibe-product-os@0.1.0-pilot.0',
+    }];
     fs.writeFileSync(item.manifestPath, `${JSON.stringify(item.manifest, null, 2)}\n`, 'utf8');
     fs.writeFileSync(path.join(item.root, 'release-verification-manifest.json.minisig'), 'test manifest signature\n');
-    const report = verifyRelease({ manifest: item.manifestPath, requireSignatures: true, minisignCommand: fakeMinisign });
+    const expectedPublicKeySha256 = crypto.createHash('sha256').update('test public key\n').digest('hex');
+    const report = verifyRelease({
+      manifest: item.manifestPath,
+      requireSignatures: true,
+      minisignCommand: fakeMinisign,
+      expectedPublicKeySha256,
+    });
     assert.equal(report.result, 'PASS');
     assert.equal(report.publisher_identity, 'VERIFIED');
     assert.equal(report.manifest_signature_identity, 'VERIFIED');
     assert.equal(report.subjects[0].signature_identity, 'VERIFIED');
+    assert.equal(report.exact_channel_authority_decision, 'AUTH-DEC-999');
+    assert.equal(report.external_distribution_authorized, true);
+  } finally { fs.rmSync(item.root, { recursive: true, force: true }); }
+});
+
+test('verify-release rejects signatures made with a substituted public key', () => {
+  const item = fixture();
+  try {
+    const fakeMinisign = path.join(item.root, 'fake-minisign');
+    fs.writeFileSync(fakeMinisign, '#!/bin/sh\nexit 0\n', { mode: 0o700 });
+    fs.writeFileSync(path.join(item.root, 'product-os-authority.pub'), 'substituted public key\n');
+    fs.writeFileSync(path.join(item.root, 'package.tgz.minisig'), 'test subject signature\n');
+    item.manifest.subjects[0].signature_path = 'package.tgz.minisig';
+    item.manifest.subjects[0].public_key_path = 'product-os-authority.pub';
+    item.manifest.manifest_signature_path = 'release-verification-manifest.json.minisig';
+    item.manifest.manifest_public_key_path = 'product-os-authority.pub';
+    fs.writeFileSync(item.manifestPath, `${JSON.stringify(item.manifest, null, 2)}\n`, 'utf8');
+    fs.writeFileSync(path.join(item.root, 'release-verification-manifest.json.minisig'), 'test manifest signature\n');
+    const report = verifyRelease({ manifest: item.manifestPath, requireSignatures: true, minisignCommand: fakeMinisign });
+    assert.equal(report.result, 'FAIL');
+    assert.equal(report.publisher_identity, 'NOT_VERIFIED');
+    assert.equal(report.manifest_signature_identity, 'UNTRUSTED_KEY');
+    assert.equal(report.subjects[0].signature_identity, 'UNTRUSTED_KEY');
   } finally { fs.rmSync(item.root, { recursive: true, force: true }); }
 });
 
@@ -124,7 +159,12 @@ test('verify-release fails closed if configured Minisign verification cannot sta
     item.manifest.subjects[0].signature_path = 'package.tgz.minisig';
     item.manifest.subjects[0].public_key_path = 'minisign.pub';
     fs.writeFileSync(item.manifestPath, `${JSON.stringify(item.manifest, null, 2)}\n`, 'utf8');
-    const report = verifyRelease({ manifest: item.manifestPath, minisignCommand: path.join(item.root, 'missing-minisign') });
+    const expectedPublicKeySha256 = crypto.createHash('sha256').update('not a public key\n').digest('hex');
+    const report = verifyRelease({
+      manifest: item.manifestPath,
+      minisignCommand: path.join(item.root, 'missing-minisign'),
+      expectedPublicKeySha256,
+    });
     assert.equal(report.result, 'FAIL');
     assert.equal(report.subjects[0].signature_identity, 'TOOL_UNAVAILABLE');
   } finally { fs.rmSync(item.root, { recursive: true, force: true }); }

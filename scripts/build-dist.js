@@ -8,6 +8,7 @@ const { spawnSync } = require('node:child_process');
 
 const packageRoot = path.resolve(__dirname, '..');
 const packageJson = require('../package.json');
+const releasePolicy = require('../lib/release-policy');
 const skillRoot = path.join(packageRoot, 'plugins', 'vibe-product-os', 'skills', 'vibe-product-os');
 const pluginRoot = path.join(packageRoot, 'plugins', 'vibe-product-os');
 const distRoot = path.join(packageRoot, 'dist');
@@ -75,11 +76,12 @@ const report = {
   report_id: 'VIBE-PRODUCT-OS-PILOT-BUILD-001',
   package: packageJson.name,
   package_version: packageJson.version,
-  framework_version: '1.0.0',
+  framework_version: releasePolicy.frameworkVersion,
   build_status: 'PILOT_CANDIDATE_PUBLICATION_PREPARATION',
   external_distribution_authorized: false,
   external_distribution_blockers: [
-    'PACKAGE_RELEASE_SIGNATURES_PENDING'
+    'PACKAGE_RELEASE_SIGNATURES_PENDING',
+    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING'
   ],
   framework_authority_conditions: {
     'AUTH-COND-001': 'CLOSED',
@@ -90,7 +92,9 @@ const report = {
     git_commit: git(['rev-parse', 'HEAD']),
     git_worktree: git(['status', '--porcelain']) ? 'DIRTY' : 'CLEAN'
   },
-  signing_key_id: 'EAB95C319319813D',
+  signing_key_id: releasePolicy.authorityKeyId,
+  release_authority_decision: releasePolicy.releaseDecision,
+  release_authority_status: releasePolicy.releaseAuthorityStatus,
   package_signature_status: 'PENDING_EXACT_SUBJECT_SIGNATURES',
   skill_capability_source_coverage: '17_OF_17_PASS',
   physical_composer_status: 'W2_VERIFIED_WORKING_BASELINE',

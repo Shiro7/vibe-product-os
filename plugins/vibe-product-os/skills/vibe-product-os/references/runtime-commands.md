@@ -6,8 +6,8 @@ Read this reference before invoking or interpreting the Vibe Product OS CLI.
 
 | Command | Behavior |
 |---|---|
-| `vibe-product-os install` | Installs the Skill for Codex at repository or user scope; requires `--yes` and `--scope` |
-| `vibe-product-os targets` | Reports exact repository and user destinations |
+| `vibe-product-os install` | Guided or non-interactive multi-agent installation at project or user scope; supports shared/native paths and copy/link methods |
+| `vibe-product-os targets` | Reports supported agents, official guides, detection evidence, and exact deduplicated destinations |
 | `vibe-product-os version` | Reports package and framework identities separately |
 | `vibe-product-os setup-doctor` | Checks the packaged Skill, runtime, schemas, catalogs, and runtime lock |
 | `vibe-product-os compose` | Plans or applies governed P1/P2/P3 physical packaging for selected phases; dry-run by default |
@@ -15,7 +15,7 @@ Read this reference before invoking or interpreting the Vibe Product OS CLI.
 | `vibe-product-os update` | Plans catalog/lock reconciliation; apply and rollback require authority plus change references |
 | `vibe-product-os verify-release` | Verifies exact release bytes and configured detached Minisign signatures; read-only and cannot authorize release |
 
-Use `--dry-run` before installation or composition. Existing installations are preserved unless `--force` is explicit; existing project artifact files and memberships are never overwritten by compose.
+Use `--dry-run` before installation or composition. Non-interactive installation writes require `--yes`; existing installations are preserved unless `--force` is explicit. Link mode uses a persistent project or user managed store instead of the temporary npm cache. Existing project artifact files and memberships are never overwritten by compose.
 
 ## Status, update, and release verification
 
