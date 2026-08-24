@@ -6,6 +6,14 @@ package_root="${script_root:h}"
 dist_root="${package_root}/dist"
 private_key="/Users/mashiro/.product-os-signing/product-os-authority.key"
 manifest="${dist_root}/release-verification-manifest.json"
+package_version="$(node -p "require('${package_root}/package.json').version")"
+authority_decision="$(node -p "require('${package_root}/package.json').vibeProductOS.releaseDecision")"
+authority_status="$(node -p "require('${package_root}/package.json').vibeProductOS.releaseAuthorityStatus")"
+
+if [[ "${authority_status}" != APPROVED* ]]; then
+  print -u2 "Refusing to sign: ${authority_decision} is not explicitly approved for ${package_version}."
+  exit 1
+fi
 
 if [[ -n "$(git -C "${package_root}" status --porcelain)" ]]; then
   print -u2 "Refusing to sign: the package source worktree is not clean."
@@ -17,10 +25,10 @@ if [[ ! -f "${private_key}" || "$(stat -f '%Lp' "${private_key}")" != "600" ]]; 
 fi
 
 subjects=(
-  "${dist_root}/vibe-product-os-skill-0.1.0-pilot.0.zip"
-  "${dist_root}/vibe-product-os-codex-plugin-0.1.0-pilot.0.zip"
-  "${dist_root}/vibe-product-os-0.1.0-pilot.0.tgz"
-  "${dist_root}/vibe-product-os-0.1.0-pilot.0.spdx.json"
+  "${dist_root}/vibe-product-os-skill-${package_version}.zip"
+  "${dist_root}/vibe-product-os-codex-plugin-${package_version}.zip"
+  "${dist_root}/vibe-product-os-${package_version}.tgz"
+  "${dist_root}/vibe-product-os-${package_version}.spdx.json"
   "${dist_root}/release-build-report.json"
   "${dist_root}/SHA256SUMS"
 )
@@ -44,14 +52,14 @@ fi
 
 print "Signing six immutable pilot subjects with Authority key EAB95C319319813D."
 minisign -S -s "${private_key}" \
-  -t "Vibe Product OS 0.1.0-pilot.0; Authority M.M.Eyada; AUTH-DEC-002; npm pilot" \
+  -t "Vibe Product OS ${package_version}; Authority M.M.Eyada; ${authority_decision}; npm pilot" \
   -m "${subjects[@]}"
 
 node "${package_root}/scripts/configure-release-signatures.js"
 
 print "Signing the configured release verification manifest."
 minisign -Sm "${manifest}" -s "${private_key}" \
-  -t "Vibe Product OS 0.1.0-pilot.0 release manifest; Authority M.M.Eyada"
+  -t "Vibe Product OS ${package_version} release manifest; Authority M.M.Eyada; ${authority_decision}"
 
 node "${package_root}/bin/vibe-product-os.js" verify-release \
   --manifest "${manifest}" \

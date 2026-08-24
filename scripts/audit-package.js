@@ -6,6 +6,7 @@ const path = require('node:path');
 
 const packageRoot = path.resolve(__dirname, '..');
 const packageJson = require('../package.json');
+const releasePolicy = require('../lib/release-policy');
 const { verifyRelease } = require('../lib/release-verifier');
 const findings = [];
 const unfinishedScaffoldMarker = `[${'TODO'}:`;
@@ -32,7 +33,7 @@ function walk(root) {
 }
 
 if (packageJson.name !== 'vibe-product-os') fail('PKG-IDENTITY', 'Unexpected package name.');
-if (packageJson.version !== '0.1.0-pilot.0') fail('PKG-VERSION', 'Unexpected pilot-candidate package version.');
+if (!/^0\.1\.\d+-pilot\.\d+$/u.test(packageJson.version)) fail('PKG-VERSION', 'Unexpected pilot-candidate package version.');
 if (packageJson.private === true) fail('PKG-PUBLISH-GUARD', 'AUTH-DEC-001 approved publication metadata; private=true must be absent.');
 if (packageJson.license !== 'Apache-2.0') fail('PKG-LICENSE', 'AUTH-DEC-001 requires Apache-2.0.');
 if (packageJson.publishConfig?.access !== 'public' || packageJson.publishConfig?.tag !== 'pilot') {
@@ -45,7 +46,10 @@ if (packageJson.homepage !== 'https://github.com/Shiro7/vibe-product-os#readme'
 
 const required = [
   'bin/vibe-product-os.js',
+  'lib/agent-targets.js',
   'lib/cli.js',
+  'lib/install-wizard.js',
+  'lib/release-policy.js',
   'lib/composer.js',
   'lib/composition-model.js',
   'lib/status.js',
@@ -61,6 +65,7 @@ const required = [
   'governance/authority/authority-state-snapshot.json',
   'governance/authority/AUTH-DEC-001_Public_License_and_Channels.md',
   'governance/authority/AUTH-DEC-002_Public_Pilot_Use_Test_Feedback_and_NPM.md',
+  'governance/authority/AUTH-DEC-003_Multi_Agent_Installer_and_NPM_Pilot_1.md',
   'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json',
   'governance/authority/product-os-authority.pub',
   'LICENSE',
@@ -71,8 +76,8 @@ const required = [
   'plugins/vibe-product-os/skills/vibe-product-os/SKILL.md',
   'plugins/vibe-product-os/skills/vibe-product-os/agents/openai.yaml',
   'dist/release-build-report.json',
-  'dist/vibe-product-os-skill-0.1.0-pilot.0.zip',
-  'dist/vibe-product-os-codex-plugin-0.1.0-pilot.0.zip',
+  `dist/vibe-product-os-skill-${packageJson.version}.zip`,
+  `dist/vibe-product-os-codex-plugin-${packageJson.version}.zip`,
 ];
 for (const relative of required) {
   if (!fs.existsSync(path.join(packageRoot, relative))) fail('PKG-REQUIRED-FILE', `Missing ${relative}.`);
@@ -103,10 +108,19 @@ if (fs.existsSync(path.join(packageRoot, 'runtime/framework-runtime-lock.json'))
   if (lock.framework_signature_condition !== 'AUTH-COND-001_CLOSED' || lock.key_continuity_condition !== 'AUTH-COND-004_CLOSED') {
     fail('PKG-AUTHORITY-STATE', 'Runtime lock does not reflect the additive Authority closure state.');
   }
+  if (lock.package_version !== packageJson.version
+    || lock.release_authority_decision !== `${releasePolicy.releaseDecision}_APPROVED`
+    || lock.external_distribution_blocker !== null
+    || lock.package_signature_status !== 'VERIFY_WITH_EXTERNAL_SIGNED_RELEASE_MANIFEST') {
+    fail('PKG-RUNTIME-RELEASE-POLICY', 'Runtime lock does not match the current package and external-attestation policy.');
+  }
 }
 
 if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-snapshot.json'))) {
   const authority = JSON.parse(fs.readFileSync(path.join(packageRoot, 'governance/authority/authority-state-snapshot.json'), 'utf8'));
+  const expectedNpmReleaseStatus = releasePolicy.exactChannelDecisionStatus === 'APPROVED'
+    ? 'APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION'
+    : 'PENDING_EXPLICIT_AUTHORITY_CONFIRMATION_AND_EXACT_SIGNATURE_VERIFICATION';
   if (authority.conditions['AUTH-COND-001'] !== 'CLOSED_SIGNATURE_AND_PRIMARY_CUSTODY_VERIFIED'
     || authority.conditions['AUTH-COND-004'] !== 'CLOSED_CONTINUITY_CONTROLS_VERIFIED'
     || authority.conditions['AUTH-COND-002'] !== 'OPEN_POST_BASELINE_PILOT_DEFERRED_AFTER_UPLOAD') {
@@ -118,12 +132,13 @@ if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-s
     || authority.package_publication_policy?.repository_visibility !== 'PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE'
     || authority.package_publication_policy?.support_status !== 'ACTIVE_VERIFIED_PUBLIC'
     || authority.package_publication_policy?.security_status !== 'ACTIVE_VERIFIED_PRIVATE_REPORTING'
-    || authority.package_publication_policy?.release_decision_id !== 'AUTH-DEC-002'
+    || authority.package_publication_policy?.release_decision_id !== releasePolicy.releaseDecision
+    || authority.package_publication_policy?.release_decision_status !== releasePolicy.releaseAuthorityStatus
     || authority.package_publication_policy?.public_source_pilot_status !== 'APPROVED_ACTIVE'
-    || authority.package_publication_policy?.npm_package !== 'vibe-product-os@0.1.0-pilot.0'
+    || authority.package_publication_policy?.npm_package !== `${packageJson.name}@${packageJson.version}`
     || authority.package_publication_policy?.npm_access !== 'public'
     || authority.package_publication_policy?.npm_tag !== 'pilot'
-    || authority.package_publication_policy?.npm_release_status !== 'APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION') {
+    || authority.package_publication_policy?.npm_release_status !== expectedNpmReleaseStatus) {
     fail('PKG-PUBLICATION-POLICY', 'Authority license and channel decision is missing or inconsistent.');
   }
 }

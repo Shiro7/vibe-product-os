@@ -10,13 +10,14 @@ const root = path.resolve(__dirname, '..');
 test('publication-preparation pilot metadata and identity are pinned', () => {
   const packageJson = require('../package.json');
   assert.equal(packageJson.name, 'vibe-product-os');
-  assert.equal(packageJson.version, '0.1.0-pilot.0');
+  assert.equal(packageJson.version, '0.1.0-pilot.1');
   assert.notEqual(packageJson.private, true);
   assert.equal(packageJson.license, 'Apache-2.0');
   assert.equal(packageJson.publishConfig.access, 'public');
   assert.equal(packageJson.publishConfig.tag, 'pilot');
   assert.equal(packageJson.homepage, 'https://github.com/Shiro7/vibe-product-os#readme');
   assert.equal(packageJson.bugs.url, 'https://github.com/Shiro7/vibe-product-os/issues');
+  assert.match(packageJson.description, /Multi-agent Skill installer/u);
   assert.equal(packageJson.files.includes('dist/'), false);
   assert.equal(packageJson.files.includes('NOTICE'), true);
 });
@@ -43,10 +44,10 @@ test('runtime lock preserves the approved Product OS identity', () => {
   assert.equal(lock.source_release, 'Product-OS-v1.0-rc.2');
   assert.equal(lock.framework_signature_condition, 'AUTH-COND-001_CLOSED');
   assert.equal(lock.key_continuity_condition, 'AUTH-COND-004_CLOSED');
-  assert.equal(lock.external_distribution_blocker, 'PACKAGE_RELEASE_SIGNATURES_PENDING');
-  assert.deepEqual(lock.external_distribution_blockers, [
-    'PACKAGE_RELEASE_SIGNATURES_PENDING',
-  ]);
+  assert.equal(lock.package_version, '0.1.0-pilot.1');
+  assert.equal(lock.release_authority_decision, 'AUTH-DEC-003_APPROVED');
+  assert.equal(lock.external_distribution_blocker, null);
+  assert.deepEqual(lock.external_distribution_blockers, []);
   assert.equal(lock.source_release_file_count, 503);
   assert.equal(lock.file_count, 504);
   assert.equal(lock.extraction_safety.digest_verified, true);
@@ -62,7 +63,8 @@ test('W1, W2, and W3 package governance assets are complete', () => {
   assert.equal(new Set(physical.entries.map((item) => item.artifact_id)).size, 281);
   assert.equal(commands.command_count, 3);
   assert.deepEqual(commands.commands.map((item) => item.command), ['status', 'update', 'verify-release']);
-  assert.equal(commands.focused_test_count, 20);
+  assert.equal(commands.package_version, '0.1.0-pilot.1');
+  assert.equal(commands.focused_test_count, 21);
   assert.deepEqual(commands.open_release_controls, [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
   ]);
@@ -80,8 +82,9 @@ test('public repository and support/security channel activation evidence is pinn
   assert.equal(authority.package_publication_policy.repository_visibility, 'PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE');
   assert.equal(authority.package_publication_policy.support_status, 'ACTIVE_VERIFIED_PUBLIC');
   assert.equal(authority.package_publication_policy.security_status, 'ACTIVE_VERIFIED_PRIVATE_REPORTING');
-  assert.equal(authority.package_publication_policy.release_decision_id, 'AUTH-DEC-002');
-  assert.equal(authority.package_publication_policy.npm_package, 'vibe-product-os@0.1.0-pilot.0');
+  assert.equal(authority.package_publication_policy.release_decision_id, 'AUTH-DEC-003');
+  assert.equal(authority.package_publication_policy.release_decision_status, 'APPROVED_CONDITIONAL_ON_EXACT_EXTERNAL_ATTESTATION');
+  assert.equal(authority.package_publication_policy.npm_package, 'vibe-product-os@0.1.0-pilot.1');
   assert.equal(authority.package_publication_policy.npm_access, 'public');
   assert.equal(authority.package_publication_policy.npm_tag, 'pilot');
   assert.equal(activation.authority_decision, 'AUTH-DEC-001');

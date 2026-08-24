@@ -4,13 +4,15 @@
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
+const packageJson = require('../package.json');
+const releasePolicy = require('../lib/release-policy');
 
 const packageRoot = path.resolve(__dirname, '..');
 const distRoot = path.join(packageRoot, 'dist');
 const manifestPath = path.join(distRoot, 'release-verification-manifest.json');
 const publicKeyName = 'product-os-authority.pub';
 const publicKeyPath = path.join(distRoot, publicKeyName);
-const expectedPublicKeySha256 = '92d7d336663522b1ac55544749fa632cfa63467af5391a01f8788ffefc3412da';
+const expectedPublicKeySha256 = releasePolicy.authorityPublicKeySha256;
 
 function sha256(file) {
   return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
@@ -24,8 +26,15 @@ if (sha256(publicKeyPath) !== expectedPublicKeySha256) {
 }
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-if (manifest.package_version !== '0.1.0-pilot.0' || manifest.subjects.length !== 6) {
+if (manifest.package !== packageJson.name || manifest.package_version !== packageJson.version || manifest.subjects.length !== 6) {
   throw new Error('Unexpected pilot release manifest identity or subject count.');
+}
+const channelControl = manifest.package_release_controls?.find((item) => item.control_id === 'EXACT_CHANNEL_AUTHORITY_DECISION');
+if (releasePolicy.exactChannelDecisionStatus !== 'APPROVED'
+  || channelControl?.status !== 'APPROVED'
+  || channelControl.authority_ref !== releasePolicy.releaseDecision
+  || channelControl.value !== releasePolicy.exactChannelValue) {
+  throw new Error('Exact release Authority decision is not approved for the current package identity.');
 }
 for (const subject of manifest.subjects) {
   const signatureName = `${subject.path}.minisig`;

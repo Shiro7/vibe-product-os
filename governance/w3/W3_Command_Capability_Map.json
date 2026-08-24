@@ -1,7 +1,7 @@
 {
   "map_id": "VIBE-PRODUCT-OS-W3-COMMAND-CAPABILITY-MAP",
   "map_version": "1.0.0",
-  "package_version": "0.1.0-pilot.0",
+  "package_version": "0.1.0-pilot.1",
   "framework_release": "1.0.0",
   "source_release": "Product-OS-v1.0-rc.2",
   "status": "VERIFIED_WORKING_BASELINE",
@@ -28,11 +28,11 @@
       "authority_claim": "NONE",
       "capabilities": ["manifest_validation", "size_and_sha256_verification", "optional_minisign_verification", "path_and_symlink_safety", "release_authority_separation"],
       "test_file": "test/verify-release.test.js",
-      "test_count": 8
+      "test_count": 9
     }
   ],
   "command_count": 3,
-  "focused_test_count": 20,
+  "focused_test_count": 21,
   "authority_condition_state": {
     "AUTH-COND-001": "CLOSED",
     "AUTH-COND-002": "OPEN_POST_BASELINE",

@@ -16,7 +16,7 @@ suspected vulnerability.
 
 ## Public pilot feedback
 
-The `0.1.0-pilot.0` line is open for public use and testing. GitHub Issues may
+The `0.1.x-pilot` line is open for public use and testing. GitHub Issues may
 also be used for workflow feedback, usability observations, documentation
 suggestions, and reproducible project-integration results. Mark assumptions,
 avoid confidential project content, and explain whether the result came from
