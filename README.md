@@ -2,9 +2,32 @@
 
 Vibe Product OS is the Codex-first Skill, plugin, installer, and runtime adapter for the approved Product OS 1.0.0 framework.
 
+## Public pilot
+
+Vibe Product OS `0.1.0-pilot.0` is approved for public use, testing, and
+feedback. Install or run the pilot explicitly so npm does not substitute a
+different channel:
+
+```bash
+npm install --global vibe-product-os@pilot
+vibe-product-os version --json
+```
+
+You can also evaluate it without a global install:
+
+```bash
+npx vibe-product-os@pilot version --json
+```
+
+Report general feedback and reproducible defects through
+[GitHub Issues](https://github.com/Shiro7/vibe-product-os/issues). Report
+suspected vulnerabilities only through
+[GitHub private vulnerability reporting](https://github.com/Shiro7/vibe-product-os/security/advisories/new).
+This pilot is not yet production-proven while `AUTH-COND-002` remains open.
+
 ## Current status
 
-This repository is a **prepublication pilot candidate**. Product OS framework signing and continuity conditions `AUTH-COND-001` and `AUTH-COND-004` are closed. `AUTH-DEC-001` approved Apache-2.0 plus public GitHub support and confidential vulnerability-reporting channels. The exact package candidate is not yet authorized for npm distribution: its own release subjects still require signatures and clean verification, the approved channels must be activated, and the Authority must approve the exact release and channel. `AUTH-COND-002` continues to block production-proven and scaled-adoption claims until the Ahd P2 Pilot closes.
+This repository is a **public pilot**. Product OS framework signing and continuity conditions `AUTH-COND-001` and `AUTH-COND-004` are closed. `AUTH-DEC-001` approved Apache-2.0 plus the public support and confidential vulnerability-reporting channels; the repository and both channels are active and verified. `AUTH-DEC-002` approves public source testing, feedback collection, and npm publication of `0.1.0-pilot.0` under the `pilot` tag after exact release-signature verification. `AUTH-COND-002` continues to block production-proven and scaled-adoption claims until the Ahd P2 Pilot closes.
 
 The candidate deliberately separates:
 
@@ -84,4 +107,4 @@ An update apply requires `--authority-ref`, `--change-ref`, and `--apply`; it cr
 - after `npm run pack:pilot`: `dist/vibe-product-os-0.1.0-pilot.0.tgz`, `dist/npm-pack-report.json`, `dist/vibe-product-os-0.1.0-pilot.0.spdx.json`, `dist/SHA256SUMS`, and `dist/release-verification-manifest.json`
 - after `npm run verify:candidate`: `dist/clean-recipient-verification.json`
 
-No `npm publish` or GitHub Release action is part of candidate construction. Byte verification is expected to pass before signing; publisher identity remains pending until the Authority signs every exact subject and the manifest. `AUTH-DEC-001` closes the license decision. Publication still requires active support/security locators and an exact-release Authority decision.
+Candidate construction does not publish npm content automatically. Byte verification must pass before signing, and publisher identity remains unverified until every exact subject and the manifest verify against Authority key `EAB95C319319813D`. `AUTH-DEC-001` closes the license and channel-policy decision; `AUTH-DEC-002` approves this exact version for public source testing and npm publication under the `pilot` tag after signature verification. The `latest` tag remains outside this decision.

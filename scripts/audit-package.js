@@ -16,6 +16,12 @@ function fail(rule, message) {
 
 function walk(root) {
   const files = [];
+  const relativeRoot = path.relative(packageRoot, root).split(path.sep).join('/');
+  // sync:runtime verifies the digest-pinned source archive and records every
+  // extracted file hash. Runtime tests then validate that generated tree.
+  // Avoid a second content scan that duplicates those controls and can force
+  // hundreds of iCloud placeholder reads during every release audit.
+  if (relativeRoot === 'runtime/framework') return files;
   for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
     if (['node_modules', '.git'].includes(entry.name)) continue;
     const absolute = path.join(root, entry.name);
@@ -31,6 +37,10 @@ if (packageJson.private === true) fail('PKG-PUBLISH-GUARD', 'AUTH-DEC-001 approv
 if (packageJson.license !== 'Apache-2.0') fail('PKG-LICENSE', 'AUTH-DEC-001 requires Apache-2.0.');
 if (packageJson.publishConfig?.access !== 'public' || packageJson.publishConfig?.tag !== 'pilot') {
   fail('PKG-PUBLISH-CONFIG', 'Pilot publication metadata must remain public access with the pilot tag.');
+}
+if (packageJson.homepage !== 'https://github.com/Shiro7/vibe-product-os#readme'
+  || packageJson.bugs?.url !== 'https://github.com/Shiro7/vibe-product-os/issues') {
+  fail('PKG-PUBLIC-LOCATORS', 'npm homepage and feedback locator must resolve to the public repository.');
 }
 
 const required = [
@@ -50,6 +60,8 @@ const required = [
   'governance/w3/W3_Closure_Review.md',
   'governance/authority/authority-state-snapshot.json',
   'governance/authority/AUTH-DEC-001_Public_License_and_Channels.md',
+  'governance/authority/AUTH-DEC-002_Public_Pilot_Use_Test_Feedback_and_NPM.md',
+  'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json',
   'governance/authority/product-os-authority.pub',
   'LICENSE',
   'NOTICE',
@@ -102,8 +114,32 @@ if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-s
   }
   if (authority.package_publication_policy?.decision_id !== 'AUTH-DEC-001'
     || authority.package_publication_policy?.license !== 'Apache-2.0'
-    || authority.package_publication_policy?.license_status !== 'APPROVED') {
+    || authority.package_publication_policy?.license_status !== 'APPROVED'
+    || authority.package_publication_policy?.repository_visibility !== 'PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE'
+    || authority.package_publication_policy?.support_status !== 'ACTIVE_VERIFIED_PUBLIC'
+    || authority.package_publication_policy?.security_status !== 'ACTIVE_VERIFIED_PRIVATE_REPORTING'
+    || authority.package_publication_policy?.release_decision_id !== 'AUTH-DEC-002'
+    || authority.package_publication_policy?.public_source_pilot_status !== 'APPROVED_ACTIVE'
+    || authority.package_publication_policy?.npm_package !== 'vibe-product-os@0.1.0-pilot.0'
+    || authority.package_publication_policy?.npm_access !== 'public'
+    || authority.package_publication_policy?.npm_tag !== 'pilot'
+    || authority.package_publication_policy?.npm_release_status !== 'APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION') {
     fail('PKG-PUBLICATION-POLICY', 'Authority license and channel decision is missing or inconsistent.');
+  }
+}
+
+if (fs.existsSync(path.join(packageRoot, 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json'))) {
+  const activation = JSON.parse(fs.readFileSync(
+    path.join(packageRoot, 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json'),
+    'utf8',
+  ));
+  const controlStatus = new Map(activation.controls?.map((control) => [control.control_id, control.status]));
+  if (activation.authority_decision !== 'AUTH-DEC-001'
+    || controlStatus.get('REPOSITORY_VISIBILITY') !== 'PUBLIC_ACTIVE_VERIFIED'
+    || controlStatus.get('PUBLIC_SUPPORT_CHANNEL') !== 'ACTIVE_VERIFIED'
+    || controlStatus.get('CONFIDENTIAL_SECURITY_REPORTING') !== 'ACTIVE_VERIFIED'
+    || activation.remaining_publication_controls?.includes('PUBLIC_SUPPORT_AND_SECURITY_CHANNELS_ACTIVATION_PENDING')) {
+    fail('PKG-PUBLIC-CHANNEL-ACTIVATION', 'Public repository, support, or confidential security-reporting activation evidence is incomplete.');
   }
 }
 

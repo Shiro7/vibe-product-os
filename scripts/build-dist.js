@@ -79,9 +79,7 @@ const report = {
   build_status: 'PILOT_CANDIDATE_PUBLICATION_PREPARATION',
   external_distribution_authorized: false,
   external_distribution_blockers: [
-    'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS_ACTIVATION_PENDING',
-    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING'
+    'PACKAGE_RELEASE_SIGNATURES_PENDING'
   ],
   framework_authority_conditions: {
     'AUTH-COND-001': 'CLOSED',
