@@ -8,7 +8,7 @@
 | Embedded framework | Product OS `1.0.0` from immutable `rc.2` |
 | Supported host | Codex first |
 | Package publication | `NOT_YET_AUTHORIZED — PREPUBLICATION CANDIDATE` |
-| GitHub source repository | `PUBLIC APPROVED — ACTIVATION AND HISTORY REVIEW PENDING` |
+| GitHub source repository | `PUBLIC ACTIVE — HISTORY REVIEW COMPLETE` |
 | Framework signature | `AUTH-COND-001 CLOSED` |
 | Key continuity | `AUTH-COND-004 CLOSED` |
 | Real-project Pilot | `AUTH-COND-002 OPEN — Ahd P2 after upload` |
@@ -16,8 +16,8 @@
 | Physical Composer | `W2 PASS — 281/281 MAPPED; P1/P2/P3 GOLDEN FIXTURES` |
 | Operational commands | `W3 PASS — STATUS / UPDATE / VERIFY-RELEASE` |
 | License | `Apache-2.0 — AUTH-DEC-001 APPROVED` |
-| Public support | `GitHub Issues — ACTIVATION PENDING` |
-| Confidential security reporting | `GitHub private vulnerability reporting — ACTIVATION PENDING` |
+| Public support | `GitHub Issues — ACTIVE VERIFIED` |
+| Confidential security reporting | `GitHub private vulnerability reporting — ACTIVE VERIFIED` |
 
 ## Candidate acceptance boundary
 
@@ -25,8 +25,10 @@ The candidate may be built, tested, packed, and prepared for the GitHub source
 workflow. External package distribution remains blocked until:
 
 1. the exact candidate subjects are signed and clean-recipient verified;
-2. public support and confidential security-reporting locators are activated;
-3. the Authority approves the exact release and channel.
+2. the Authority approves the exact release and channel.
+
+Repository visibility and both approved channels are active and recorded in
+`governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json`.
 
 `AUTH-COND-002` does not prevent a bounded pilot distribution. It continues to
 prohibit production-proven, certification, compliance, universal-fitness, and

@@ -50,6 +50,7 @@ const required = [
   'governance/w3/W3_Closure_Review.md',
   'governance/authority/authority-state-snapshot.json',
   'governance/authority/AUTH-DEC-001_Public_License_and_Channels.md',
+  'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json',
   'governance/authority/product-os-authority.pub',
   'LICENSE',
   'NOTICE',
@@ -102,8 +103,26 @@ if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-s
   }
   if (authority.package_publication_policy?.decision_id !== 'AUTH-DEC-001'
     || authority.package_publication_policy?.license !== 'Apache-2.0'
-    || authority.package_publication_policy?.license_status !== 'APPROVED') {
+    || authority.package_publication_policy?.license_status !== 'APPROVED'
+    || authority.package_publication_policy?.repository_visibility !== 'PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE'
+    || authority.package_publication_policy?.support_status !== 'ACTIVE_VERIFIED_PUBLIC'
+    || authority.package_publication_policy?.security_status !== 'ACTIVE_VERIFIED_PRIVATE_REPORTING') {
     fail('PKG-PUBLICATION-POLICY', 'Authority license and channel decision is missing or inconsistent.');
+  }
+}
+
+if (fs.existsSync(path.join(packageRoot, 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json'))) {
+  const activation = JSON.parse(fs.readFileSync(
+    path.join(packageRoot, 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json'),
+    'utf8',
+  ));
+  const controlStatus = new Map(activation.controls?.map((control) => [control.control_id, control.status]));
+  if (activation.authority_decision !== 'AUTH-DEC-001'
+    || controlStatus.get('REPOSITORY_VISIBILITY') !== 'PUBLIC_ACTIVE_VERIFIED'
+    || controlStatus.get('PUBLIC_SUPPORT_CHANNEL') !== 'ACTIVE_VERIFIED'
+    || controlStatus.get('CONFIDENTIAL_SECURITY_REPORTING') !== 'ACTIVE_VERIFIED'
+    || activation.remaining_publication_controls?.includes('PUBLIC_SUPPORT_AND_SECURITY_CHANNELS_ACTIVATION_PENDING')) {
+    fail('PKG-PUBLIC-CHANNEL-ACTIVATION', 'Public repository, support, or confidential security-reporting activation evidence is incomplete.');
   }
 }
 

@@ -42,6 +42,10 @@ test('runtime lock preserves the approved Product OS identity', () => {
   assert.equal(lock.framework_signature_condition, 'AUTH-COND-001_CLOSED');
   assert.equal(lock.key_continuity_condition, 'AUTH-COND-004_CLOSED');
   assert.equal(lock.external_distribution_blocker, 'PACKAGE_RELEASE_SIGNATURES_PENDING');
+  assert.deepEqual(lock.external_distribution_blockers, [
+    'PACKAGE_RELEASE_SIGNATURES_PENDING',
+    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
+  ]);
   assert.equal(lock.source_release_file_count, 503);
   assert.equal(lock.file_count, 504);
   assert.equal(lock.extraction_safety.digest_verified, true);
@@ -58,4 +62,27 @@ test('W1, W2, and W3 package governance assets are complete', () => {
   assert.equal(commands.command_count, 3);
   assert.deepEqual(commands.commands.map((item) => item.command), ['status', 'update', 'verify-release']);
   assert.equal(commands.focused_test_count, 20);
+  assert.deepEqual(commands.open_release_controls, [
+    'PACKAGE_RELEASE_SIGNATURES_PENDING',
+    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
+  ]);
+});
+
+test('public repository and support/security channel activation evidence is pinned', () => {
+  const authority = JSON.parse(fs.readFileSync(
+    path.join(root, 'governance/authority/authority-state-snapshot.json'),
+    'utf8',
+  ));
+  const activation = JSON.parse(fs.readFileSync(
+    path.join(root, 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json'),
+    'utf8',
+  ));
+  assert.equal(authority.package_publication_policy.repository_visibility, 'PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE');
+  assert.equal(authority.package_publication_policy.support_status, 'ACTIVE_VERIFIED_PUBLIC');
+  assert.equal(authority.package_publication_policy.security_status, 'ACTIVE_VERIFIED_PRIVATE_REPORTING');
+  assert.equal(activation.authority_decision, 'AUTH-DEC-001');
+  assert.deepEqual(activation.remaining_publication_controls, [
+    'PACKAGE_RELEASE_SIGNATURES_PENDING',
+    'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
+  ]);
 });

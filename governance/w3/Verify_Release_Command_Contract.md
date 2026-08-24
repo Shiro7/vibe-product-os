@@ -27,7 +27,7 @@ The command never accepts or handles a private key, never creates signatures, an
 
 ## Authority boundary
 
-For the current pilot candidate, every report returns `external_distribution_authorized: false` and `authority_claim: NONE`. `AUTH-DEC-001` closes the Apache-2.0 license decision. Before signing, the report keeps package signatures, public support/security channel activation, and the exact-channel Authority decision as blockers; `AUTH-COND-002` remains a production-claim boundary. The command is read-only and supplies evidence to an Authority decision; it does not issue that decision.
+For the current pilot candidate, every report returns `external_distribution_authorized: false` and `authority_claim: NONE`. `AUTH-DEC-001` closes the Apache-2.0 license decision, and the public support/security channels are active and verified. Before signing, the report keeps package signatures and the exact-channel Authority decision as blockers; `AUTH-COND-002` remains a production-claim boundary. The command is read-only and supplies evidence to an Authority decision; it does not issue that decision.
 
 ## CLI
 

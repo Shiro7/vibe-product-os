@@ -1,12 +1,13 @@
 {
   "snapshot_id": "VIBE-PRODUCT-OS-AUTHORITY-SNAPSHOT-001",
-  "snapshot_at": "2026-08-24T17:26:01Z",
+  "snapshot_at": "2026-08-24T18:06:14Z",
   "authority": "M.M.Eyada",
   "framework": "Product OS",
   "framework_version": "1.0.0",
   "source_release": "Product-OS-v1.0-rc.2",
   "authority_reconciliation_record": "Authority_State_Reconciliation_2026-08-25.json",
   "authority_reconciliation_source": "Product OS Authority package outside this repository",
+  "public_channel_activation_evidence": "PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json",
   "conditions": {
     "AUTH-COND-001": "CLOSED_SIGNATURE_AND_PRIMARY_CUSTODY_VERIFIED",
     "AUTH-COND-002": "OPEN_POST_BASELINE_PILOT_DEFERRED_AFTER_UPLOAD",
@@ -24,13 +25,13 @@
     "decision_id": "AUTH-DEC-001",
     "license": "Apache-2.0",
     "license_status": "APPROVED",
-    "repository_visibility": "PUBLIC_APPROVED_PENDING_ACTIVATION_AND_HISTORY_REVIEW",
+    "repository_visibility": "PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE",
     "support_locator": "https://github.com/Shiro7/vibe-product-os/issues",
-    "support_status": "APPROVED_PENDING_PUBLIC_ACTIVATION",
+    "support_status": "ACTIVE_VERIFIED_PUBLIC",
     "security_locator": "https://github.com/Shiro7/vibe-product-os/security/advisories/new",
-    "security_status": "APPROVED_PENDING_PRIVATE_REPORTING_ACTIVATION"
+    "security_status": "ACTIVE_VERIFIED_PRIVATE_REPORTING"
   },
-  "package_release_status": "PREPUBLICATION_CANDIDATE_REQUIRES_OWN_EXACT_SIGNATURES_CHANNEL_ACTIVATION_AND_RELEASE_DECISION",
+  "package_release_status": "PREPUBLICATION_CANDIDATE_REQUIRES_OWN_EXACT_SIGNATURES_AND_RELEASE_DECISION",
   "claim_boundary": "PRODUCT_OS_V1_WITH_REAL_PROJECT_VALIDATION_IN_PROGRESS",
   "automatic_publication_authority": "NONE"
 }

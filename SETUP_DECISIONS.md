@@ -7,9 +7,9 @@
 | Version model | DECIDED | Package `0.1.0-pilot.0`; framework `1.0.0` | Tracked separately |
 | First supported host | PROVISIONAL_FOR_PILOT | Codex | Other hosts deferred until explicitly approved and tested |
 | Pilot license | APPROVED | `Apache-2.0`; `AUTH-DEC-001` | License blocker closed; exact release approval still required |
-| GitHub repository | PUBLIC_APPROVED_PENDING_ACTIVATION | [`Shiro7/vibe-product-os`](https://github.com/Shiro7/vibe-product-os) | Activate only after tracked-history review; does not authorize npm |
-| Public support | APPROVED_PENDING_ACTIVATION | [GitHub Issues](https://github.com/Shiro7/vibe-product-os/issues) | Five-business-day best-effort initial response target |
-| Confidential security reporting | APPROVED_PENDING_ACTIVATION | [GitHub private vulnerability reporting](https://github.com/Shiro7/vibe-product-os/security/advisories/new) | Must be enabled and verified before public package distribution |
+| GitHub repository | ACTIVE_PUBLIC_VERIFIED | [`Shiro7/vibe-product-os`](https://github.com/Shiro7/vibe-product-os) | Activated after tracked-history review; does not authorize npm |
+| Public support | ACTIVE_VERIFIED | [GitHub Issues](https://github.com/Shiro7/vibe-product-os/issues) | Five-business-day best-effort initial response target |
+| Confidential security reporting | ACTIVE_VERIFIED | [GitHub private vulnerability reporting](https://github.com/Shiro7/vibe-product-os/security/advisories/new) | Private advisory form verified |
 | GitHub Pages | PLANNED_NOT_CREATED | `shiro7.github.io/vibe-product-os/` | No external mutation performed |
 | Real-project Pilot | DEFERRED_AFTER_UPLOAD | Ahd selected as P2; execution deferred until after source upload | Blocks `AUTH-COND-002` closure until executed and accepted |
 | Framework digital signature | CLOSED | `AUTH-COND-001`; key `EAB95C319319813D` | Does not sign new package bytes automatically |
@@ -20,4 +20,4 @@
 | Physical Composer | VERIFIED_WORKING_BASELINE | 281-row map; P1/P2/P3 dry-run/apply; golden fixtures | Pilot must validate real-project use |
 | Operational commands | VERIFIED_WORKING_BASELINE | W3 `status`, `update`, `verify-release`; 20 focused tests | Pilot exercises project commands; signing remains an Authority action |
 
-`AUTH-DEC-001` closes the license decision and approves the support/security channel policy. Public activation evidence, exact package signatures, and a separate exact-channel release decision remain required before npm publication.
+`AUTH-DEC-001` closes the license decision and approves the support/security channel policy. Public repository, support, and confidential security-reporting activation are verified in `PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json`. Exact package signatures and a separate exact-channel release decision remain required before npm publication.

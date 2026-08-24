@@ -209,7 +209,7 @@ writeJson(verificationManifestPath, {
   package_release_controls: [
     { control_id: 'PACKAGE_RELEASE_SIGNATURES', status: 'PENDING' },
     { control_id: 'PUBLIC_USE_LICENSE_DECISION', status: 'APPROVED', authority_ref: 'AUTH-DEC-001', value: 'Apache-2.0' },
-    { control_id: 'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS', status: 'APPROVED_PENDING_ACTIVATION', authority_ref: 'AUTH-DEC-001' },
+    { control_id: 'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS', status: 'ACTIVE_VERIFIED', authority_ref: 'AUTH-DEC-001', evidence_ref: 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json' },
     { control_id: 'EXACT_CHANNEL_AUTHORITY_DECISION', status: 'PENDING' },
   ],
   authority_claim: 'NONE',
@@ -226,7 +226,6 @@ const packReport = {
   external_distribution_authorized: false,
   external_distribution_blockers: [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS_ACTIVATION_PENDING',
     'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ],
   filename: pack.filename,

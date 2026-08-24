@@ -80,7 +80,6 @@ const report = {
   external_distribution_authorized: false,
   external_distribution_blockers: [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS_ACTIVATION_PENDING',
     'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING'
   ],
   framework_authority_conditions: {

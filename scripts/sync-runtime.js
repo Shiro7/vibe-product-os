@@ -119,7 +119,6 @@ const lock = {
   external_distribution_blocker: 'PACKAGE_RELEASE_SIGNATURES_PENDING',
   external_distribution_blockers: [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
-    'PUBLIC_SUPPORT_AND_SECURITY_CHANNELS_ACTIVATION_PENDING',
     'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING'
   ],
   production_claim_blocker: 'AUTH-COND-002',

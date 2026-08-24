@@ -1,0 +1,37 @@
+{
+  "evidence_id": "VIBE-PRODUCT-OS-PUBLIC-CHANNEL-ACTIVATION-001",
+  "recorded_at": "2026-08-24T18:06:14Z",
+  "authority_decision": "AUTH-DEC-001",
+  "repository": "Shiro7/vibe-product-os",
+  "baseline_merge": {
+    "pull_request": "https://github.com/Shiro7/vibe-product-os/pull/1",
+    "merge_commit": "83eafe1cfcd7ae2f62771be56c0da0209f4b72f8",
+    "audited_candidate_source_commit": "98d24ca3f5167eceb38faef955c29026c94819dc"
+  },
+  "controls": [
+    {
+      "control_id": "REPOSITORY_VISIBILITY",
+      "status": "PUBLIC_ACTIVE_VERIFIED",
+      "locator": "https://github.com/Shiro7/vibe-product-os",
+      "verification": "GitHub repository metadata returned visibility=public after PR #1 merged."
+    },
+    {
+      "control_id": "PUBLIC_SUPPORT_CHANNEL",
+      "status": "ACTIVE_VERIFIED",
+      "locator": "https://github.com/Shiro7/vibe-product-os/issues",
+      "verification": "Repository Issues remained enabled with creation allowed for all users after public activation."
+    },
+    {
+      "control_id": "CONFIDENTIAL_SECURITY_REPORTING",
+      "status": "ACTIVE_VERIFIED",
+      "locator": "https://github.com/Shiro7/vibe-product-os/security/advisories/new",
+      "verification": "GitHub saved the setting, exposed the disable control, and served the private draft security-advisory form."
+    }
+  ],
+  "history_review": "PASS_BEFORE_PUBLIC_ACTIVATION",
+  "remaining_publication_controls": [
+    "PACKAGE_RELEASE_SIGNATURES_PENDING",
+    "EXACT_CHANNEL_AUTHORITY_DECISION_PENDING"
+  ],
+  "automatic_publication_authority": "NONE"
+}
