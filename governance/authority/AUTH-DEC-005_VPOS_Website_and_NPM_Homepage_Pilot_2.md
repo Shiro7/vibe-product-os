@@ -7,6 +7,8 @@ authority_actor: M.M.Eyada
 authority_ref: USER-DIRECTIVE-2026-08-25-DEPLOY-SITE-AND-NPM-HOMEPAGE
 proposed_at: 2026-08-25T14:08:27+08:00
 decided_at: 2026-08-25T14:08:27+08:00
+amended_at: 2026-08-25T14:29:37+08:00
+amendment_ref: USER-DIRECTIVE-2026-08-25-NPM-PRIMARY-PAGE-CURRENT-VERSION
 depends_on: AUTH-DEC-001, AUTH-DEC-003, AUTH-DEC-004
 supersedes_for_current_release: AUTH-DEC-003
 ---
@@ -30,9 +32,12 @@ The release scope is limited to:
 - publishing npm access `public` under dist-tag `pilot` only after the exact
   release evidence below passes.
 
-The npm `latest` tag must remain at `0.1.0-pilot.0`. `AUTH-DEC-002` and
-`AUTH-DEC-003` remain immutable evidence for their published versions. This
-decision applies only to `0.1.0-pilot.2`.
+The Product OS Authority additionally directs that npm dist-tags `pilot` and
+`latest` both resolve to `0.1.0-pilot.2` after publication and verification.
+This is required so the primary npm package page renders the current VPOS
+version, README, and homepage instead of the historical `0.1.0-pilot.0`
+metadata. `AUTH-DEC-002` and `AUTH-DEC-003` remain immutable evidence for their
+published versions. This decision applies only to `0.1.0-pilot.2`.
 
 ## Required release evidence
 
@@ -46,7 +51,8 @@ decision applies only to `0.1.0-pilot.2`.
   and configured release manifest pass detached Minisign verification against
   Authority key `EAB95C319319813D`;
 - npm returns `vibe-product-os@0.1.0-pilot.2`, its homepage resolves to the
-  VPOS website, and dist-tag `pilot` resolves to the exact published version;
+  VPOS website, and dist-tags `pilot` and `latest` resolve to the exact
+  published version;
 - additive evidence records source commit, Pages deployment, registry
   integrity, signature verification, tag state, and clean public install.
 
@@ -66,6 +72,6 @@ committed, bundled, uploaded, copied into evidence, or exposed to an agent.
 ## Reopen triggers
 
 Reopen this decision if the version, package name, license, public repository,
-homepage, access, dist-tag, signing key, release subjects, support/security
+homepage, access, approved dist-tags, signing key, release subjects, support/security
 channel, ownership, or claim boundary changes; or if deployment, signature
 verification, publication, or clean installation returns an ambiguous result.

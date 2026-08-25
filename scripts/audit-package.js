@@ -39,6 +39,9 @@ if (packageJson.license !== 'Apache-2.0') fail('PKG-LICENSE', 'AUTH-DEC-001 requ
 if (packageJson.publishConfig?.access !== 'public' || packageJson.publishConfig?.tag !== 'pilot') {
   fail('PKG-PUBLISH-CONFIG', 'Pilot publication metadata must remain public access with the pilot tag.');
 }
+if (packageJson.vibeProductOS?.npmPrimaryTag !== 'latest') {
+  fail('PKG-PRIMARY-TAG', 'The approved npm primary-page tag must be latest.');
+}
 if (packageJson.homepage !== 'https://shiro7.github.io/vibe-product-os/'
   || packageJson.bugs?.url !== 'https://github.com/Shiro7/vibe-product-os/issues') {
   fail('PKG-PUBLIC-LOCATORS', 'npm homepage must resolve to the public VPOS website and feedback to the public repository.');

@@ -18,7 +18,7 @@
 | Pilot.1 Authority decision | APPROVED_EXECUTED | `AUTH-DEC-003` for exact `0.1.0-pilot.1` scope | Exact signed publication verified |
 | Pilot.2 Authority decision | APPROVED_PENDING_ATTESTATION | `AUTH-DEC-005` for exact `0.1.0-pilot.2` website and npm homepage scope | Requires exact build, signatures, and publication evidence |
 | Package signatures | PENDING_FOR_PILOT_2 | Pilot.1 signatures remain verified; pilot.2 requires six exact subjects plus signed manifest | External distribution control remains version-specific |
-| Channel order | APPROVED_FOR_PILOT_2 | GitHub review and Pages first; npm `public` with tag `pilot` after verification | `latest` remains pilot.0 |
+| Channel order | APPROVED_FOR_PILOT_2 | GitHub review and Pages first; npm `public` with `pilot`, then move `latest` after verification | Both tags resolve to pilot.2 |
 | W1 capability/source coverage | VERIFIED_WORKING_BASELINE | 17/17 release components and 12/12 modes | Required package invariant |
 | Physical Composer | VERIFIED_WORKING_BASELINE | 281-row map; P1/P2/P3 dry-run/apply; golden fixtures | Pilot must validate real-project use |
 | Operational commands | VERIFIED_WORKING_BASELINE | W3 `status`, `update`, `verify-release`; 20 focused tests | Pilot exercises project commands; signing remains an Authority action |
