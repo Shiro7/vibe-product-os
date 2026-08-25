@@ -2,7 +2,15 @@
 
 VPOS is the official short name for Vibe Product OS. It gives a product team and its AI agents one governed way to move from an initial idea to discovery, requirements, design, architecture, implementation, release, and ongoing operations.
 
-[Visit the VPOS website](https://shiro7.github.io/vibe-product-os/) for the shortest installation-to-use path.
+[Visit the VPOS website](https://shiro7.github.io/vibe-product-os/) for the shortest installation-to-use path, or start immediately:
+
+```bash
+npx vibe-product-os@pilot install
+```
+
+Then ask your agent:
+
+> Use `$vibe-product-os` for this project. Recommend P1, P2, or P3 and ask only for the next blocking decision.
 
 This README is an operating guide: how to install the same Product OS capability for the agents you use, how people and agents collaborate, which commands to run, what each step expects, and what should exist when the step is complete.
 

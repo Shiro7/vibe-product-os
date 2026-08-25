@@ -63,7 +63,8 @@
     "npm_release_status": "APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION",
     "npm_pilot_tag_target": "0.1.0-pilot.1",
     "approved_next_pilot_target": "0.1.0-pilot.2",
-    "npm_latest_tag_target": "0.1.0-pilot.0"
+    "npm_latest_tag_target": "0.1.0-pilot.0",
+    "approved_next_latest_target": "0.1.0-pilot.2"
   },
   "package_release_status": "PILOT_2_APPROVED_PENDING_EXACT_SIGNATURE_AND_PUBLICATION",
   "claim_boundary": "PRODUCT_OS_V1_WITH_REAL_PROJECT_VALIDATION_IN_PROGRESS",

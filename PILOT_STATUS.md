@@ -9,7 +9,7 @@
 | Supported hosts | Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf, OpenCode, Cline, and Zed |
 | Package publication | `pilot.1 PUBLISHED`; `pilot.2 APPROVED — SIGNATURES PENDING` |
 | GitHub source repository | `PUBLIC ACTIVE — HISTORY REVIEW COMPLETE` |
-| Public pilot use and testing | `pilot.1 ACTIVE`; `pilot.2` will replace the pilot tag after verification |
+| Public pilot use and testing | `pilot.1 ACTIVE`; `pilot.2` will replace both `pilot` and `latest` after verification |
 | Public feedback | `GitHub Issues — OPEN` |
 | Framework signature | `AUTH-COND-001 CLOSED` |
 | Key continuity | `AUTH-COND-004 CLOSED` |
@@ -18,7 +18,7 @@
 | Physical Composer | `W2 PASS — 281/281 MAPPED; P1/P2/P3 GOLDEN FIXTURES` |
 | Operational commands | `W3 PASS — STATUS / UPDATE / VERIFY-RELEASE` |
 | License | `Apache-2.0 — AUTH-DEC-001 APPROVED` |
-| npm channel | `public / pilot — AUTH-DEC-005 APPROVED FOR pilot.2` |
+| npm channel | `public / pilot + latest — AUTH-DEC-005 APPROVED FOR pilot.2` |
 | Public support | `GitHub Issues — ACTIVE VERIFIED` |
 | Confidential security reporting | `GitHub private vulnerability reporting — ACTIVE VERIFIED` |
 
@@ -27,7 +27,7 @@
 The current public source pilot and `0.1.0-pilot.1` npm package may be used,
 tested, and reviewed now. `0.1.0-pilot.2` is the approved next candidate for
 the VPOS website deployment and npm homepage locator. It may replace the
-`pilot` tag only after exact build, signature, and clean-recipient verification.
+`pilot` and `latest` tags only after exact build, signature, and clean-recipient verification.
 
 `0.1.0-pilot.1` was published under the `pilot` tag
 after its six exact release subjects and release manifest were signed and

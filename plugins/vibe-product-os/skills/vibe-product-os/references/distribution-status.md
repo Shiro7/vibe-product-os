@@ -24,7 +24,7 @@ Read this reference for npm, plugins, ZIPs, signatures, release claims, or packa
 - New package bytes require their own detached signatures and clean-recipient verification; framework signatures never transfer publisher identity to a later package automatically.
 - `0.1.0-pilot.0` was published after exact signatures, clean-recipient verification, and `AUTH-DEC-002`.
 - `0.1.0-pilot.1` adds the multi-agent installer and expanded operating guide. `AUTH-DEC-003` approves only those exact bytes for npm `pilot` after detached signature verification.
-- `0.1.0-pilot.2` publishes the redesigned VPOS website and changes the npm homepage to that website. `AUTH-DEC-005` approves only those exact bytes for npm `pilot` after detached signature verification.
+- `0.1.0-pilot.2` publishes the redesigned VPOS website and changes the npm homepage to that website. `AUTH-DEC-005` approves only those exact bytes for npm `pilot` and `latest` after detached signature verification.
 - Private signing keys may never be handled by AI, stored in Git, bundled into an archive, or uploaded to npm.
 - SHA-256 proves byte identity, not publisher identity.
 

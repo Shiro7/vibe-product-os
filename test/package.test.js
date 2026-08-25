@@ -15,6 +15,7 @@ test('publication-preparation pilot metadata and identity are pinned', () => {
   assert.equal(packageJson.license, 'Apache-2.0');
   assert.equal(packageJson.publishConfig.access, 'public');
   assert.equal(packageJson.publishConfig.tag, 'pilot');
+  assert.equal(packageJson.vibeProductOS.npmPrimaryTag, 'latest');
   assert.equal(packageJson.vibeProductOS.shortName, 'VPOS');
   assert.equal(packageJson.bin.vpo, 'bin/vibe-product-os.js');
   assert.equal(packageJson.bin['vibe-product-os'], 'bin/vibe-product-os.js');
@@ -121,4 +122,5 @@ test('public channels, pilot.1 evidence, and pilot.2 authority are pinned', () =
   assert.match(pilot2Decision, /decision_id: AUTH-DEC-005/u);
   assert.match(pilot2Decision, /decision_status: APPROVED/u);
   assert.match(pilot2Decision, /vibe-product-os@0\.1\.0-pilot\.2/u);
+  assert.match(pilot2Decision, /dist-tags `pilot` and `latest`/u);
 });
