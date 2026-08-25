@@ -101,7 +101,7 @@ test('verify-release requires and verifies the manifest plus every subject signa
       control_id: 'EXACT_CHANNEL_AUTHORITY_DECISION',
       status: 'APPROVED',
       authority_ref: 'AUTH-DEC-999',
-      value: 'npm public / pilot / vibe-product-os@0.1.0-pilot.0',
+      value: 'npm public / pilot+latest / vibe-product-os@0.1.0-pilot.0',
     }];
     fs.writeFileSync(item.manifestPath, `${JSON.stringify(item.manifest, null, 2)}\n`, 'utf8');
     fs.writeFileSync(path.join(item.root, 'release-verification-manifest.json.minisig'), 'test manifest signature\n');
