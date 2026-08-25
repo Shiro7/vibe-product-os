@@ -14,8 +14,9 @@ supersedes: null
 The Product OS Authority approves `VPOS` as the official short name for
 `Vibe Product OS`.
 
-This decision also approves the design and repository preparation of the public
-package website at `https://shiro7.github.io/vibe-product-os/`.
+This decision also approves the design, repository preparation, and public
+activation of the package website at
+`https://shiro7.github.io/vibe-product-os/`.
 
 ## Binding identity rules
 
@@ -36,7 +37,9 @@ but is not yet production-proven or validated at scale while `AUTH-COND-002`
 remains open.
 
 Preparing code and deployment configuration is approved. Activating or changing
-the public GitHub Pages channel must produce observable deployment evidence.
+the public GitHub Pages channel is approved by the Authority on 2026-08-25 and
+must produce observable deployment evidence before its state is recorded as
+active and verified.
 
 ## Release boundary
 

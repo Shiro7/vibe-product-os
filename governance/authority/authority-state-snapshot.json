@@ -1,6 +1,6 @@
 {
-  "snapshot_id": "VIBE-PRODUCT-OS-AUTHORITY-SNAPSHOT-004",
-  "snapshot_at": "2026-08-25T05:34:01+08:00",
+  "snapshot_id": "VIBE-PRODUCT-OS-AUTHORITY-SNAPSHOT-005",
+  "snapshot_at": "2026-08-25T13:00:20+08:00",
   "authority": "M.M.Eyada",
   "framework": "Product OS",
   "framework_version": "1.0.0",
@@ -20,6 +20,12 @@
       "vpo",
       "vibe-product-os"
     ]
+  },
+  "website_publication": {
+    "url": "https://shiro7.github.io/vibe-product-os/",
+    "decision_id": "AUTH-DEC-004",
+    "authority_status": "APPROVED",
+    "deployment_status": "PENDING_OBSERVABLE_EVIDENCE"
   },
   "conditions": {
     "AUTH-COND-001": "CLOSED_SIGNATURE_AND_PRIMARY_CUSTODY_VERIFIED",

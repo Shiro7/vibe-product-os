@@ -10,7 +10,7 @@
 | GitHub repository | ACTIVE_PUBLIC_VERIFIED | [`Shiro7/vibe-product-os`](https://github.com/Shiro7/vibe-product-os) | Public source use and testing approved by `AUTH-DEC-002` |
 | Public support | ACTIVE_VERIFIED | [GitHub Issues](https://github.com/Shiro7/vibe-product-os/issues) | Five-business-day best-effort initial response target |
 | Confidential security reporting | ACTIVE_VERIFIED | [GitHub private vulnerability reporting](https://github.com/Shiro7/vibe-product-os/security/advisories/new) | Private advisory form verified |
-| GitHub Pages | DESIGN_IMPLEMENTED_PENDING_REVIEW | `shiro7.github.io/vibe-product-os/` | Website code exists; public deployment is not yet activated |
+| GitHub Pages | DEPLOYMENT_APPROVED_PENDING_EVIDENCE | `shiro7.github.io/vibe-product-os/` | Authority approved the design and public activation under `AUTH-DEC-004`; workflow evidence is pending |
 | Real-project Pilot | DEFERRED_AFTER_UPLOAD | Ahd selected as P2; execution deferred until after source upload | Blocks `AUTH-COND-002` closure until executed and accepted |
 | Framework digital signature | CLOSED | `AUTH-COND-001`; key `EAB95C319319813D` | Does not sign new package bytes automatically |
 | Key continuity | CLOSED | `AUTH-COND-004`; two offline copies and 2/2 recovery tests | Ongoing custody controls apply |
