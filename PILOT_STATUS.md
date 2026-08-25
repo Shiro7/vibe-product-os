@@ -2,7 +2,7 @@
 
 | Item | State |
 |---|---|
-| Public identity | `Vibe Product OS` |
+| Public identity | `Vibe Product OS`; official short name `VPOS` |
 | npm / CLI / Skill / Plugin name | `vibe-product-os` |
 | Package version | `0.1.0-pilot.1` published and verified |
 | Embedded framework | Product OS `1.0.0` from immutable `rc.2` |

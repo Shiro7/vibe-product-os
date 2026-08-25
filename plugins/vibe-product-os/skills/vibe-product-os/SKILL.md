@@ -1,9 +1,9 @@
 ---
 name: vibe-product-os
-description: Operate or instantiate governed Product OS projects when the user asks for Product OS methodology, lifecycle phases, P1/P2/P3 profiles, artifacts, gates, traceability, evidence, standards applicability, handoffs, or the Vibe Product OS CLI. Do not trigger for ordinary coding tasks that do not request Product OS governance or project-system work.
+description: Operate or instantiate governed Product OS projects when the user asks for VPOS, Product OS methodology, lifecycle phases, P1/P2/P3 profiles, artifacts, gates, traceability, evidence, standards applicability, handoffs, or the Vibe Product OS CLI. Do not trigger for ordinary coding tasks that do not request Product OS governance or project-system work.
 ---
 
-# Vibe Product OS
+# VPOS | Vibe Product OS
 
 Use the approved Product OS framework as the methodology source of truth. Treat this Skill as a thin operating adapter: it selects, routes, validates, and invokes deterministic tooling without creating a competing methodology.
 

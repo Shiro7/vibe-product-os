@@ -13,6 +13,7 @@ test('version reports package and framework identities separately', () => {
   const result = spawnSync(process.execPath, [cli, 'version', '--json'], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr);
   const identity = JSON.parse(result.stdout);
+  assert.equal(identity.short_name, 'VPOS');
   assert.equal(identity.package, 'vibe-product-os');
   assert.equal(identity.package_version, '0.1.0-pilot.1');
   assert.equal(identity.framework_version, '1.0.0');

@@ -15,6 +15,9 @@ test('publication-preparation pilot metadata and identity are pinned', () => {
   assert.equal(packageJson.license, 'Apache-2.0');
   assert.equal(packageJson.publishConfig.access, 'public');
   assert.equal(packageJson.publishConfig.tag, 'pilot');
+  assert.equal(packageJson.vibeProductOS.shortName, 'VPOS');
+  assert.equal(packageJson.bin.vpo, 'bin/vibe-product-os.js');
+  assert.equal(packageJson.bin['vibe-product-os'], 'bin/vibe-product-os.js');
   assert.equal(packageJson.homepage, 'https://github.com/Shiro7/vibe-product-os#readme');
   assert.equal(packageJson.bugs.url, 'https://github.com/Shiro7/vibe-product-os/issues');
   assert.match(packageJson.description, /Multi-agent Skill installer/u);
@@ -83,6 +86,10 @@ test('public channels and pilot.1 publication evidence are pinned', () => {
     path.join(root, 'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json'),
     'utf8',
   ));
+  assert.equal(authority.brand_and_website_decision, 'AUTH-DEC-004_VPOS_Official_Short_Name_and_Website.md');
+  assert.equal(authority.brand_identity.product_name, 'Vibe Product OS');
+  assert.equal(authority.brand_identity.official_short_name, 'VPOS');
+  assert.deepEqual(authority.brand_identity.current_cli_names, ['vpo', 'vibe-product-os']);
   assert.equal(authority.package_publication_policy.repository_visibility, 'PUBLIC_ACTIVE_HISTORY_REVIEW_COMPLETE');
   assert.equal(authority.package_publication_policy.support_status, 'ACTIVE_VERIFIED_PUBLIC');
   assert.equal(authority.package_publication_policy.security_status, 'ACTIVE_VERIFIED_PRIVATE_REPORTING');

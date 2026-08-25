@@ -1,6 +1,6 @@
-# Vibe Product OS
+# VPOS | Vibe Product OS
 
-Vibe Product OS gives a product team and its AI agents one governed way to move from an initial idea to discovery, requirements, design, architecture, implementation, release, and ongoing operations.
+VPOS is the official short name for Vibe Product OS. It gives a product team and its AI agents one governed way to move from an initial idea to discovery, requirements, design, architecture, implementation, release, and ongoing operations.
 
 This README is an operating guide: how to install the same Product OS capability for the agents you use, how people and agents collaborate, which commands to run, what each step expects, and what should exist when the step is complete.
 
@@ -13,7 +13,7 @@ After installation and project initialization, the team gets:
 - one canonical project identity and Product OS framework lock;
 - a selected execution profile: `P1 Lean`, `P2 Standard`, or `P3 Comprehensive`;
 - a governed artifact register rather than an uncontrolled folder of empty templates;
-- separate phase outputs across Phases `00–11`;
+- separate phase outputs across Phases `00-11`;
 - traceability between decisions, requirements, design, architecture, implementation, tests, releases, and operations;
 - explicit standards applicability through `GOV-009`;
 - dry-run-first automation for initialization, composition, updates, migrations, and archives;
@@ -31,6 +31,8 @@ Vibe Product OS does not replace your product owner, architects, engineers, desi
 - Git is strongly recommended so project changes and handoffs can be reviewed.
 
 No global npm installation is required for the guided setup.
+
+`VPOS` is the product short name, not a replacement npm or Skill identity. The published `vpo` and `vibe-product-os` CLI names remain supported.
 
 ## Recommended installation: guided `npx` setup
 

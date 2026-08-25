@@ -27,6 +27,8 @@
     "test:unit": "node --test test/*.test.js",
     "test": "npm run sync:runtime && npm run build:composer-assets && npm run test:unit",
     "test:runtime": "node runtime/framework/Product-OS-v1.0/outputs/Automation_Commands/test/run-tests.js",
+    "site:dev": "node scripts/serve-website.js",
+    "site:check": "node scripts/check-website.js",
     "dist": "node scripts/build-dist.js",
     "pack:pilot": "node scripts/pack-pilot.js",
     "verify:candidate": "node scripts/verify-pilot-candidate.js",
@@ -67,6 +69,7 @@
     "tag": "pilot"
   },
   "vibeProductOS": {
+    "shortName": "VPOS",
     "frameworkVersion": "1.0.0",
     "sourceRelease": "Product-OS-v1.0-rc.2",
     "releaseDecision": "AUTH-DEC-003",

@@ -1,5 +1,5 @@
 interface:
-  display_name: "Vibe Product OS"
+  display_name: "VPOS | Vibe Product OS"
   short_description: "Operate governed Product OS projects safely"
   default_prompt: "Use $vibe-product-os to initialize or continue this project under the Product OS lifecycle."
   brand_color: "#315C4D"
