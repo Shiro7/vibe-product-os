@@ -1,0 +1,42 @@
+{
+  "evidence_id": "VPOS-GITHUB-PAGES-ACTIVATION-2026-08-25",
+  "evidence_type": "PUBLIC_CHANNEL_ACTIVATION",
+  "verified_at": "2026-08-25T13:06:42+08:00",
+  "authority_decision": "AUTH-DEC-004",
+  "repository": "Shiro7/vibe-product-os",
+  "pull_request": {
+    "number": 8,
+    "url": "https://github.com/Shiro7/vibe-product-os/pull/8",
+    "state": "MERGED",
+    "merge_commit": "a9fed6cdfa160e0bf54742dbe28043390a7c170c"
+  },
+  "deployment": {
+    "workflow": "Deploy VPOS website",
+    "workflow_run_id": 32811269903,
+    "workflow_run_attempt": 2,
+    "workflow_run_url": "https://github.com/Shiro7/vibe-product-os/actions/runs/32811269903",
+    "job_id": 97691275455,
+    "status": "COMPLETED_SUCCESS",
+    "source": "GITHUB_ACTIONS",
+    "published_directory": "website"
+  },
+  "public_verification": {
+    "url": "https://shiro7.github.io/vibe-product-os/",
+    "http_status": 200,
+    "https_enforced": true,
+    "content_type": "text/html; charset=utf-8",
+    "source_index_sha256": "a64ce82e78780f89256f073e88b419d303d40cf6a28f9bd3abd4e3be2b21db80",
+    "public_index_sha256": "a64ce82e78780f89256f073e88b419d303d40cf6a28f9bd3abd4e3be2b21db80",
+    "byte_identity": "MATCH",
+    "browser_title": "VPOS | Governed product delivery for humans and AI",
+    "browser_console_warnings_or_errors": 0,
+    "required_install_command_present": true,
+    "public_pilot_claim_boundary_present": true
+  },
+  "release_boundary": {
+    "npm_version_created": false,
+    "npm_dist_tag_changed": false,
+    "vpos_cli_alias_published": false
+  },
+  "result": "ACTIVE_VERIFIED"
+}

@@ -1,6 +1,6 @@
 {
-  "snapshot_id": "VIBE-PRODUCT-OS-AUTHORITY-SNAPSHOT-005",
-  "snapshot_at": "2026-08-25T13:00:20+08:00",
+  "snapshot_id": "VIBE-PRODUCT-OS-AUTHORITY-SNAPSHOT-006",
+  "snapshot_at": "2026-08-25T13:06:42+08:00",
   "authority": "M.M.Eyada",
   "framework": "Product OS",
   "framework_version": "1.0.0",
@@ -11,6 +11,7 @@
   "current_npm_publication_evidence": "NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json",
   "public_pilot_and_npm_decision": "AUTH-DEC-003_Multi_Agent_Installer_and_NPM_Pilot_1.md",
   "brand_and_website_decision": "AUTH-DEC-004_VPOS_Official_Short_Name_and_Website.md",
+  "github_pages_activation_evidence": "GITHUB_PAGES_ACTIVATION_EVIDENCE_2026-08-25.json",
   "previous_public_pilot_and_npm_decision": "AUTH-DEC-002_Public_Pilot_Use_Test_Feedback_and_NPM.md",
   "brand_identity": {
     "product_name": "Vibe Product OS",
@@ -25,7 +26,10 @@
     "url": "https://shiro7.github.io/vibe-product-os/",
     "decision_id": "AUTH-DEC-004",
     "authority_status": "APPROVED",
-    "deployment_status": "PENDING_OBSERVABLE_EVIDENCE"
+    "deployment_status": "ACTIVE_VERIFIED",
+    "source_commit": "a9fed6cdfa160e0bf54742dbe28043390a7c170c",
+    "workflow_run_id": 32811269903,
+    "public_index_sha256": "a64ce82e78780f89256f073e88b419d303d40cf6a28f9bd3abd4e3be2b21db80"
   },
   "conditions": {
     "AUTH-COND-001": "CLOSED_SIGNATURE_AND_PRIMARY_CUSTODY_VERIFIED",

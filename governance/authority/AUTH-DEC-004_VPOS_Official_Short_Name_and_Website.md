@@ -41,6 +41,14 @@ the public GitHub Pages channel is approved by the Authority on 2026-08-25 and
 must produce observable deployment evidence before its state is recorded as
 active and verified.
 
+## Execution evidence
+
+Public activation is recorded as `ACTIVE_VERIFIED` in
+`GITHUB_PAGES_ACTIVATION_EVIDENCE_2026-08-25.json`. The evidence binds the
+merged source commit, successful GitHub Actions run, HTTP 200 response, HTTPS
+enforcement, public/source byte identity, browser checks, and the unchanged npm
+release boundary.
+
 ## Release boundary
 
 This decision does not authorize a new npm version, move an npm dist-tag, or
