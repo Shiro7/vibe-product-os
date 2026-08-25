@@ -4,12 +4,12 @@
 |---|---|
 | Public identity | `Vibe Product OS`; official short name `VPOS` |
 | npm / CLI / Skill / Plugin name | `vibe-product-os` |
-| Package version | `0.1.0-pilot.1` published; `0.1.0-pilot.2` approved candidate |
+| Package version | `0.1.0-pilot.2` published and verified |
 | Embedded framework | Product OS `1.0.0` from immutable `rc.2` |
 | Supported hosts | Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf, OpenCode, Cline, and Zed |
-| Package publication | `pilot.1 PUBLISHED`; `pilot.2 APPROVED — SIGNATURES PENDING` |
+| Package publication | `pilot.2 PUBLISHED — SIGNATURES, REGISTRY, TAGS, AND CLEAN INSTALL VERIFIED` |
 | GitHub source repository | `PUBLIC ACTIVE — HISTORY REVIEW COMPLETE` |
-| Public pilot use and testing | `pilot.1 ACTIVE`; `pilot.2` will replace both `pilot` and `latest` after verification |
+| Public pilot use and testing | `pilot.2 ACTIVE`; feedback open |
 | Public feedback | `GitHub Issues — OPEN` |
 | Framework signature | `AUTH-COND-001 CLOSED` |
 | Key continuity | `AUTH-COND-004 CLOSED` |
@@ -24,10 +24,18 @@
 
 ## Current pilot boundary
 
-The current public source pilot and `0.1.0-pilot.1` npm package may be used,
-tested, and reviewed now. `0.1.0-pilot.2` is the approved next candidate for
-the VPOS website deployment and npm homepage locator. It may replace the
-`pilot` and `latest` tags only after exact build, signature, and clean-recipient verification.
+The current public source pilot and `0.1.0-pilot.2` npm package may be used,
+tested, and reviewed now. Both npm dist-tags `pilot` and `latest` resolve to
+the exact approved release. The npm primary page renders the current operating
+guide and its homepage opens the public VPOS website.
+
+`0.1.0-pilot.2` was built from clean commit
+`54545402ebfc72e799d88162d45b0942ebd0183e`, its six exact release subjects and
+manifest were signed and verified against the pinned Product OS Authority key,
+and a clean install from the public `latest` tag passed package identity,
+setup-doctor, README, and zero-vulnerability npm audit checks. Its additive
+evidence is recorded in
+`governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.2_2026-08-25.json`.
 
 `0.1.0-pilot.1` was published under the `pilot` tag
 after its six exact release subjects and release manifest were signed and
@@ -39,8 +47,7 @@ is recorded in
 
 The historical `0.1.0-pilot.0` publication remains immutable and is recorded in
 `governance/authority/NPM_PUBLICATION_EVIDENCE_2026-08-25.json`. The `pilot`
-dist-tag now resolves to `0.1.0-pilot.1`; `latest` remains at
-`0.1.0-pilot.0` and was not moved by `AUTH-DEC-003`.
+and `latest` dist-tags now both resolve to `0.1.0-pilot.2` under `AUTH-DEC-005`.
 
 Repository visibility and both approved channels are active and recorded in
 `governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json`.

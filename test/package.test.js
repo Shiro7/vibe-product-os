@@ -74,7 +74,7 @@ test('W1, W2, and W3 package governance assets are complete', () => {
   ]);
 });
 
-test('public channels, pilot.1 evidence, and pilot.2 authority are pinned', () => {
+test('public channels and pilot.2 publication evidence are pinned', () => {
   const authority = JSON.parse(fs.readFileSync(
     path.join(root, 'governance/authority/authority-state-snapshot.json'),
     'utf8',
@@ -83,8 +83,12 @@ test('public channels, pilot.1 evidence, and pilot.2 authority are pinned', () =
     path.join(root, 'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json'),
     'utf8',
   ));
-  const publication = JSON.parse(fs.readFileSync(
+  const pilot1Publication = JSON.parse(fs.readFileSync(
     path.join(root, 'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json'),
+    'utf8',
+  ));
+  const publication = JSON.parse(fs.readFileSync(
+    path.join(root, 'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.2_2026-08-25.json'),
     'utf8',
   ));
   const pilot2Decision = fs.readFileSync(
@@ -99,26 +103,34 @@ test('public channels, pilot.1 evidence, and pilot.2 authority are pinned', () =
   assert.equal(authority.package_publication_policy.support_status, 'ACTIVE_VERIFIED_PUBLIC');
   assert.equal(authority.package_publication_policy.security_status, 'ACTIVE_VERIFIED_PRIVATE_REPORTING');
   assert.equal(authority.package_publication_policy.release_decision_id, 'AUTH-DEC-005');
-  assert.equal(authority.package_publication_policy.release_decision_status, 'APPROVED_CONDITIONAL_ON_EXACT_EXTERNAL_ATTESTATION');
+  assert.equal(authority.current_npm_publication_evidence, 'NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.2_2026-08-25.json');
+  assert.equal(authority.package_publication_policy.release_decision_status, 'APPROVED_EXECUTED_EXACT_EXTERNAL_ATTESTATION_VERIFIED');
   assert.equal(authority.package_publication_policy.npm_package, 'vibe-product-os@0.1.0-pilot.2');
   assert.equal(authority.package_publication_policy.npm_access, 'public');
   assert.equal(authority.package_publication_policy.npm_tag, 'pilot');
-  assert.equal(authority.package_publication_policy.npm_release_status, 'APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION');
+  assert.equal(authority.package_publication_policy.npm_release_status, 'PUBLISHED_SIGNED_AND_CLEAN_INSTALL_VERIFIED');
+  assert.equal(authority.package_publication_policy.npm_pilot_tag_target, '0.1.0-pilot.2');
+  assert.equal(authority.package_publication_policy.npm_latest_tag_target, '0.1.0-pilot.2');
   assert.equal(activation.authority_decision, 'AUTH-DEC-001');
   assert.deepEqual(activation.remaining_publication_controls, [
     'PACKAGE_RELEASE_SIGNATURES_PENDING',
     'EXACT_CHANNEL_AUTHORITY_DECISION_PENDING',
   ]);
-  assert.equal(publication.authority_decision, 'AUTH-DEC-003');
-  assert.equal(publication.npm_publication.version, '0.1.0-pilot.1');
+  assert.equal(pilot1Publication.npm_publication.version, '0.1.0-pilot.1');
+  assert.equal(publication.authority_decision, 'AUTH-DEC-005');
+  assert.equal(publication.npm_publication.version, '0.1.0-pilot.2');
   assert.equal(publication.npm_publication.registry_metadata_verification, 'PASS');
-  assert.equal(publication.dist_tag_observation.pilot, '0.1.0-pilot.1');
-  assert.equal(publication.dist_tag_observation.latest, '0.1.0-pilot.0');
+  assert.equal(publication.npm_publication.homepage, 'https://shiro7.github.io/vibe-product-os/');
+  assert.equal(publication.dist_tag_observation.pilot, '0.1.0-pilot.2');
+  assert.equal(publication.dist_tag_observation.latest, '0.1.0-pilot.2');
   assert.equal(publication.signature_verification.publisher_identity, 'VERIFIED');
   assert.equal(publication.signature_verification.signed_subject_count, 6);
-  assert.equal(publication.clean_public_install_verification.requested_agent_count, 9);
-  assert.equal(publication.clean_public_install_verification.unique_destination_count, 3);
-  assert.equal(publication.overall_result, 'PUBLIC_PILOT_1_PUBLISHED_SIGNED_AND_CLEAN_INSTALL_VERIFIED');
+  assert.equal(publication.prepublication_clean_recipient_verification.requested_agent_count, 9);
+  assert.equal(publication.prepublication_clean_recipient_verification.unique_install_target_count, 3);
+  assert.equal(publication.clean_public_install_verification.setup_doctor, 'PASS_HEALTHY_TRUE');
+  assert.equal(publication.clean_public_install_verification.npm_audit, 'PASS_ZERO_VULNERABILITIES');
+  assert.equal(publication.website_deployment.byte_identity, 'MATCH');
+  assert.equal(publication.overall_result, 'PUBLIC_PILOT_2_PUBLISHED_SIGNED_TAGGED_AND_CLEAN_INSTALL_VERIFIED');
   assert.match(pilot2Decision, /decision_id: AUTH-DEC-005/u);
   assert.match(pilot2Decision, /decision_status: APPROVED/u);
   assert.match(pilot2Decision, /vibe-product-os@0\.1\.0-pilot\.2/u);

@@ -8,10 +8,10 @@ Read this reference for npm, plugins, ZIPs, signatures, release claims, or packa
 |---|---|
 | Public product identity | Vibe Product OS |
 | npm / CLI / Skill / Plugin | `vibe-product-os` |
-| Package version | `0.1.0-pilot.2` approved release candidate |
+| Package version | `0.1.0-pilot.2` published and verified |
 | Embedded framework | Product OS `1.0.0` |
 | Source release | `Product-OS-v1.0-rc.2` |
-| Package status | Pilot.2 approved pending signatures; pilot.1 remains published and install-verified |
+| Package status | Pilot.2 signed, published, and clean-install verified; `pilot` and `latest` resolve to it |
 | License | Apache-2.0 approved by `AUTH-DEC-001` |
 | W1 source coverage | 17/17 release components verified |
 | Physical Composer | W2 verified working baseline; 281/281 mapped |
@@ -38,7 +38,7 @@ The package metadata is publish-capable under Apache-2.0 with the npm `pilot` ta
 0.1.0-alpha.0  historical local/internal setup
 0.1.0-pilot.0  bounded pilot distribution after exact signatures and channel approval
 0.1.0-pilot.1  multi-agent installer published and verified
-0.1.0-pilot.2  website and npm homepage candidate approved; signatures pending
+0.1.0-pilot.2  website and npm homepage release published and verified on pilot + latest
 1.0.0-rc.1     npm tag next after package audits
 1.0.0          npm tag latest after Authority GA decision
 ```

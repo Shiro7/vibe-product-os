@@ -72,6 +72,7 @@ const required = [
   'governance/authority/AUTH-DEC-005_VPOS_Website_and_NPM_Homepage_Pilot_2.md',
   'governance/authority/AUTH-DEC-004_VPOS_Official_Short_Name_and_Website.md',
   'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json',
+  'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.2_2026-08-25.json',
   'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json',
   'governance/authority/product-os-authority.pub',
   'LICENSE',
@@ -142,10 +143,33 @@ if (fs.existsSync(verificationManifest)) {
 
 if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-snapshot.json'))) {
   const authority = JSON.parse(fs.readFileSync(path.join(packageRoot, 'governance/authority/authority-state-snapshot.json'), 'utf8'));
-  const expectedReleaseDecisionStatus = exactReleaseExternallyVerified
+  const authorityEvidenceRoot = path.join(packageRoot, 'governance/authority');
+  const currentPublicationEvidencePath = authority.current_npm_publication_evidence
+    ? path.resolve(authorityEvidenceRoot, authority.current_npm_publication_evidence)
+    : null;
+  const currentPublicationEvidencePathIsSafe = currentPublicationEvidencePath
+    && path.dirname(currentPublicationEvidencePath) === authorityEvidenceRoot
+    && path.basename(currentPublicationEvidencePath) === authority.current_npm_publication_evidence;
+  let exactPublicationRecorded = false;
+  if (currentPublicationEvidencePathIsSafe && fs.existsSync(currentPublicationEvidencePath)) {
+    const publication = JSON.parse(fs.readFileSync(currentPublicationEvidencePath, 'utf8'));
+    exactPublicationRecorded = publication.authority_decision === releasePolicy.releaseDecision
+      && publication.npm_publication?.package === packageJson.name
+      && publication.npm_publication?.version === packageJson.version
+      && publication.npm_publication?.registry_metadata_verification === 'PASS'
+      && publication.dist_tag_observation?.pilot === packageJson.version
+      && publication.dist_tag_observation?.latest === packageJson.version
+      && publication.signature_verification?.result === 'PASS'
+      && publication.signature_verification?.publisher_identity === 'VERIFIED'
+      && publication.signature_verification?.external_distribution_authorized === true
+      && publication.clean_public_install_verification?.package_install === 'PASS'
+      && publication.clean_public_install_verification?.setup_doctor === 'PASS_HEALTHY_TRUE'
+      && publication.clean_public_install_verification?.npm_audit === 'PASS_ZERO_VULNERABILITIES';
+  }
+  const expectedReleaseDecisionStatus = exactPublicationRecorded
     ? 'APPROVED_EXECUTED_EXACT_EXTERNAL_ATTESTATION_VERIFIED'
     : releasePolicy.releaseAuthorityStatus;
-  const expectedNpmReleaseStatus = exactReleaseExternallyVerified
+  const expectedNpmReleaseStatus = exactPublicationRecorded
     ? 'PUBLISHED_SIGNED_AND_CLEAN_INSTALL_VERIFIED'
     : releasePolicy.exactChannelDecisionStatus === 'APPROVED'
       ? 'APPROVED_PENDING_EXACT_SIGNATURE_VERIFICATION'
@@ -169,6 +193,9 @@ if (fs.existsSync(path.join(packageRoot, 'governance/authority/authority-state-s
     || authority.package_publication_policy?.npm_tag !== 'pilot'
     || authority.package_publication_policy?.npm_release_status !== expectedNpmReleaseStatus) {
     fail('PKG-PUBLICATION-POLICY', 'Authority license and channel decision is missing or inconsistent.');
+  }
+  if (authority.package_release_status === 'PILOT_2_PUBLICATION_VERIFIED' && !exactPublicationRecorded) {
+    fail('PKG-PUBLICATION-EVIDENCE', 'Published Authority state lacks matching exact-version publication evidence.');
   }
 }
 
