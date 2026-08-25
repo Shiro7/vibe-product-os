@@ -3,27 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#111411" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#f2f4f0" media="(prefers-color-scheme: light)">
-    <meta name="description" content="VPOS gives product teams and AI agents one governed, traceable way to move from intent to operations.">
-    <meta property="og:title" content="VPOS | Governed product delivery for humans and AI">
-    <meta property="og:description" content="Install one Product OS across your agents. Keep decisions, artifacts, gates, evidence, and releases connected.">
+    <meta name="theme-color" content="#101211" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f2f3ee" media="(prefers-color-scheme: light)">
+    <meta name="description" content="VPOS connects product intent, decisions, requirements, design, delivery, evidence, and operations across your AI agents.">
+    <meta property="og:title" content="VPOS | Vibe Product OS">
+    <meta property="og:description" content="Build with AI. Ship with proof.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shiro7.github.io/vibe-product-os/">
-    <meta property="og:image" content="https://shiro7.github.io/vibe-product-os/assets/vpos-control-plane.jpg">
+    <meta property="og:image" content="https://shiro7.github.io/vibe-product-os/assets/vpos-system-map.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <title>VPOS | Governed product delivery for humans and AI</title>
     <link rel="canonical" href="https://shiro7.github.io/vibe-product-os/">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="preload" as="image" href="assets/vpos-control-plane.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/vpos-system-map.jpg" fetchpriority="high">
+    <link rel="icon" type="image/jpeg" href="assets/vpos-system-map.jpg">
     <link rel="stylesheet" href="styles.css">
-    <script>
-      try {
-        const storedTheme = localStorage.getItem('vpos-theme');
-        if (storedTheme) document.documentElement.dataset.theme = storedTheme;
-      } catch (_) {}
-    </script>
     <script src="main.js" defer></script>
+    <title>VPOS | Vibe Product OS</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -31,198 +26,216 @@
     <header class="site-header">
       <a class="brand" href="#top" aria-label="VPOS home">
         <span class="brand-mark" aria-hidden="true">V</span>
-        <span>VPOS</span>
+        <span>Vibe Product OS</span>
       </a>
-
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a href="#system">System</a>
+      <nav aria-label="Primary navigation">
+        <a href="#system">How it works</a>
         <a href="#profiles">Profiles</a>
-        <a href="#lifecycle">Lifecycle</a>
         <a href="#install">Install</a>
-        <a href="https://github.com/Shiro7/vibe-product-os">GitHub</a>
+        <a class="nav-github" href="https://github.com/Shiro7/vibe-product-os">GitHub</a>
       </nav>
-
-      <button class="theme-button" type="button" aria-pressed="false">Theme</button>
     </header>
 
+    <div class="pilot-notice" role="note">
+      <strong>Public pilot.</strong>
+      <span>Available for use and feedback, not yet production-proven.</span>
+    </div>
+
     <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">Governed product delivery</p>
-          <h1 id="hero-title">Build with AI.<br>Stay governed.</h1>
-          <p class="hero-summary">Turn product intent into traceable decisions, artifacts, releases, and operations across every agent you use.</p>
+      <section class="hero section-shell" id="top">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">VPOS / Vibe Product OS</p>
+          <h1>Build with AI.<br>Ship with proof.</h1>
+          <p class="hero-lede">Connect product intent to governed decisions, delivery, evidence, and operations across every agent.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#install">Install VPOS</a>
-            <a class="button button-secondary" href="https://github.com/Shiro7/vibe-product-os">View source</a>
+            <a class="button button-secondary" href="#system">See how it works</a>
           </div>
         </div>
 
-        <figure class="hero-visual">
-          <img src="assets/vpos-control-plane.jpg" width="1536" height="1024" alt="Layered glass planes connected through one precise control structure" fetchpriority="high">
+        <figure class="hero-visual reveal">
+          <img src="assets/vpos-system-map.jpg" width="1586" height="992" alt="Abstract layered technical planes connected by one precise Product OS path" fetchpriority="high">
         </figure>
       </section>
 
-      <section class="proof-strip" aria-label="Verified Product OS scope">
-        <div><strong>281</strong><span>mapped artifacts</span></div>
-        <div><strong>12</strong><span>lifecycle phases</span></div>
-        <div><strong>9</strong><span>supported agents</span></div>
-        <div><strong>3</strong><span>execution profiles</span></div>
-      </section>
-
-      <section class="agents section reveal" id="system" aria-labelledby="agents-title">
-        <div class="section-copy">
-          <h2 id="agents-title">One control plane.<br>Every agent in context.</h2>
-          <p>VPOS installs the same governed Skill where each agent expects it, while every contributor works from one shared project state.</p>
-          <div class="agent-groups" aria-label="Supported AI agents">
-            <div>
-              <span>Popular</span>
-              <p>Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf</p>
-            </div>
-            <div>
-              <span>Additional</span>
-              <p>OpenCode, Cline, Zed, plus explicit custom roots</p>
-            </div>
-          </div>
+      <section class="lifecycle" aria-label="VPOS product lifecycle">
+        <div class="lifecycle-track section-shell">
+          <span>Initialize</span>
+          <span>Discover</span>
+          <span>Business</span>
+          <span>Define</span>
+          <span>Specify</span>
+          <span>Experience</span>
+          <span>Design</span>
+          <span>Architect</span>
+          <span>Ready</span>
+          <span>Implement</span>
+          <span>Release</span>
+          <span>Evolve</span>
         </div>
-        <figure class="section-image section-image-landscape">
-          <img src="assets/vpos-agent-network.jpg" width="1586" height="992" alt="Nine distinct rails joining one shared translucent control hub" loading="lazy">
-        </figure>
       </section>
 
-      <section class="profiles section reveal" id="profiles" aria-labelledby="profiles-title">
-        <div class="stacked-heading">
-          <h2 id="profiles-title">Use the depth the work needs.</h2>
-          <p>The same methodology scales without turning every project into the largest possible repository.</p>
+      <section class="protocol section-shell" id="system">
+        <div class="protocol-intro reveal">
+          <h2>One clear loop.<br>From idea to operation.</h2>
+          <p>VPOS gives people and agents one shared project state, one methodology, and explicit human authority at every decision that matters.</p>
+        </div>
+
+        <div class="contract-grid">
+          <article class="contract-item reveal">
+            <span>Install</span>
+            <div>
+              <h3>Place VPOS where agents look</h3>
+              <p>The guided installer detects supported hosts, previews every destination, and writes only after consent.</p>
+            </div>
+          </article>
+          <article class="contract-item reveal">
+            <span>Start</span>
+            <div>
+              <h3>Work from the conversation</h3>
+              <p>Give the agent your goal, sources, constraints, and authority. VPOS inspects state before proposing work.</p>
+            </div>
+          </article>
+          <article class="contract-item reveal">
+            <span>Profile</span>
+            <div>
+              <h3>Choose the depth you need</h3>
+              <p>Use P1 Lean, P2 Standard, or P3 Comprehensive without weakening mandatory obligations.</p>
+            </div>
+          </article>
+          <article class="contract-item reveal">
+            <span>Build</span>
+            <div>
+              <h3>Move phase by phase</h3>
+              <p>Decisions, requirements, design, architecture, implementation, release, and operations stay connected.</p>
+            </div>
+          </article>
+          <article class="contract-item reveal">
+            <span>Approve</span>
+            <div>
+              <h3>Keep authority human</h3>
+              <p>Agents draft, inspect, trace, and verify. Humans approve applicability, risks, gates, baselines, and releases.</p>
+            </div>
+          </article>
+          <article class="contract-item reveal">
+            <span>Prove</span>
+            <div>
+              <h3>Finish with evidence</h3>
+              <p>Every completion claim points to observable validation, accessible proof, and a clear downstream handoff.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="profiles section-shell" id="profiles">
+        <div class="section-heading reveal">
+          <h2>One methodology. Three depths.</h2>
+          <p>Start with the lightest useful profile. Increase depth only where complexity, risk, regulation, or coordination requires it.</p>
         </div>
 
         <div class="profile-grid">
-          <article class="profile profile-lean">
-            <span class="profile-code">P1</span>
-            <h3>Lean</h3>
-            <p>Minimum governed path for bounded work with explicit decisions and evidence.</p>
+          <article class="profile profile-p1 reveal">
+            <p class="profile-name">P1 Lean</p>
+            <strong>P1</strong>
+            <span>bounded delivery</span>
+            <p>For focused work that still needs explicit decisions, traceability, evidence, and handoff.</p>
           </article>
-          <article class="profile profile-standard">
-            <span class="profile-code">P2</span>
-            <h3>Standard</h3>
-            <p>The recommended balance for real product teams, multi-agent delivery, and reviewable handoffs.</p>
-            <span class="profile-note">Recommended starting point</span>
+          <article class="profile profile-p2 reveal">
+            <p class="profile-name">P2 Standard</p>
+            <strong>P2</strong>
+            <span>recommended starting point</span>
+            <p>For real product teams, multi-agent collaboration, reviewable artifacts, gates, and controlled change.</p>
           </article>
-          <article class="profile profile-comprehensive">
-            <span class="profile-code">P3</span>
-            <h3>Comprehensive</h3>
-            <p>Expanded controls for regulated, enterprise, high-risk, or contract-heavy delivery.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="lifecycle section reveal" id="lifecycle" aria-labelledby="lifecycle-title">
-        <div class="lifecycle-intro">
-          <h2 id="lifecycle-title">Intent stays connected to operation.</h2>
-          <p>Each phase inherits decisions, evidence, applicability, and change impact from the work before it.</p>
-        </div>
-
-        <figure class="lifecycle-image">
-          <img src="assets/vpos-lifecycle.jpg" width="1536" height="1024" alt="A complete sequence of connected lifecycle checkpoints with preserved evidence tokens" loading="lazy">
-        </figure>
-
-        <ol class="phase-rail" aria-label="Product OS lifecycle phases">
-          <li><span>00</span>Initialize</li>
-          <li><span>01</span>Discover</li>
-          <li><span>02</span>Business</li>
-          <li><span>03</span>Define</li>
-          <li><span>04</span>Specify</li>
-          <li><span>05</span>Experience</li>
-          <li><span>06</span>Design</li>
-          <li><span>07</span>Architect</li>
-          <li><span>08</span>Ready</li>
-          <li><span>09</span>Implement</li>
-          <li><span>10</span>Release</li>
-          <li><span>11</span>Evolve</li>
-        </ol>
-      </section>
-
-      <section class="capabilities section reveal" aria-labelledby="capabilities-title">
-        <div class="stacked-heading">
-          <h2 id="capabilities-title">Governance that produces work.</h2>
-          <p>Every active artifact has inputs, ownership, verification, evidence, dependencies, and a handoff.</p>
-        </div>
-
-        <div class="capability-grid">
-          <article class="capability capability-accent">
-            <h3>Trace every decision</h3>
-            <p>Connect business intent to requirements, design, architecture, tests, release evidence, and operations.</p>
-          </article>
-          <article class="capability capability-dark">
-            <h3>Keep authority explicit</h3>
-            <p>Agents can draft and verify. Humans retain approval, risk acceptance, applicability, gates, and releases.</p>
-          </article>
-          <article class="capability capability-pattern">
-            <h3>Compose, do not dump</h3>
-            <p>Generate the physical project structure from profile, phase, applicability, and dependency rules.</p>
-          </article>
-          <article class="capability capability-command">
-            <code>vibe-product-os status --strict --json</code>
-            <p>Inspect the governed state without inventing readiness.</p>
-          </article>
-          <article class="capability capability-plain">
-            <h3>Change without losing history</h3>
-            <p>Dry runs, evidence-backed updates, migration controls, rollback, and content-addressed archives protect the baseline.</p>
+          <article class="profile profile-p3 reveal">
+            <p class="profile-name">P3 Comprehensive</p>
+            <strong>P3</strong>
+            <span>specialist coverage</span>
+            <p>For regulated, enterprise, high-risk, multi-team, or contract-heavy delivery.</p>
           </article>
         </div>
       </section>
 
-      <section class="install section reveal" id="install" aria-labelledby="install-title">
-        <div class="install-copy">
-          <p class="eyebrow">Start with one command</p>
-          <h2 id="install-title">Install VPOS where your agents look.</h2>
-          <p>The guided installer detects supported hosts, previews every destination, preserves existing Skills, and writes only after consent.</p>
+      <section class="coverage section-shell">
+        <div class="coverage-title reveal">
+          <h2>The whole product lifecycle stays connected.</h2>
         </div>
-
-        <div class="command-block">
-          <div class="command-row">
-            <code id="install-command">npx vibe-product-os@pilot install</code>
-            <button class="copy-button" type="button" data-copy="#install-command" aria-describedby="copy-status">Copy</button>
+        <div class="coverage-groups">
+          <div class="coverage-group reveal">
+            <h3>Frame</h3>
+            <p>Initialization, discovery, business context, scope, assumptions, risks, standards, and authority.</p>
           </div>
-          <p id="copy-status" class="copy-status" aria-live="polite">Run this command inside the project you want VPOS to govern.</p>
-        </div>
-
-        <div class="install-paths">
-          <div>
-            <h3>Shared when supported</h3>
-            <code>.agents/skills/vibe-product-os</code>
+          <div class="coverage-group reveal">
+            <h3>Define</h3>
+            <p>Product capabilities, requirements, business rules, acceptance criteria, and traceability.</p>
           </div>
-          <div>
-            <h3>Native when required</h3>
-            <code>.claude/skills</code>
-            <code>.cline/skills</code>
+          <div class="coverage-group reveal">
+            <h3>Shape</h3>
+            <p>Experience architecture, product design, accessibility, solution architecture, data, security, and integrations.</p>
           </div>
-          <div>
-            <h3>Safe by default</h3>
-            <p>Dry-run preview, explicit consent, bounded overwrite, and recoverable multi-target operations.</p>
+          <div class="coverage-group reveal">
+            <h3>Deliver</h3>
+            <p>Engineering readiness, implementation, tests, evidence, release, rollback, and transition.</p>
+          </div>
+          <div class="coverage-group reveal">
+            <h3>Evolve</h3>
+            <p>Operations, observability, incidents, feedback, metrics, change impact, and controlled evolution.</p>
           </div>
         </div>
       </section>
 
-      <section class="authority section reveal" aria-labelledby="authority-title">
-        <p class="eyebrow">Human authority stays human</p>
-        <h2 id="authority-title">VPOS makes decisions visible. It does not make them for you.</h2>
-        <p>Use the public pilot now for product work and feedback. Keep accountable review at every authority-bearing decision.</p>
-        <div class="authority-actions">
-          <a class="button button-primary" href="https://github.com/Shiro7/vibe-product-os#recommended-installation-guided-npx-setup">Read the operating guide</a>
-          <a class="text-link" href="https://github.com/Shiro7/vibe-product-os/issues">Send feedback</a>
+      <section class="install section-shell" id="install">
+        <div class="install-copy reveal">
+          <h2>Install once.<br>Work in conversation.</h2>
+          <p>The package places the same governed Skill where each selected agent expects it. Normal product work then happens in chat.</p>
+          <div class="agent-list" aria-label="Supported AI agents">
+            <span>Codex</span>
+            <span>Claude Code</span>
+            <span>Gemini CLI</span>
+            <span>GitHub Copilot</span>
+            <span>Cursor</span>
+            <span>Windsurf</span>
+            <span>OpenCode</span>
+            <span>Cline</span>
+            <span>Zed</span>
+          </div>
+        </div>
+
+        <div class="install-panels">
+          <article class="copy-panel reveal">
+            <div class="copy-panel-heading">
+              <span>Install</span>
+              <button type="button" data-copy="npx vibe-product-os@pilot install">Copy</button>
+            </div>
+            <code>npx vibe-product-os@pilot install</code>
+          </article>
+
+          <article class="copy-panel copy-panel-accent reveal">
+            <div class="copy-panel-heading">
+              <span>Start in chat</span>
+              <button type="button" data-copy="Use $vibe-product-os for this project. Recommend P1, P2, or P3 and ask only for the next blocking decision.">Copy</button>
+            </div>
+            <p>Use <strong>$vibe-product-os</strong> for this project. Recommend P1, P2, or P3 and ask only for the next blocking decision.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="downloads section-shell">
+        <div class="downloads-copy reveal">
+          <h2>Use the public pilot. Tell us what breaks.</h2>
+          <p>Install from npm, inspect the source, and send feedback from a real project.</p>
+        </div>
+        <div class="download-actions reveal">
+          <a class="button button-primary" href="https://www.npmjs.com/package/vibe-product-os">Open npm</a>
+          <a class="button button-secondary" href="https://github.com/Shiro7/vibe-product-os">View source</a>
+          <a class="button button-secondary" href="https://github.com/Shiro7/vibe-product-os/issues">Send feedback</a>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer section-shell">
       <div>
-        <a class="brand" href="#top" aria-label="VPOS home">
-          <span class="brand-mark" aria-hidden="true">V</span>
-          <span>VPOS</span>
-        </a>
-        <p>Vibe Product OS. Apache-2.0.</p>
+        <strong>VPOS</strong>
+        <p>Vibe Product OS. Governed delivery for humans and AI.</p>
       </div>
       <div class="footer-links">
         <a href="https://www.npmjs.com/package/vibe-product-os">npm</a>
@@ -230,7 +243,6 @@
         <a href="https://github.com/Shiro7/vibe-product-os/security">Security</a>
         <a href="https://github.com/Shiro7/vibe-product-os/issues">Feedback</a>
       </div>
-      <p class="pilot-note">Public pilot. Available for use and review, not yet production-proven.</p>
     </footer>
   </body>
 </html>

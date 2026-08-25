@@ -39,9 +39,9 @@ if (packageJson.license !== 'Apache-2.0') fail('PKG-LICENSE', 'AUTH-DEC-001 requ
 if (packageJson.publishConfig?.access !== 'public' || packageJson.publishConfig?.tag !== 'pilot') {
   fail('PKG-PUBLISH-CONFIG', 'Pilot publication metadata must remain public access with the pilot tag.');
 }
-if (packageJson.homepage !== 'https://github.com/Shiro7/vibe-product-os#readme'
+if (packageJson.homepage !== 'https://shiro7.github.io/vibe-product-os/'
   || packageJson.bugs?.url !== 'https://github.com/Shiro7/vibe-product-os/issues') {
-  fail('PKG-PUBLIC-LOCATORS', 'npm homepage and feedback locator must resolve to the public repository.');
+  fail('PKG-PUBLIC-LOCATORS', 'npm homepage must resolve to the public VPOS website and feedback to the public repository.');
 }
 
 const required = [
@@ -66,6 +66,7 @@ const required = [
   'governance/authority/AUTH-DEC-001_Public_License_and_Channels.md',
   'governance/authority/AUTH-DEC-002_Public_Pilot_Use_Test_Feedback_and_NPM.md',
   'governance/authority/AUTH-DEC-003_Multi_Agent_Installer_and_NPM_Pilot_1.md',
+  'governance/authority/AUTH-DEC-005_VPOS_Website_and_NPM_Homepage_Pilot_2.md',
   'governance/authority/AUTH-DEC-004_VPOS_Official_Short_Name_and_Website.md',
   'governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json',
   'governance/authority/PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json',

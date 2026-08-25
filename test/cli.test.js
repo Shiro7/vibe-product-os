@@ -15,12 +15,12 @@ test('version reports package and framework identities separately', () => {
   const identity = JSON.parse(result.stdout);
   assert.equal(identity.short_name, 'VPOS');
   assert.equal(identity.package, 'vibe-product-os');
-  assert.equal(identity.package_version, '0.1.0-pilot.1');
+  assert.equal(identity.package_version, '0.1.0-pilot.2');
   assert.equal(identity.framework_version, '1.0.0');
   assert.equal(identity.framework_signature_condition, 'AUTH-COND-001_CLOSED');
   assert.equal(identity.key_continuity_condition, 'AUTH-COND-004_CLOSED');
   assert.equal(identity.public_channel_status, 'ACTIVE_VERIFIED');
-  assert.equal(identity.release_authority_decision, 'AUTH-DEC-003_APPROVED');
+  assert.equal(identity.release_authority_decision, 'AUTH-DEC-005_APPROVED');
   assert.equal(identity.release_authority_status, 'APPROVED_CONDITIONAL_ON_EXACT_EXTERNAL_ATTESTATION');
   assert.equal(identity.external_distribution_blocker, null);
   assert.deepEqual(identity.external_distribution_blockers, []);

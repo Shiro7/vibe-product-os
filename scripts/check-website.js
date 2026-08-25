@@ -27,9 +27,7 @@ const html = read('website/index.html');
 const css = read('website/styles.css');
 const javascript = read('website/main.js');
 const requiredAssets = [
-  'website/assets/vpos-control-plane.jpg',
-  'website/assets/vpos-agent-network.jpg',
-  'website/assets/vpos-lifecycle.jpg',
+  'website/assets/vpos-system-map.jpg',
 ];
 
 for (const relative of requiredAssets) {
@@ -51,7 +49,12 @@ if (packageJson.bin?.vpo !== 'bin/vibe-product-os.js' || packageJson.bin?.['vibe
 if (!html.includes('<html lang="en">')) fail('SITE-LANGUAGE', 'The document language is missing.');
 if (!html.includes('class="skip-link"')) fail('SITE-SKIP-LINK', 'The skip link is missing.');
 if (!html.includes('npx vibe-product-os@pilot install')) fail('SITE-INSTALL-COMMAND', 'The approved pilot installation command is missing.');
+if (!html.includes('Use $vibe-product-os for this project.')) fail('SITE-CONVERSATION-START', 'The conversation-first VPOS start prompt is missing.');
+for (const profile of ['P1 Lean', 'P2 Standard', 'P3 Comprehensive']) {
+  if (!html.includes(profile)) fail('SITE-PROFILE', `Missing canonical profile ${profile}.`);
+}
 if (!html.includes('not yet production-proven')) fail('SITE-CLAIM-BOUNDARY', 'The public pilot claim boundary is missing.');
+if (/VBP|vibe-build-protocol/u.test(html)) fail('SITE-LEGACY-IDENTITY', 'The retired VBP identity remains in the VPOS website.');
 if (!css.includes('prefers-reduced-motion')) fail('SITE-REDUCED-MOTION', 'Reduced motion handling is missing.');
 if (!css.includes('prefers-color-scheme')) fail('SITE-COLOR-SCHEME', 'System light and dark mode handling is missing.');
 if (javascript.includes("addEventListener('scroll'") || javascript.includes('addEventListener("scroll"')) {
@@ -64,6 +67,11 @@ for (const [file, content] of [['index.html', html], ['main.js', javascript]]) {
 
 const sectionCount = (html.match(/<section\b/gu) || []).length;
 const eyebrowCount = (html.match(/class="eyebrow"/gu) || []).length;
+const lifecycleStart = html.indexOf('<div class="lifecycle-track section-shell">');
+const lifecycleEnd = html.indexOf('</div>', lifecycleStart);
+const lifecycleMarkup = lifecycleStart >= 0 && lifecycleEnd > lifecycleStart ? html.slice(lifecycleStart, lifecycleEnd) : '';
+const lifecyclePhaseCount = (lifecycleMarkup.match(/<span>/gu) || []).length;
+if (lifecyclePhaseCount !== 12) fail('SITE-LIFECYCLE', `Expected 12 lifecycle phases, found ${lifecyclePhaseCount}.`);
 if (eyebrowCount > Math.ceil(sectionCount / 3)) {
   fail('SITE-EYEBROW-DENSITY', `Found ${eyebrowCount} eyebrows across ${sectionCount} sections.`);
 }
@@ -96,7 +104,8 @@ const report = {
   result: findings.length ? 'FAIL' : 'PASS',
   sections: sectionCount,
   eyebrows: eyebrowCount,
-  generated_assets: requiredAssets.length,
+  visual_assets: requiredAssets.length,
+  lifecycle_phases: lifecyclePhaseCount,
   findings,
 };
 

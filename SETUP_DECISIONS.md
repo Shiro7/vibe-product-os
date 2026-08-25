@@ -4,7 +4,7 @@
 |---|---|---|---|
 | Public product identity | DECIDED | Vibe Product OS; official short name `VPOS` | Binding under `AUTH-DEC-004` |
 | npm / CLI / Skill / Plugin name | DECIDED | `vibe-product-os` | Recheck npm immediately before publication |
-| Version model | PUBLISHED_CURRENT_PILOT | Package `0.1.0-pilot.1`; framework `1.0.0` | Pilot.0 remains immutable and published |
+| Version model | NEXT_PILOT_APPROVED | Package candidate `0.1.0-pilot.2`; framework `1.0.0` | Pilot.1 remains current until pilot.2 verification and publication |
 | Skill host targets | CANDIDATE_VERIFIED | Codex, Claude Code, Gemini CLI, GitHub Copilot, Cursor, Windsurf, OpenCode, Cline, Zed, custom roots | Directory contracts tested; host-runtime behavior remains pilot feedback scope |
 | Pilot license | APPROVED | `Apache-2.0`; `AUTH-DEC-001` | License blocker closed |
 | GitHub repository | ACTIVE_PUBLIC_VERIFIED | [`Shiro7/vibe-product-os`](https://github.com/Shiro7/vibe-product-os) | Public source use and testing approved by `AUTH-DEC-002` |
@@ -16,10 +16,11 @@
 | Key continuity | CLOSED | `AUTH-COND-004`; two offline copies and 2/2 recovery tests | Ongoing custody controls apply |
 | Public pilot use and feedback | APPROVED_ACTIVE | `AUTH-DEC-002`; use/test now, feedback through GitHub Issues | Does not create production-proven claims |
 | Pilot.1 Authority decision | APPROVED_EXECUTED | `AUTH-DEC-003` for exact `0.1.0-pilot.1` scope | Exact signed publication verified |
-| Package signatures | VERIFIED | Six exact pilot.1 subjects plus signed manifest verified against pinned Authority key | External distribution control satisfied for pilot.1 only |
-| Channel order | EXECUTED_FOR_PILOT_1 | GitHub review first; npm `public` with tag `pilot` | `pilot` points to pilot.1; `latest` remains pilot.0 |
+| Pilot.2 Authority decision | APPROVED_PENDING_ATTESTATION | `AUTH-DEC-005` for exact `0.1.0-pilot.2` website and npm homepage scope | Requires exact build, signatures, and publication evidence |
+| Package signatures | PENDING_FOR_PILOT_2 | Pilot.1 signatures remain verified; pilot.2 requires six exact subjects plus signed manifest | External distribution control remains version-specific |
+| Channel order | APPROVED_FOR_PILOT_2 | GitHub review and Pages first; npm `public` with tag `pilot` after verification | `latest` remains pilot.0 |
 | W1 capability/source coverage | VERIFIED_WORKING_BASELINE | 17/17 release components and 12/12 modes | Required package invariant |
 | Physical Composer | VERIFIED_WORKING_BASELINE | 281-row map; P1/P2/P3 dry-run/apply; golden fixtures | Pilot must validate real-project use |
 | Operational commands | VERIFIED_WORKING_BASELINE | W3 `status`, `update`, `verify-release`; 20 focused tests | Pilot exercises project commands; signing remains an Authority action |
 
-`AUTH-DEC-001` closes the license decision and approves the support/security channel policy. Public repository, support, and confidential security-reporting activation are verified in `PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json`. `AUTH-DEC-002` remains the immutable approval for published `0.1.0-pilot.0`. `AUTH-DEC-003` was executed for the exact `0.1.0-pilot.1` scope after verification of every detached subject signature and the signed manifest. Registry identity, unchanged `latest`, and clean public installation evidence are recorded in `governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json`. The public VPOS website deployment is verified in `governance/authority/GITHUB_PAGES_ACTIVATION_EVIDENCE_2026-08-25.json`. `AUTH-COND-002` remains open and continues to limit production-proven and scaled-adoption claims.
+`AUTH-DEC-001` closes the license decision and approves the support/security channel policy. Public repository, support, and confidential security-reporting activation are verified in `PUBLIC_CHANNEL_ACTIVATION_EVIDENCE_2026-08-25.json`. `AUTH-DEC-002` remains the immutable approval for published `0.1.0-pilot.0`. `AUTH-DEC-003` was executed for the exact `0.1.0-pilot.1` scope after verification of every detached subject signature and the signed manifest. `AUTH-DEC-005` approves the exact `0.1.0-pilot.2` website and npm homepage release after its own verification. Registry identity, unchanged `latest`, and clean public installation evidence for pilot.1 are recorded in `governance/authority/NPM_PUBLICATION_EVIDENCE_0.1.0-pilot.1_2026-08-25.json`. The prior public VPOS website deployment is verified in `governance/authority/GITHUB_PAGES_ACTIVATION_EVIDENCE_2026-08-25.json`; the redesign requires additive deployment evidence. `AUTH-COND-002` remains open and continues to limit production-proven and scaled-adoption claims.

@@ -18,14 +18,15 @@ Open `http://127.0.0.1:4173`.
 npm run site:check
 ```
 
-The check verifies the VPOS identity, required assets, internal links, image accessibility, motion and theme controls, approved installation command, and public-pilot claim boundary.
+The check verifies the VPOS identity, canonical profiles, twelve lifecycle phases, conversation start prompt, required assets, internal links, image accessibility, motion and theme behavior, approved installation command, and public-pilot claim boundary.
 
 ## Visual system
 
-- Palette: graphite, brushed silver, off-white, and one lime accent.
-- Typography: native system sans with a system monospace companion.
-- Shape rule: 24px surfaces, 14px controls, full-pill actions.
-- Theme: one page-wide theme with system preference and manual desktop control.
-- Motion: entry hierarchy and section reveal only, with reduced-motion fallback.
+- Palette: graphite, off-white, and one restrained lime accent.
+- Typography: large native system sans with a system monospace companion.
+- Shape rule: one compact 8px radius across surfaces and actions.
+- Theme: one page-wide system-aware light or dark theme.
+- Motion: entry hierarchy and one-time section reveal, with reduced-motion fallback.
+- Composition: generous editorial space, one abstract hero image, sparse panels, and no decorative section imagery.
 
-The three raster assets were generated specifically for this project and are stored in `website/assets/`.
+The visual direction is a preserved adaptation of the earlier VBP public-demo site. The source VBP site remains untouched; VPOS carries its own copied image and independent website files.
