@@ -1,6 +1,6 @@
 {
   "name": "vibe-product-os",
-  "version": "0.1.0-pilot.1",
+  "version": "0.1.0-pilot.2",
   "description": "Multi-agent Skill installer and governed runtime adapter for Product OS 1.0.0.",
   "type": "commonjs",
   "main": "lib/index.js",
@@ -57,7 +57,7 @@
     "type": "git",
     "url": "git+https://github.com/Shiro7/vibe-product-os.git"
   },
-  "homepage": "https://github.com/Shiro7/vibe-product-os#readme",
+  "homepage": "https://shiro7.github.io/vibe-product-os/",
   "bugs": {
     "url": "https://github.com/Shiro7/vibe-product-os/issues"
   },
@@ -72,7 +72,7 @@
     "shortName": "VPOS",
     "frameworkVersion": "1.0.0",
     "sourceRelease": "Product-OS-v1.0-rc.2",
-    "releaseDecision": "AUTH-DEC-003",
+    "releaseDecision": "AUTH-DEC-005",
     "releaseAuthorityStatus": "APPROVED_CONDITIONAL_ON_EXACT_EXTERNAL_ATTESTATION",
     "authorityKeyId": "EAB95C319319813D",
     "authorityPublicKeySha256": "92d7d336663522b1ac55544749fa632cfa63467af5391a01f8788ffefc3412da",
