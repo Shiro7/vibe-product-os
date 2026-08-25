@@ -1,0 +1,108 @@
+{
+  "evidence_id": "VIBE-PRODUCT-OS-NPM-PUBLICATION-003",
+  "recorded_at": "2026-08-25T07:19:40Z",
+  "authority_decision": "AUTH-DEC-005",
+  "authority": "M.M.Eyada",
+  "publisher_account": "mashiro77",
+  "source": {
+    "repository": "https://github.com/Shiro7/vibe-product-os",
+    "release_commit": "54545402ebfc72e799d88162d45b0942ebd0183e",
+    "release_pull_request": "https://github.com/Shiro7/vibe-product-os/pull/12",
+    "website_pull_request": "https://github.com/Shiro7/vibe-product-os/pull/10",
+    "primary_tag_pull_request": "https://github.com/Shiro7/vibe-product-os/pull/11",
+    "worktree_state_at_build": "CLEAN"
+  },
+  "website_deployment": {
+    "url": "https://shiro7.github.io/vibe-product-os/",
+    "source_commit": "fd656cbb441f95e6d3a666b7851702bb4130af0e",
+    "pull_request": "https://github.com/Shiro7/vibe-product-os/pull/10",
+    "workflow": "Deploy VPOS website",
+    "workflow_run_id": 32816254174,
+    "workflow_run_url": "https://github.com/Shiro7/vibe-product-os/actions/runs/32816254174",
+    "job_id": 97705046041,
+    "job_name": "verify-and-deploy",
+    "job_status": "COMPLETED_SUCCESS",
+    "http_status": 200,
+    "https_enforced": true,
+    "content_type": "text/html; charset=utf-8",
+    "source_index_sha256": "e44be7e08e4f7158626c7201db2be8131ec78f9c8aa8fc77118d1ff81c097b28",
+    "public_index_sha256": "e44be7e08e4f7158626c7201db2be8131ec78f9c8aa8fc77118d1ff81c097b28",
+    "byte_identity": "MATCH"
+  },
+  "npm_publication": {
+    "package": "vibe-product-os",
+    "version": "0.1.0-pilot.2",
+    "registry": "https://registry.npmjs.org/",
+    "published_at": "2026-08-25T07:00:18.917Z",
+    "access": "public",
+    "publish_tag": "pilot",
+    "registry_integrity": "sha512-A9pOdyfpDBlyAiQQsHxB07bvqVnAdVT2fIoE+Q4ife0aBpfwecUfZq+MOc+ISc+d6LPiQiAwRrOqr7dHUZBMgw==",
+    "registry_shasum_sha1": "19f0bf6109a4ce52a816e7e4afe915ee6176de0c",
+    "tarball_sha256": "e130ea96dbc243c0a77dabfcc30adc687b7a0ebdbb19b00005c6dcb179476304",
+    "registry_metadata_verification": "PASS",
+    "homepage": "https://shiro7.github.io/vibe-product-os/",
+    "repository": "git+https://github.com/Shiro7/vibe-product-os.git",
+    "feedback": "https://github.com/Shiro7/vibe-product-os/issues",
+    "npm_primary_page_version": "0.1.0-pilot.2",
+    "npm_primary_page_readme": "CURRENT_VERIFIED"
+  },
+  "dist_tag_observation": {
+    "pilot": "0.1.0-pilot.2",
+    "latest": "0.1.0-pilot.2",
+    "latest_was_requested": true,
+    "latest_was_moved": true,
+    "authentication": "NPM_CLI_WEB_AUTHENTICATION",
+    "disposition": "PILOT_AND_LATEST_RESOLVE_TO_EXACT_APPROVED_RELEASE",
+    "installation_contracts": [
+      "vibe-product-os@pilot",
+      "vibe-product-os@latest"
+    ]
+  },
+  "signature_verification": {
+    "result": "PASS",
+    "byte_identity": "VERIFIED",
+    "publisher_identity": "VERIFIED",
+    "manifest_signature_identity": "VERIFIED",
+    "publisher_key_identity": "PINNED_AUTHORITY_KEY_VERIFIED",
+    "authority_key_id": "EAB95C319319813D",
+    "authority_public_key_sha256": "92d7d336663522b1ac55544749fa632cfa63467af5391a01f8788ffefc3412da",
+    "signed_subject_count": 6,
+    "external_distribution_authorized": true,
+    "signature_record_sha256": "4a57074b9133b84bf6497a7edcbd193444a78a9782b7be37592db8ac1ca50b6e",
+    "release_manifest_sha256": "bcc1e64c970c885f0fe93f956912fa39f6a5d9bf28e446b6c23b394dc996da81",
+    "release_manifest_signature_sha256": "b869c2cfa54a7a25af2870857808a8fc829b98d1ac8109e3083a47a56a0624e8",
+    "npm_tarball_signature_sha256": "354bbc35a6e4dfefc0b415ab84756ab2d75640e7bb19a4579e095e40130c2a27"
+  },
+  "prepublication_clean_recipient_verification": {
+    "result": "PASS_UNSIGNED_PREPUBLICATION",
+    "npm_install_from_local_tarball": "PASS",
+    "setup_doctor": "PASS",
+    "multi_agent_install": "PASS",
+    "requested_agent_count": 9,
+    "unique_install_target_count": 3,
+    "prohibited_installed_path_count": 0
+  },
+  "clean_public_install_verification": {
+    "source": "npm_registry_latest",
+    "package": "vibe-product-os@0.1.0-pilot.2",
+    "package_install": "PASS",
+    "version_command": "PASS",
+    "setup_doctor": "PASS_HEALTHY_TRUE",
+    "packaged_readme": "PASS_CURRENT_OPERATING_GUIDE",
+    "npm_audit": "PASS_ZERO_VULNERABILITIES"
+  },
+  "public_channels": {
+    "package": "https://www.npmjs.com/package/vibe-product-os",
+    "version": "https://www.npmjs.com/package/vibe-product-os/v/0.1.0-pilot.2",
+    "website": "https://shiro7.github.io/vibe-product-os/",
+    "source": "https://github.com/Shiro7/vibe-product-os",
+    "feedback": "https://github.com/Shiro7/vibe-product-os/issues",
+    "security": "GITHUB_PRIVATE_VULNERABILITY_REPORTING"
+  },
+  "claim_boundary": {
+    "condition": "AUTH-COND-002",
+    "status": "OPEN_POST_BASELINE",
+    "statement": "PUBLIC_PILOT_AVAILABLE_NOT_PRODUCTION_PROVEN"
+  },
+  "overall_result": "PUBLIC_PILOT_2_PUBLISHED_SIGNED_TAGGED_AND_CLEAN_INSTALL_VERIFIED"
+}
